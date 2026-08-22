@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight, BarChart3, Bot, Check, ChevronDown, Crosshair, Globe,
@@ -10,6 +11,19 @@ import { cn } from "@/lib/utils";
 import { Logo } from "@/components/ui/Logo";
 
 const NAV = ["Product", "Solutions", "Integration", "Resources"];
+
+/** A denser starfield than a handful of dots — drawn, never fetched. */
+const STARS = [
+  ["8%", "14%", 1, 0.45], ["17%", "31%", 1, 0.3], ["23%", "9%", 1.5, 0.5],
+  ["31%", "48%", 1, 0.35], ["38%", "18%", 1, 0.4], ["44%", "63%", 1.5, 0.3],
+  ["52%", "12%", 1, 0.45], ["58%", "39%", 1, 0.28], ["64%", "71%", 1.5, 0.4],
+  ["71%", "22%", 1, 0.5], ["77%", "55%", 1, 0.3], ["83%", "16%", 1.5, 0.42],
+  ["89%", "44%", 1, 0.35], ["94%", "27%", 1, 0.3], ["12%", "67%", 1, 0.32],
+  ["27%", "79%", 1.5, 0.28], ["49%", "86%", 1, 0.3], ["68%", "8%", 1, 0.38],
+  ["86%", "77%", 1, 0.26], ["4%", "42%", 1, 0.34],
+]
+  .map(([x, y, r, a]) => `radial-gradient(${r}px ${r}px at ${x} ${y}, rgba(255,255,255,${a}), transparent)`)
+  .join(", ");
 
 const TRANSCRIPTION_FACTS = [
   { icon: <Crosshair className="size-4" />, title: "95% accurate", body: "Speaker-attributed transcripts you can actually quote from." },
@@ -89,18 +103,24 @@ export default function LandingPage() {
             <span className="cursor-default text-base font-medium text-gray-200">Pricing</span>
           </div>
 
-          <div className="ml-auto flex shrink-0 items-center gap-3">
+          <div className="ml-auto flex shrink-0 items-center gap-4">
             <Link
               href="/login"
-              className="hidden h-10 items-center rounded-lg border border-white/20 px-4 text-base font-medium text-white transition-colors hover:bg-white/10 sm:inline-flex"
+              className="hidden text-base font-medium text-white transition-opacity hover:opacity-80 sm:inline"
             >
-              Request demo
+              Login
+            </Link>
+            <Link
+              href="/login"
+              className="hidden h-10 items-center rounded-lg bg-white px-4 text-base font-medium text-gray-900 transition-colors hover:bg-gray-100 sm:inline-flex"
+            >
+              Request Demo
             </Link>
             <Link
               href="/login"
               className="inline-flex h-10 items-center rounded-lg bg-purple-500 px-4 text-base font-medium text-white transition-colors hover:bg-purple-600"
             >
-              Open app
+              Get Started
             </Link>
             <button
               type="button"
@@ -125,62 +145,87 @@ export default function LandingPage() {
       </header>
 
       {/* ------------------------------------------------------------- hero */}
-      <section className="relative overflow-hidden bg-[#100730] pb-40 pt-24 text-center">
-        {/* A faint starfield, drawn rather than fetched. */}
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-60"
-          style={{
-            backgroundImage:
-              "radial-gradient(1px 1px at 12% 22%, rgba(255,255,255,.5), transparent), radial-gradient(1px 1px at 78% 14%, rgba(255,255,255,.4), transparent), radial-gradient(1.5px 1.5px at 43% 62%, rgba(255,255,255,.35), transparent), radial-gradient(1px 1px at 88% 68%, rgba(255,255,255,.4), transparent), radial-gradient(1px 1px at 25% 82%, rgba(255,255,255,.3), transparent)",
-          }}
-        />
-        <div className="relative mx-auto max-w-[1000px] px-5">
-          <h1 className="font-display text-[42px] font-medium leading-[1.15] tracking-[0.02em] text-gray-50 sm:text-6xl">
+      <section className="relative bg-[#100730] pt-24 text-center">
+        {/*
+         * Starfield. Clipped by its own wrapper so the hero itself can let the
+         * product shot overflow its bottom edge.
+         */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0" style={{ backgroundImage: STARS, backgroundRepeat: "no-repeat" }} />
+          <div className="absolute inset-0 bg-[radial-gradient(80%_50%_at_50%_0%,rgba(122,90,248,0.18),transparent_70%)]" />
+        </div>
+
+        <div className="relative mx-auto max-w-[1080px] px-5">
+          <h1 className="font-display text-[40px] font-medium leading-[1.24] tracking-[0.02em] text-gray-50 sm:text-[56px] lg:text-[64px]">
             The #1 AI Assistant For
             <br />
             Your Meetings
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-gray-300">
+          <p className="mx-auto mt-7 max-w-2xl text-lg leading-7 text-gray-300 lg:text-xl">
             Transcribe, summarize, search, and analyze all your team conversations.
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/login"
-              className="inline-flex h-12 items-center gap-2 rounded-lg bg-cta-purple px-6 text-md font-medium text-white shadow-e2 transition-opacity hover:opacity-90"
+              className="inline-flex h-12 items-center gap-2 rounded-lg bg-purple-500 px-6 text-md font-medium text-white transition-colors hover:bg-purple-600"
             >
-              Get started
+              Get Started
               <ArrowRight className="size-4" />
             </Link>
             <Link
               href="#how"
-              className="inline-flex h-12 items-center rounded-lg border border-white/15 bg-white/5 px-6 text-md font-medium text-white transition-colors hover:bg-white/10"
+              className="inline-flex h-12 items-center rounded-lg bg-white/10 px-6 text-md font-medium text-white transition-colors hover:bg-white/15"
             >
-              See how it works
+              Request Demo
             </Link>
           </div>
 
-          <div className="mx-auto mt-12 inline-flex flex-wrap items-center justify-center gap-x-5 gap-y-2 rounded-xl bg-white/[0.06] px-5 py-3 text-base text-gray-200">
-            <span className="inline-flex items-center gap-1.5">
+          {/* Trust strip, sitting just above the product shot as on the original. */}
+          <div className="mx-auto mt-16 inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-2 rounded-t-xl bg-[#1b1240] px-6 py-3.5 text-md text-gray-100">
+            <span className="inline-flex items-center gap-2">
+              <span className="flex size-5 items-center justify-center rounded-full bg-[#ff492c] text-[10px] font-bold text-white">
+                G
+              </span>
               Rated 4.8 / 5
-              <span className="flex" aria-hidden>
-                {[0, 1, 2, 3, 4].map((index) => (
-                  <Star key={index} className={cn("size-3.5", index < 4 ? "fill-yellow-400 text-yellow-400" : "fill-yellow-400/40 text-yellow-400/40")} />
+              <span className="flex gap-0.5" aria-hidden>
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <Star
+                    key={i}
+                    className={cn("size-4", i < 4 ? "fill-orange-400 text-orange-400" : "fill-orange-400/35 text-orange-400/35")}
+                  />
                 ))}
               </span>
             </span>
-            <span className="hidden h-4 w-px bg-white/20 sm:block" />
-            <span className="inline-flex items-center gap-1.5">
-              <Lock className="size-3.5 text-green-400" />
-              GDPR, SOC 2 and more
+            <span className="hidden h-5 w-px bg-white/20 sm:block" />
+            <span className="inline-flex items-center gap-2">
+              <Lock className="size-4 text-green-400" />
+              GDPR, SOC2, More
             </span>
+          </div>
+        </div>
+
+        {/*
+         * The product shot straddles the fold: it starts inside the dark hero
+         * and runs on into the section below, which is what gives the original
+         * its depth. The negative margin pulls the next section up under it.
+         */}
+        <div className="relative z-10 mx-auto -mb-24 max-w-[1240px] px-5 sm:-mb-40">
+          <div className="overflow-hidden rounded-xl bg-white shadow-[0_30px_90px_rgba(0,0,0,0.5)] ring-1 ring-white/10">
+            <Image
+              src="/hero-app.png"
+              alt="The meeting view: AI notes on the left, an interactive transcript on the right"
+              width={1600}
+              height={1000}
+              priority
+              className="w-full"
+            />
           </div>
         </div>
       </section>
 
       {/* ------------------------------------------------- transcription */}
-      <section id="how" className="bg-gray-25 py-24">
+      <section id="how" className="bg-gray-25 pb-24 pt-40 sm:pt-56">
         <div className="mx-auto grid max-w-[1140px] items-center gap-14 px-5 lg:grid-cols-2">
           <div>
             <SectionHeading>

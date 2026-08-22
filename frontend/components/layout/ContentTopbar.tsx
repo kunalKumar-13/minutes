@@ -54,12 +54,21 @@ export function ContentTopbar({ title, onCapture, onOpenNav }: ContentTopbarProp
 
   return (
     <header className="grid h-[56px] shrink-0 grid-cols-[1fr_auto_1fr] items-center gap-3 border-b border-[var(--app-border)] bg-[var(--app-surface)] px-4">
-      {onOpenNav && (
-        <IconButton label="Open navigation" onClick={onOpenNav} className="-ml-1">
-          <Menu className="size-[18px]" />
-        </IconButton>
-      )}
-      <div className="flex min-w-0 items-center text-md font-medium text-gray-900 dark:text-gray-100">{title}</div>
+      {/*
+        The hamburger and the title share one grid cell. Left as siblings they
+        made a fourth child of a three-column grid, which pushed the action
+        cluster onto an implicit second row.
+      */}
+      <div className="flex min-w-0 items-center gap-1">
+        {onOpenNav && (
+          <IconButton label="Open navigation" onClick={onOpenNav} className="-ml-1 shrink-0">
+            <Menu className="size-[18px]" />
+          </IconButton>
+        )}
+        <div className="flex min-w-0 items-center text-md font-medium text-gray-900 dark:text-gray-100">
+          {title}
+        </div>
+      </div>
 
       <form onSubmit={submit} className="hidden w-[360px] lg:block">
         <div className="relative">
