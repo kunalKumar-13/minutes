@@ -1,0 +1,36 @@
+[00:04] Priya Raman: Alright, we're recording. Thanks everyone for making the time. The goal today is to lock the Q3 roadmap so engineering can start scoping on Monday. I want us to leave with three committed bets and a clear no-list.
+[00:31] Priya Raman: Quick context for anyone who missed the prep doc. Q2 shipped the workspace revamp and the new billing flow. Activation is up eleven percent, but week-four retention is basically flat at thirty-eight percent. That flat line is the thing I care about most right now.
+[01:12] Daniel Okafor: Flat retention with rising activation usually means we're getting people in the door and then not giving them a reason to come back. Do we know where they drop?
+[01:29] Tomás Ferreira: We do, and it's fairly stark. Sixty-two percent of accounts that churn in the first month never invite a second person. Single-player accounts retain at around nineteen percent. Anything with three or more active seats retains at sixty-four percent.
+[02:03] Tomás Ferreira: So collaboration isn't a nice-to-have feature area. It's the retention lever. Everything else we could build is second-order compared to getting a second person into the workspace.
+[02:31] Priya Raman: That's the clearest read we've had. Mei, does that match what you're seeing in research?
+[02:44] Mei Lin: It does. I ran eleven sessions in the last two weeks. The pattern I kept hearing was that people didn't know sharing existed. The invite entry point is buried in settings, and there's no moment in the product that ever suggests bringing someone in.
+[03:18] Mei Lin: One person literally said they assumed it was a single-user tool. That's a discoverability failure, not a feature gap. We already built sharing. Nobody can find it.
+[03:41] Daniel Okafor: That's actually good news from an engineering standpoint. Surfacing an existing capability is a fraction of the cost of building a new one.
+[04:02] Priya Raman: Okay. So bet number one is collaboration surfacing. Mei, can you own the design exploration for that? I'd want to see options by the end of next week.
+[04:19] Mei Lin: Yes. I'll have three directions ready for review by next Friday. I want to test an empty-state prompt, a post-first-action nudge, and a persistent presence bar.
+[04:44] Priya Raman: Perfect. Let's talk bet two. Daniel, you've been pushing on search for a while.
+[05:01] Daniel Okafor: I have, and I'll keep pushing. Search is our most-used feature and our worst-performing one. P95 latency is four point two seconds. Users abandon at around two.
+[05:26] Daniel Okafor: The root cause is that we're doing a full table scan with a LIKE query on every keystroke. It was fine at ten thousand documents. We're at four million now.
+[05:49] Tomás Ferreira: I can confirm the abandonment number. Twenty-eight percent of searches never get a click. For queries that return in under a second, that drops to nine percent.
+[06:14] Daniel Okafor: So the fix is a real inverted index. I'd scope it at four weeks for one engineer, including a backfill and a dual-write period so we can roll back safely.
+[06:38] Priya Raman: Four weeks is a real chunk of the quarter. What do we get for it?
+[06:47] Daniel Okafor: Sub-two-hundred-millisecond search at the ninety-fifth percentile, plus the foundation for anything semantic we want to do later. Right now we literally cannot build ranking on top of what we have.
+[07:11] Priya Raman: Then let's commit to it. Daniel, can you write up the technical design and circulate it before we scope?
+[07:22] Daniel Okafor: I'll have the design doc out by Wednesday. I'll include the rollback plan explicitly since that's what people will ask about.
+[07:39] Priya Raman: Good. Bet three is where I expect the most disagreement. I want to talk about the mobile app.
+[07:52] Mei Lin: I'll say it plainly. I think mobile is a trap this quarter. We have one designer, and that's me. If I'm on collaboration, I can't also carry a mobile surface.
+[08:16] Tomás Ferreira: The data doesn't support mobile either. Nine percent of sessions are mobile web, and those sessions are almost all read-only. People check something and leave. There's no evidence of demand for a full mobile experience.
+[08:44] Daniel Okafor: I'd add that a native app is a permanent maintenance commitment. It's not a quarter of work, it's a team forever.
+[09:02] Priya Raman: I hear all three of you, and I agree. Mobile goes on the no-list. I'll take the note to explain that decision to the leadership team, because I know it'll come up in the board deck.
+[09:26] Priya Raman: So what's bet three instead?
+[09:33] Tomás Ferreira: I'd argue for onboarding instrumentation. Right now I'm reconstructing funnels from three different event streams that don't agree with each other. I can't answer basic questions without a week of data archaeology.
+[10:04] Tomás Ferreira: If we fix the event schema, every decision after this one gets faster. It's not a flashy bet, but it compounds.
+[10:22] Daniel Okafor: I'd back that. It's maybe two weeks of work and it unblocks Tomás permanently.
+[10:36] Priya Raman: Sold. Tomás, can you own the event schema redesign and get a proposal to Daniel for review?
+[10:48] Tomás Ferreira: I'll draft the schema by end of next week and walk Daniel through it before anyone writes code.
+[11:09] Priya Raman: Great. So the three bets are collaboration surfacing, search infrastructure, and event instrumentation. Mobile is explicitly out. Anything I'm missing?
+[11:28] Mei Lin: One thing. Can we agree that we're not adding anything to this list mid-quarter without taking something off? Last quarter we said three bets and shipped seven half-things.
+[11:47] Priya Raman: That's fair and I own that. Let's make it a rule. Anything new displaces something existing, and I'll be the one to say no.
+[12:03] Daniel Okafor: I'd like that written down somewhere people can point at.
+[12:11] Priya Raman: I'll put it at the top of the roadmap doc. Alright, I think we're done. I'll send the summary and the action items this afternoon.

@@ -1,0 +1,26 @@
+[00:02] Daniel Okafor: Morning. Short one today, I've got a hard stop at half past. Let's go round. Aisha, start us off.
+[00:14] Aisha Bello: Yesterday I finished the retry logic on the webhook consumer. It's deployed to staging and I've been hammering it with induced failures overnight. No dropped events in about forty thousand attempts.
+[00:38] Aisha Bello: Today I want to get it to production behind the flag. No blockers, though I'd like someone to look at the backoff constants before it goes out.
+[00:56] Daniel Okafor: I'll review the backoff config this morning. Send me the PR link.
+[01:06] Aisha Bello: Already assigned to you.
+[01:12] Daniel Okafor: Perfect. Kenji, you're up.
+[01:18] Kenji Watanabe: Yesterday was mostly the migration. I got the dual-write path working for the search index, which was the scary part. Reads still come from the old table.
+[01:41] Kenji Watanabe: Today I'll start the backfill on a copy of production data to see how long it actually takes. My estimate was six hours but I don't trust it.
+[02:01] Daniel Okafor: What happens if it's twenty-four hours instead of six?
+[02:09] Kenji Watanabe: Then we do it over a weekend and I need to build a resume-from-checkpoint mechanism, because I'm not babysitting a twenty-four hour job that dies at hour nineteen.
+[02:29] Daniel Okafor: Build the checkpointing regardless. Even if it's six hours, we'll want it the second time.
+[02:41] Kenji Watanabe: Fair. I'll add checkpointing to the backfill job before I run it for real.
+[02:52] Daniel Okafor: Any blockers?
+[02:57] Kenji Watanabe: One. I need read access to the production replica and I don't have it. That's blocking the timing test entirely.
+[03:11] Daniel Okafor: I'll get you replica access today. That's a five-minute thing on my side, I just didn't know you needed it.
+[03:25] Kenji Watanabe: Appreciated.
+[03:30] Daniel Okafor: Priya, anything from the product side we should know about?
+[03:38] Priya Raman: Two things. First, the roadmap is locked as of Friday, so the search work Kenji is doing is officially a committed bet. That means it gets protected time.
+[03:59] Priya Raman: Second, and this is the annoying one, sales has a customer asking about SSO again. I've said no for this quarter. If anyone gets pinged directly, send them to me rather than estimating anything.
+[04:22] Daniel Okafor: Good. That's exactly how that should work.
+[04:29] Aisha Bello: Quick question on the flag rollout. What percentage do we start at?
+[04:38] Daniel Okafor: Start at five percent for a day, then twenty-five, then full. If error rate moves at all, roll back and we'll talk.
+[04:53] Aisha Bello: Understood. I'll set up the dashboard alert before I enable it.
+[05:04] Daniel Okafor: Last thing from me. The on-call rotation swaps Thursday. Kenji, you're taking it from Aisha. Make sure you've got the runbook open before then, we updated it last week.
+[05:26] Kenji Watanabe: I'll read through the updated runbook before Thursday.
+[05:34] Daniel Okafor: That's everything. Thanks all, keep it moving.

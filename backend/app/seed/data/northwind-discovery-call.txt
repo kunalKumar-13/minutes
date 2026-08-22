@@ -1,0 +1,34 @@
+[00:06] Sofia Marchetti: Thanks for making time, Ravi. Before I show you anything, I'd rather understand what's actually going on at Northwind. What made you take this call?
+[00:22] Ravi Menon: Honestly, our support team is drowning. We went from about four hundred tickets a week to eleven hundred over eight months, and we hired exactly two people in that window.
+[00:47] Ravi Menon: The math doesn't work. My team is working weekends and I'm losing people. I had two agents resign last month and both of them said burnout in the exit interview.
+[01:12] Sofia Marchetti: That's rough, and thank you for being direct about it. When you say tickets tripled, do you know what's driving the volume?
+[01:28] Ravi Menon: Partly growth, we're up sixty percent in customers. But the bigger piece is that we launched a self-serve tier and those customers ask completely different questions. Lots of repeat basics.
+[01:56] Sofia Marchetti: How repeat are we talking? Do you have a sense of what fraction of tickets are the same handful of questions?
+[02:09] Ravi Menon: I'd guess sixty, maybe seventy percent. Password resets, billing questions, and one specific integration that confuses everybody. My lead put together a spreadsheet and the top ten questions were about half of all volume.
+[02:38] Sofia Marchetti: That's a really useful number. So roughly five hundred and fifty tickets a week are ten questions asked over and over.
+[02:52] Ravi Menon: When you say it like that it sounds absurd.
+[03:01] Sofia Marchetti: It's extremely common. What have you tried so far?
+[03:09] Ravi Menon: We built a help centre. Nobody reads it. Traffic is embarrassing, maybe two hundred visits a week against eleven hundred tickets.
+[03:28] Ravi Menon: We also tried a chatbot from a vendor I won't name. It was worse than nothing. It got the integration questions wrong and customers ended up more annoyed than if they'd just waited.
+[03:52] Sofia Marchetti: That's a fair thing to be burned by. Can I ask what "wrong" looked like? Confidently wrong answers, or no answer at all?
+[04:06] Ravi Menon: Confidently wrong. It would invent settings that don't exist in our product. That's the part that killed it internally, my team lost trust immediately and started routing around it.
+[04:31] Sofia Marchetti: That's the single most important thing you've told me. Any system we put in front of your customers has to cite where an answer came from, and it has to be able to say it doesn't know.
+[04:56] Ravi Menon: If it can genuinely do that, I'm interested. If it's another confident liar, I'd rather keep drowning.
+[05:11] Sofia Marchetti: Understood. Let me ask about the decision itself. If you found something that worked, what does getting it approved look like?
+[05:26] Ravi Menon: I have budget authority up to fifty thousand a year. Above that it goes to our COO, Marguerite, and she'll want a business case with a payback period.
+[05:49] Ravi Menon: She's not hostile to tools, she's hostile to tools we don't measure. We've bought things before that nobody adopted and she remembers all of them.
+[06:11] Sofia Marchetti: That's reasonable. What's your timeline pressure?
+[06:19] Ravi Menon: Q4 is our peak. If we go into November the way we are now, something breaks. I'd want anything new in place and proven by mid-October.
+[06:41] Sofia Marchetti: So realistically we'd need to be live by the end of September to have a month of data before your peak. That's about ten weeks.
+[06:57] Ravi Menon: That sounds right. Is that achievable?
+[07:04] Sofia Marchetti: For your top ten questions, comfortably. I wouldn't promise full coverage in ten weeks, and I'd rather underpromise here given your history with the last vendor.
+[07:26] Ravi Menon: I appreciate that more than you know.
+[07:33] Sofia Marchetti: Here's what I'd suggest. Let me put together a proposal scoped to those ten questions specifically, with citation behaviour as a hard requirement, and a measurement plan that would satisfy Marguerite.
+[07:58] Sofia Marchetti: I'll send that over by Thursday. Could you share the spreadsheet your lead built? That would let me size the deflection estimate off your real data instead of my averages.
+[08:19] Ravi Menon: I can send that today. It's not pretty but the numbers are there.
+[08:28] Sofia Marchetti: Pretty doesn't matter. One more thing, would it be possible to get thirty minutes with Marguerite in the next two weeks? Not a pitch, just so she hears the problem framing from both of us.
+[08:52] Ravi Menon: I can ask her. She's more likely to say yes if I frame it as a working session rather than a demo.
+[09:07] Sofia Marchetti: Frame it however works. I'll follow your lead there.
+[09:15] Ravi Menon: Then let's do it. Send the proposal Thursday and I'll get the spreadsheet over to you this afternoon.
+[09:27] Sofia Marchetti: Perfect. I'll also include a rollback story, because the thing you'll be asked is what happens if this doesn't work either.
+[09:44] Ravi Menon: That's exactly what she'll ask. Good instinct.

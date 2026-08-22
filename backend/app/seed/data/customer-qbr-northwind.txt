@@ -1,0 +1,30 @@
+[00:05] Grace Adeyemi: Thanks for joining, everyone. This is our second quarterly review with Northwind. I want to spend most of the time on what isn't working rather than reciting numbers at you, so I'll go through metrics quickly.
+[00:31] Grace Adeyemi: Headline is that usage is up. Weekly active seats went from forty-one to sixty-eight. That's a big jump and it's mostly the engineering org coming on.
+[00:53] Ravi Menon: That tracks. We rolled it out to the platform team in May and it spread from there.
+[01:04] Grace Adeyemi: The number I want to talk about is the other one. Your support org has forty-two provisioned seats and eleven weekly actives. That's a twenty-six percent adoption rate against seventy-nine percent in engineering.
+[01:32] Marguerite Dubois: That's the number I flagged when I saw the invoice. We're paying for forty-two and using eleven. I want to understand why before we renew.
+[01:51] Grace Adeyemi: That's exactly the right question and I'd rather solve it than defend it. Ravi, what's your read on why support hasn't stuck?
+[02:07] Ravi Menon: A few things. The honest one is that I rolled it out badly. I sent an email with a login link and assumed people would figure it out. Engineering did. Support didn't, and that's a difference in how the teams work, not in the tool.
+[02:36] Ravi Menon: The other piece is that the default view doesn't match how support thinks. Engineers think in projects. Support thinks in customers. The workspace structure we set up is project-shaped.
+[03:03] Grace Adeyemi: That's really valuable feedback and it's fixable. We can restructure the support workspace around customer accounts instead of projects. It's configuration, not development.
+[03:25] Marguerite Dubois: How long would that take, and who does it?
+[03:32] Grace Adeyemi: My team does it, and it's about a week including a migration of existing content. There's no charge for it, it's part of your plan.
+[03:50] Marguerite Dubois: Good. And the training piece?
+[04:00] Grace Adeyemi: I'd propose two live sessions, one for agents and one for team leads, plus a recorded version. In my experience the leads session matters more, because if the lead doesn't use it the team won't.
+[04:26] Ravi Menon: That's true here specifically. My two team leads are the whole game.
+[04:36] Grace Adeyemi: Then let's make that the first session. I'll schedule the team lead training for the first week of next month and we'll do agents the week after.
+[04:56] Marguerite Dubois: I want to be direct about the renewal, since that's the real conversation. We're up in ninety days. If support adoption is still at twenty-six percent I'm going to cut those seats.
+[05:22] Marguerite Dubois: I'm not trying to be adversarial. I just won't renew a number I can't justify.
+[05:33] Grace Adeyemi: That's completely fair and I'd make the same call. Let me propose something concrete. We restructure the workspace and run the training in the next four weeks. Then we look at the number again at sixty days out.
+[05:59] Grace Adeyemi: If adoption is above fifty percent, we renew as is. If it's not, I'll recommend the seat reduction myself rather than making you argue for it.
+[06:19] Marguerite Dubois: I appreciate that. That's a reasonable structure.
+[06:28] Ravi Menon: There's one more thing I'd want, and it's a product ask rather than a services one. Our agents live in the ticketing system. Every context switch is a tax. If there were a way to see this content without leaving the ticket view, adoption would look completely different.
+[06:57] Grace Adeyemi: An embedded panel in the ticketing tool. I've heard that from two other accounts this month, which is usually the threshold where our product team starts paying attention.
+[07:17] Grace Adeyemi: I can't promise a date, and I won't pretend it's on the roadmap when it isn't. What I can do is write it up properly with your use case attached and put it in front of the product team.
+[07:39] Ravi Menon: That's all I'd ask. I'd rather hear no clearly than maybe indefinitely.
+[07:51] Marguerite Dubois: Agreed. What are the actual next steps, so we're all clear?
+[08:00] Grace Adeyemi: Three things from me. I'll restructure the support workspace around accounts within a week. I'll schedule lead training for the first week of next month. And I'll write up the embedded panel request with your use case and send you the ticket number so you can track it.
+[08:26] Grace Adeyemi: And one from you, Ravi. Could you send me the list of your two team leads so I can invite them directly rather than going through a general announcement?
+[08:44] Ravi Menon: I'll send you the leads' details today.
+[08:51] Marguerite Dubois: Then we reconvene at sixty days on the adoption number.
+[09:01] Grace Adeyemi: Sixty days. I'll put the hold in the calendar this afternoon.

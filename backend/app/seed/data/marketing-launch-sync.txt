@@ -1,0 +1,32 @@
+[00:04] Elena Vasquez: This is the weekly launch sync. Three weeks to the announcement. I want to go through the blockers first rather than the status, because status we can read in the doc.
+[00:22] Sofia Marchetti: The blocker on my side is the customer quote. I have three customers who said yes verbally, and zero who have sent back a signed approval.
+[00:44] Sofia Marchetti: Legal at two of them has gone quiet. I've chased twice. I don't think it's a no, I think it's a queue.
+[01:01] Elena Vasquez: Three weeks is enough time for a legal queue if we start now and not enough if we start in a week. What would help?
+[01:15] Sofia Marchetti: An escalation path. If I can go back to my champion and say the deadline is real and here's the specific date, that usually moves it.
+[01:33] Elena Vasquez: Then set the date at ten days out rather than the real deadline. Build in the buffer. And plan the page assuming we get one quote, not three.
+[01:53] Sofia Marchetti: I'll rework the page layout so it works with a single quote and gets better with more. That way we're never blocked on it.
+[02:10] Priya Raman: Can I raise the naming question? We still don't have agreement and it's blocking the copy, the screenshots and the docs.
+[02:26] Elena Vasquez: I know. Where did we land?
+[02:32] Priya Raman: We didn't. Marketing prefers something evocative. Engineering wants it descriptive. The two candidates are still Beacon and Smart Routing.
+[02:52] Elena Vasquez: My honest view is that evocative names cost us search traffic and buy us nothing at our size. Nobody is searching for Beacon.
+[03:10] Priya Raman: I agree, and I'd add that our docs are a big acquisition channel. A descriptive name means the docs rank for what people actually type.
+[03:29] Sofia Marchetti: From the sales side, descriptive is much easier. I don't have to explain what Beacon is before I explain what it does.
+[03:44] Elena Vasquez: That's three for descriptive. Let's call it Smart Routing and move on. Priya, can you tell the engineering channel so it's decided publicly rather than in a doc nobody reads?
+[04:04] Priya Raman: I'll post the naming decision in the engineering channel today with the reasoning, so it doesn't get relitigated in a week.
+[04:19] Elena Vasquez: Perfect. Next blocker. Do we have the demo video?
+[04:27] Sofia Marchetti: We have a rough cut. It's four and a half minutes and it's too long. Watch-through drops off a cliff at ninety seconds in everything we've measured.
+[04:47] Elena Vasquez: Then it needs to be ninety seconds. What's in the extra three minutes?
+[04:56] Sofia Marchetti: Setup, mostly. The first two minutes explain the problem before showing anything.
+[05:07] Elena Vasquez: Cut all of it. People who click a product demo already believe they have the problem. Start with the product doing the thing.
+[05:22] Sofia Marchetti: I'll recut it to open on the product in action and get it under ninety seconds.
+[05:33] Priya Raman: One thing I want to flag from the product side. The feature will ship with a limitation and I don't want us to discover that in the launch week.
+[05:52] Priya Raman: It won't support custom rules at launch. Only the presets. Custom rules are maybe six weeks out.
+[06:06] Elena Vasquez: Is that going to be the first question every customer asks?
+[06:14] Sofia Marchetti: Yes. Certainly the first question from anyone with an existing routing setup.
+[06:24] Elena Vasquez: Then we say it ourselves, on the page, in plain language. A known limitation we've stated is a rounding error. A limitation someone discovers on day two is a credibility problem.
+[06:47] Priya Raman: I'll write the limitations section and get it into the launch page copy.
+[07:01] Elena Vasquez: Good. Last item, the internal enablement. Sofia, is the sales team ready?
+[07:12] Sofia Marchetti: Not yet. I want to run a session but I'd rather do it in the last week so it's fresh, not three weeks out when they'll forget.
+[07:29] Elena Vasquez: Agreed, but book it now. If you wait to book it you'll be booking against three weeks of calendars.
+[07:42] Sofia Marchetti: I'll send the calendar invite for the enablement session this week even though it's in the launch week.
+[07:56] Elena Vasquez: That's everything. Same time next week, and let's have the quote situation resolved by then one way or the other.

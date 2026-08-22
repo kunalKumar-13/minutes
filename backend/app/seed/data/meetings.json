@@ -1,0 +1,580 @@
+{
+  "workspace_owner": {
+    "name": "Kunal Kumar",
+    "email": "kunal@fireflies.dev",
+    "initials": "KK",
+    "job_title": "Founding Engineer",
+    "timezone": "Asia/Kolkata"
+  },
+  "meetings": [
+    {
+      "file": "q3-product-roadmap-planning.txt",
+      "title": "Q3 Product Roadmap Planning",
+      "days_ago": 1,
+      "at": "10:30",
+      "source": "google_meet",
+      "media_type": "video",
+      "tags": ["Product", "Planning"],
+      "is_favorite": true,
+      "participants": [
+        {"name": "Priya Raman", "email": "priya@lumina.dev", "is_host": true},
+        {"name": "Daniel Okafor", "email": "daniel@lumina.dev"},
+        {"name": "Mei Lin", "email": "mei@lumina.dev"},
+        {"name": "Tomás Ferreira", "email": "tomas@lumina.dev"}
+      ],
+      "notes": {
+        "gist": "The team committed to three Q3 bets — collaboration surfacing, search infrastructure and event instrumentation — and explicitly ruled mobile out.",
+        "overview": "Priya opened by framing flat week-four retention as the quarter's central problem, and Tomás's data made the cause concrete: accounts that never invite a second person retain at 19%, against 64% for accounts with three or more seats. Mei's research showed sharing already exists but is undiscoverable, which turns a feature gap into a cheaper surfacing problem. Daniel made the case for replacing the LIKE-based search with a real inverted index, and Tomás argued that fixing the event schema compounds into every decision that follows. Mobile was cut deliberately rather than deferred, with Priya taking the note to defend that call to leadership.",
+        "sentiment": "positive",
+        "keywords": ["Retention", "Collaboration Surfacing", "Search Infrastructure", "Event Schema", "Mobile", "Activation", "Roadmap Bets", "Discoverability"],
+        "questions": [
+          "Where exactly do accounts drop off in the first month?",
+          "What do we get for four weeks of search work?",
+          "Can we agree not to add to the roadmap mid-quarter without removing something?"
+        ],
+        "bullet_points": [
+          "Q3 is committed to exactly three bets: collaboration surfacing, search infrastructure, and event instrumentation.",
+          "Mobile is on the no-list for the quarter — a deliberate decision, not a deferral.",
+          "Search moves to a real inverted index, targeting sub-200ms P95 against today's 4.2 seconds.",
+          "New work mid-quarter must displace existing work; Priya owns saying no."
+        ],
+        "topics": [
+          {
+            "emoji": "📉",
+            "title": "Retention Is a Collaboration Problem",
+            "start_at": "00:04", "end_at": "03:41",
+            "bullets": [
+              "Activation is up 11% but week-four retention is flat at 38%.",
+              "62% of first-month churn never invited a second person; single-seat accounts retain at 19% versus 64% at three or more seats.",
+              "Research found sharing is already built but buried in settings — a discoverability failure, not a feature gap."
+            ]
+          },
+          {
+            "emoji": "🔍",
+            "title": "Search Infrastructure",
+            "start_at": "04:44", "end_at": "07:39",
+            "bullets": [
+              "P95 search latency is 4.2s; users abandon around 2s and 28% of searches never get a click.",
+              "Root cause is a full table scan with LIKE across four million documents.",
+              "Four weeks for one engineer, including backfill and a dual-write period for safe rollback."
+            ]
+          },
+          {
+            "emoji": "📱",
+            "title": "Mobile Ruled Out",
+            "start_at": "07:39", "end_at": "09:33",
+            "bullets": [
+              "Only 9% of sessions are mobile web and almost all are read-only.",
+              "One designer cannot carry both collaboration and a new mobile surface.",
+              "A native app is a permanent team commitment, not a quarter of work."
+            ]
+          },
+          {
+            "emoji": "📊",
+            "title": "Event Instrumentation & Roadmap Discipline",
+            "start_at": "09:33", "end_at": "12:21",
+            "bullets": [
+              "Three disagreeing event streams make basic funnel questions take a week of data archaeology.",
+              "Roughly two weeks of work that permanently unblocks analysis.",
+              "Anything added mid-quarter must displace something already committed."
+            ]
+          }
+        ],
+        "action_items": [
+          {"text": "Prepare three design directions for collaboration surfacing — empty-state prompt, post-action nudge, and persistent presence bar.", "assignee_name": "Mei Lin", "at": "04:19", "priority": "high", "due_days": 4},
+          {"text": "Circulate the search infrastructure technical design doc, including the rollback plan.", "assignee_name": "Daniel Okafor", "at": "07:22", "priority": "high", "due_days": 2},
+          {"text": "Draft the new event schema and walk Daniel through it before any code is written.", "assignee_name": "Tomás Ferreira", "at": "10:48", "priority": "medium", "due_days": 6},
+          {"text": "Write up the mobile decision for the leadership team ahead of the board deck.", "assignee_name": "Priya Raman", "at": "09:02", "priority": "medium", "due_days": 8},
+          {"text": "Add the displacement rule to the top of the roadmap doc so it can be pointed at.", "assignee_name": "Priya Raman", "at": "12:11", "priority": "low", "status": "completed"}
+        ]
+      },
+      "soundbites": [
+        {"title": "The retention lever, stated plainly", "start_at": "02:03", "end_at": "02:31"}
+      ],
+      "comments": [
+        {"body": "This is the clearest framing of the retention problem we've had. Sharing it with the leadership channel.", "at": "02:03"}
+      ]
+    },
+    {
+      "file": "northwind-discovery-call.txt",
+      "title": "Northwind Traders — Discovery Call",
+      "days_ago": 3,
+      "at": "15:00",
+      "source": "zoom",
+      "media_type": "video",
+      "tags": ["Sales", "Discovery"],
+      "participants": [
+        {"name": "Sofia Marchetti", "email": "sofia@lumina.dev", "is_host": true},
+        {"name": "Ravi Menon", "email": "ravi.menon@northwind.example"}
+      ],
+      "notes": {
+        "gist": "Northwind's support volume tripled to 1,100 tickets a week with only two extra hires; roughly 70% is the same ten questions.",
+        "overview": "Ravi described a support org at breaking point — volume up from 400 to 1,100 tickets a week against two hires, with two resignations citing burnout. The volume is concentrated: the top ten questions account for about half of all tickets. A previous chatbot vendor failed badly by inventing product settings, which means citation and a credible \"I don't know\" are hard requirements rather than nice-to-haves. Budget sits with Ravi up to $50k; anything above goes to COO Marguerite Dubois, who wants a measurable business case. The real deadline is Q4 peak, so live by end of September.",
+        "sentiment": "neutral",
+        "keywords": ["Support Volume", "Ticket Deflection", "Citations", "Q4 Peak", "Budget Authority", "Help Centre", "Self-Serve Tier"],
+        "questions": [
+          "What fraction of tickets are the same handful of questions?",
+          "What does getting this approved actually look like?",
+          "Is a ten-week timeline achievable?"
+        ],
+        "bullet_points": [
+          "Ticket volume tripled to ~1,100/week with only two additional hires; two agents resigned citing burnout.",
+          "The top ten questions are roughly half of all volume — a deflection problem, not a staffing one.",
+          "Citation of sources and the ability to say \"I don't know\" are non-negotiable after the previous vendor invented settings.",
+          "Decision path: Ravi to $50k, then COO Marguerite Dubois with a payback-period business case."
+        ],
+        "topics": [
+          {
+            "emoji": "🔥",
+            "title": "The Volume Problem",
+            "start_at": "00:06", "end_at": "03:01",
+            "bullets": [
+              "400 to 1,100 tickets a week over eight months, against two hires.",
+              "Two agents resigned last month, both citing burnout in exit interviews.",
+              "The self-serve tier drives repeat basics: password resets, billing, and one confusing integration."
+            ]
+          },
+          {
+            "emoji": "🚫",
+            "title": "What Has Already Failed",
+            "start_at": "03:01", "end_at": "05:11",
+            "bullets": [
+              "The help centre gets ~200 visits a week against 1,100 tickets — effectively unread.",
+              "A previous chatbot invented product settings that don't exist, and the team lost trust immediately.",
+              "Confidently wrong answers are worse than no answer; citations are now a hard requirement."
+            ]
+          },
+          {
+            "emoji": "💰",
+            "title": "Budget & Decision Path",
+            "start_at": "05:11", "end_at": "06:19",
+            "bullets": [
+              "Ravi has authority to $50k/year; above that goes to COO Marguerite Dubois.",
+              "Marguerite is not hostile to tools — she is hostile to tools that aren't measured.",
+              "Prior unadopted purchases are remembered and will be raised."
+            ]
+          },
+          {
+            "emoji": "📅",
+            "title": "Timeline & Next Steps",
+            "start_at": "06:19", "end_at": "09:44",
+            "bullets": [
+              "Q4 is peak; anything new must be live and proven by mid-October, so live by end of September.",
+              "Scope the first phase to the top ten questions rather than promising full coverage.",
+              "A rollback story is expected — the first question will be what happens if this fails too."
+            ]
+          }
+        ],
+        "action_items": [
+          {"text": "Send a proposal scoped to Northwind's top ten questions, with citation behaviour as a hard requirement and a measurement plan for Marguerite.", "assignee_name": "Sofia Marchetti", "at": "07:33", "priority": "high", "due_days": 2},
+          {"text": "Share the support lead's spreadsheet of top questions so the deflection estimate uses real volume data.", "assignee_name": "Ravi Menon", "at": "08:19", "priority": "high", "due_days": 1},
+          {"text": "Ask Marguerite for a 30-minute working session in the next two weeks — framed as problem-solving, not a demo.", "assignee_name": "Ravi Menon", "at": "08:52", "priority": "medium", "due_days": 7},
+          {"text": "Include an explicit rollback story in the proposal.", "assignee_name": "Sofia Marchetti", "at": "09:27", "priority": "medium", "due_days": 2}
+        ]
+      },
+      "soundbites": [
+        {"title": "Why the last vendor failed", "start_at": "03:52", "end_at": "04:31"}
+      ]
+    },
+    {
+      "file": "checkout-redesign-review.txt",
+      "title": "Design Review — Checkout Redesign v2",
+      "days_ago": 5,
+      "at": "14:00",
+      "source": "google_meet",
+      "media_type": "video",
+      "tags": ["Design", "Product"],
+      "participants": [
+        {"name": "Mei Lin", "email": "mei@lumina.dev", "is_host": true},
+        {"name": "Aisha Bello", "email": "aisha@lumina.dev"},
+        {"name": "Daniel Okafor", "email": "daniel@lumina.dev"},
+        {"name": "Tomás Ferreira", "email": "tomas@lumina.dev"}
+      ],
+      "notes": {
+        "gist": "Splitting the overloaded payment step, moving account creation post-purchase, and fixing the autocomplete bug ahead of a two-week A/B test.",
+        "overview": "Mei walked through the second iteration, which splits the eleven-field payment-and-review step into two simpler screens. Tomás confirmed step three alone loses 31% against 12% for the other three combined. The biggest live defect is the address autocomplete covering the next field — a known positioning bug Daniel scoped at half a day. The sharpest decision was moving account creation out of a pre-payment interstitial: a March test showed it won 19% account creation but cost four points of completed checkout, worth roughly six times more in revenue. Declined-card states remain undesigned and are the highest-stress moment in the flow.",
+        "sentiment": "positive",
+        "keywords": ["Checkout Abandonment", "Step Splitting", "Address Autocomplete", "Guest Checkout", "Account Creation", "Declined Card", "A/B Test"],
+        "questions": [
+          "Doesn't adding a step usually mean more drop-off?",
+          "What happens to a guest order when they create an account afterwards?",
+          "Are we testing this or shipping it?"
+        ],
+        "bullet_points": [
+          "Payment and review split into two screens; step three was 31% of abandonment on its own.",
+          "Account creation moves from a pre-payment interstitial to the confirmation screen.",
+          "Ship behind a 50/50 A/B test for two weeks, primary metric completed checkout rate, two-point bar.",
+          "Declined-card and expired-card states must be designed before the next review."
+        ],
+        "topics": [
+          {
+            "emoji": "✂️",
+            "title": "Splitting the Payment Step",
+            "start_at": "00:03", "end_at": "03:06",
+            "bullets": [
+              "Step three carried eleven fields and three decisions and lost 31% on its own.",
+              "Payment is now four fields alone; review is a read-only summary with one button.",
+              "More steps only hurt when each adds friction — a visible \"four of four\" reads as finishable."
+            ]
+          },
+          {
+            "emoji": "🐛",
+            "title": "Address Autocomplete Bug",
+            "start_at": "03:06", "end_at": "04:21",
+            "bullets": [
+              "The dropdown covers the next field, so fast tabbing puts the city into the postcode box.",
+              "Seen in five of six research sessions.",
+              "The component positions absolutely without checking available space — about half a day to flip it."
+            ]
+          },
+          {
+            "emoji": "🔑",
+            "title": "Guest Checkout & Account Creation",
+            "start_at": "04:21", "end_at": "07:44",
+            "bullets": [
+              "The March test: interstitial won 19% account creation and cost four points of completed checkout.",
+              "Revenue impact favours checkout completion by roughly six to one.",
+              "Post-purchase account creation needs deliberate order association, including the email-already-exists case."
+            ]
+          },
+          {
+            "emoji": "⚠️",
+            "title": "Error States & Test Plan",
+            "start_at": "07:44", "end_at": "09:50",
+            "bullets": [
+              "2.3% of attempts decline and only 40% retry; getting retry to 70% is meaningful revenue.",
+              "Declined-card copy needs writing, not placeholder text — people blame themselves and leave.",
+              "Two weeks at current volume powers a two-point detection, which is the decision bar anyway."
+            ]
+          }
+        ],
+        "action_items": [
+          {"text": "Fix the autocomplete dropdown positioning so it flips above the field when there is no room below.", "assignee_name": "Daniel Okafor", "at": "03:57", "priority": "high", "due_days": 1, "status": "completed"},
+          {"text": "Pull the March interstitial analysis with the revenue breakdown and send it to Mei.", "assignee_name": "Tomás Ferreira", "at": "06:05", "priority": "medium", "due_days": 2},
+          {"text": "Move account creation to the confirmation screen and update the prototype.", "assignee_name": "Mei Lin", "at": "06:16", "priority": "high", "due_days": 3},
+          {"text": "Write up the guest-order association edge cases, including email-already-has-an-account.", "assignee_name": "Daniel Okafor", "at": "07:33", "priority": "medium", "due_days": 4},
+          {"text": "Design declined-card and expired-card states with real copy before the next review.", "assignee_name": "Mei Lin", "at": "08:20", "priority": "high", "due_days": 5}
+        ]
+      },
+      "comments": [
+        {"body": "Six-to-one on revenue is the number that should end this debate. Let's put it in the doc.", "at": "05:39"}
+      ]
+    },
+    {
+      "file": "engineering-standup.txt",
+      "title": "Engineering Standup",
+      "days_ago": 0,
+      "at": "09:30",
+      "source": "google_meet",
+      "media_type": "audio",
+      "tags": ["Engineering", "Standup"],
+      "participants": [
+        {"name": "Daniel Okafor", "email": "daniel@lumina.dev", "is_host": true},
+        {"name": "Aisha Bello", "email": "aisha@lumina.dev"},
+        {"name": "Kenji Watanabe", "email": "kenji@lumina.dev"},
+        {"name": "Priya Raman", "email": "priya@lumina.dev"}
+      ],
+      "notes": {
+        "gist": "Webhook retry ships behind a flag today; the search backfill is blocked on replica access and needs checkpointing before it runs.",
+        "overview": "Aisha's webhook retry logic survived 40,000 induced failures on staging with no dropped events and goes to production behind a flag, starting at 5%. Kenji has the dual-write path working for the search index but is blocked on production replica access, which Daniel resolved in the meeting. The backfill estimate of six hours is untrusted, so checkpointing gets built regardless of what the timing test shows. Priya confirmed the roadmap is locked, which protects the search work, and asked that SSO requests route to her rather than being estimated ad hoc.",
+        "sentiment": "positive",
+        "keywords": ["Webhook Retry", "Feature Flag", "Search Backfill", "Checkpointing", "Replica Access", "On-Call Rotation", "SSO"],
+        "questions": [
+          "What happens if the backfill takes twenty-four hours instead of six?",
+          "What percentage do we start the flag rollout at?"
+        ],
+        "bullet_points": [
+          "Webhook retry goes to production behind a flag: 5% for a day, then 25%, then full.",
+          "Checkpointing is built into the backfill job regardless of the timing result.",
+          "Replica access unblocked in the meeting — it was a five-minute permission issue.",
+          "SSO requests route to Priya; nobody estimates it this quarter."
+        ],
+        "topics": [
+          {
+            "emoji": "🔁",
+            "title": "Webhook Retry Rollout",
+            "start_at": "00:02", "end_at": "01:12",
+            "bullets": [
+              "40,000 induced failures on staging with zero dropped events.",
+              "Backoff constants need a review before it goes out.",
+              "Ships today behind a flag."
+            ]
+          },
+          {
+            "emoji": "🗃️",
+            "title": "Search Index Migration",
+            "start_at": "01:12", "end_at": "03:30",
+            "bullets": [
+              "Dual-write path is working; reads still come from the old table.",
+              "The six-hour backfill estimate is untrusted, so checkpointing gets built first.",
+              "Production replica access was the blocker and was resolved in the meeting."
+            ]
+          },
+          {
+            "emoji": "🛡️",
+            "title": "Roadmap Protection & On-Call",
+            "start_at": "03:30", "end_at": "05:34",
+            "bullets": [
+              "The locked roadmap makes the search work a protected, committed bet.",
+              "SSO asks go to Priya rather than being estimated by whoever is pinged.",
+              "On-call swaps to Kenji on Thursday against the newly updated runbook."
+            ]
+          }
+        ],
+        "action_items": [
+          {"text": "Review the backoff constants on the webhook retry PR.", "assignee_name": "Daniel Okafor", "at": "00:56", "priority": "high", "due_days": 0},
+          {"text": "Add resume-from-checkpoint to the backfill job before running it for real.", "assignee_name": "Kenji Watanabe", "at": "02:41", "priority": "high", "due_days": 2},
+          {"text": "Grant Kenji read access to the production replica.", "assignee_name": "Daniel Okafor", "at": "03:11", "priority": "high", "due_days": 0, "status": "completed"},
+          {"text": "Set up the dashboard alert before enabling the webhook flag.", "assignee_name": "Aisha Bello", "at": "04:53", "priority": "medium", "due_days": 0},
+          {"text": "Read the updated on-call runbook before taking the rotation on Thursday.", "assignee_name": "Kenji Watanabe", "at": "05:26", "priority": "low", "due_days": 3}
+        ]
+      }
+    },
+    {
+      "file": "customer-qbr-northwind.txt",
+      "title": "QBR — Northwind Traders",
+      "days_ago": 8,
+      "at": "11:00",
+      "source": "zoom",
+      "media_type": "video",
+      "tags": ["Customer Success", "QBR"],
+      "is_favorite": true,
+      "participants": [
+        {"name": "Grace Adeyemi", "email": "grace@lumina.dev", "is_host": true},
+        {"name": "Ravi Menon", "email": "ravi.menon@northwind.example"},
+        {"name": "Marguerite Dubois", "email": "marguerite.dubois@northwind.example"}
+      ],
+      "notes": {
+        "gist": "Engineering adoption is strong at 79%, support is at 26%, and the renewal in 90 days depends on closing that gap.",
+        "overview": "Weekly active seats grew from 41 to 68, driven almost entirely by engineering. The problem is support: 42 provisioned seats against 11 weekly actives. Ravi was candid that the rollout was the cause — an email with a login link, which worked for engineers and not for support — compounded by a project-shaped workspace structure that doesn't match how support thinks about customers. Grace committed to restructuring the workspace and running lead-first training at no charge. Marguerite set a clear renewal condition: above 50% adoption at the 60-day check or the seats get cut, with Grace agreeing to recommend the reduction herself if the number isn't there.",
+        "sentiment": "neutral",
+        "keywords": ["Seat Adoption", "Renewal Risk", "Workspace Structure", "Enablement Training", "Embedded Panel", "Weekly Active Seats"],
+        "questions": [
+          "Why has support not adopted the tool?",
+          "How long would restructuring take and who does it?",
+          "What are the actual next steps before the renewal?"
+        ],
+        "bullet_points": [
+          "Weekly active seats up from 41 to 68, but support sits at 26% adoption versus 79% in engineering.",
+          "Root cause is a project-shaped workspace and a hands-off rollout, not the product itself.",
+          "Renewal condition agreed: above 50% support adoption at the 60-day check, or Grace recommends the seat reduction.",
+          "The embedded ticketing panel is a real product request but explicitly not on the roadmap today."
+        ],
+        "topics": [
+          {
+            "emoji": "📈",
+            "title": "Adoption Numbers",
+            "start_at": "00:05", "end_at": "01:51",
+            "bullets": [
+              "Weekly active seats went from 41 to 68, mostly the engineering org.",
+              "Support has 42 provisioned seats and 11 weekly actives — 26% against 79% in engineering.",
+              "The gap was flagged from the invoice before this meeting."
+            ]
+          },
+          {
+            "emoji": "🧭",
+            "title": "Why Support Didn't Stick",
+            "start_at": "01:51", "end_at": "03:50",
+            "bullets": [
+              "The rollout was an email with a login link; engineering self-served, support didn't.",
+              "Engineers think in projects, support thinks in customers — the workspace is project-shaped.",
+              "Restructuring is configuration, not development: about a week including content migration, at no charge."
+            ]
+          },
+          {
+            "emoji": "🎓",
+            "title": "Enablement Plan",
+            "start_at": "03:50", "end_at": "04:56",
+            "bullets": [
+              "Two live sessions plus a recording: team leads first, agents the week after.",
+              "Lead adoption predicts team adoption — Ravi confirmed his two leads are decisive here.",
+              "Direct invitations rather than a general announcement."
+            ]
+          },
+          {
+            "emoji": "🤝",
+            "title": "Renewal Terms & Product Ask",
+            "start_at": "04:56", "end_at": "09:01",
+            "bullets": [
+              "Renewal is in 90 days; the adoption number gets reviewed at 60 days.",
+              "Above 50%, renew as is; below, Grace recommends the seat reduction herself.",
+              "An embedded panel inside the ticketing tool is the standing product request — to be written up with the use case, no date promised."
+            ]
+          }
+        ],
+        "action_items": [
+          {"text": "Restructure the Northwind support workspace around customer accounts instead of projects, including content migration.", "assignee_name": "Grace Adeyemi", "at": "08:00", "priority": "high", "due_days": 5},
+          {"text": "Schedule team lead enablement training for the first week of next month, with agent training the week after.", "assignee_name": "Grace Adeyemi", "at": "04:36", "priority": "high", "due_days": 3},
+          {"text": "Write up the embedded ticketing panel request with Northwind's use case and send back the tracking ticket number.", "assignee_name": "Grace Adeyemi", "at": "07:17", "priority": "medium", "due_days": 6},
+          {"text": "Send Grace the two support team leads' details for direct invitations.", "assignee_name": "Ravi Menon", "at": "08:44", "priority": "medium", "due_days": 1, "status": "completed"},
+          {"text": "Put the 60-day adoption review in the calendar.", "assignee_name": "Grace Adeyemi", "at": "09:01", "priority": "low", "due_days": 1, "status": "completed"}
+        ]
+      },
+      "soundbites": [
+        {"title": "Marguerite sets the renewal condition", "start_at": "04:56", "end_at": "05:33"}
+      ],
+      "comments": [
+        {"body": "Offering to recommend the seat cut ourselves is the reason this account still trusts us. Worth repeating in the CS playbook.", "at": "05:59"}
+      ]
+    },
+    {
+      "file": "marketing-launch-sync.txt",
+      "title": "Smart Routing Launch Sync",
+      "days_ago": 6,
+      "at": "16:00",
+      "source": "google_meet",
+      "media_type": "audio",
+      "tags": ["Marketing", "Launch"],
+      "participants": [
+        {"name": "Elena Vasquez", "email": "elena@lumina.dev", "is_host": true},
+        {"name": "Sofia Marchetti", "email": "sofia@lumina.dev"},
+        {"name": "Priya Raman", "email": "priya@lumina.dev"}
+      ],
+      "notes": {
+        "gist": "Named the feature Smart Routing, cut the demo to 90 seconds, and decided to state the custom-rules limitation up front.",
+        "overview": "Three weeks out, the blockers were customer quotes stuck in legal queues, an unresolved name, and a demo video three times too long. The naming debate resolved three-to-one for the descriptive option on search and docs-acquisition grounds. Elena's guidance on the quotes was to set an artificial deadline ten days early and design the page to work with one quote rather than three. The most consequential call was Priya's disclosure that custom rules won't ship at launch: the team agreed to state the limitation on the page in plain language, on the reasoning that a stated limitation is a rounding error while a discovered one is a credibility problem.",
+        "sentiment": "positive",
+        "keywords": ["Smart Routing", "Launch Page", "Customer Quotes", "Demo Video", "Naming Decision", "Known Limitations", "Sales Enablement"],
+        "questions": [
+          "What would help unblock the customer quotes?",
+          "What's in the extra three minutes of the demo?",
+          "Is the custom-rules limitation going to be the first question every customer asks?"
+        ],
+        "bullet_points": [
+          "The feature is named Smart Routing — descriptive won on search traffic and docs ranking, three to one.",
+          "The launch page is designed to work with a single customer quote and improve with more.",
+          "The demo video is recut to open on the product and land under 90 seconds.",
+          "Custom-rules limitations are stated on the launch page rather than discovered by customers."
+        ],
+        "topics": [
+          {
+            "emoji": "📝",
+            "title": "Customer Quotes Blocked in Legal",
+            "start_at": "00:04", "end_at": "02:10",
+            "bullets": [
+              "Three verbal yeses, zero signed approvals; two legal teams have gone quiet.",
+              "An escalation with a specific, ten-days-early deadline usually moves a legal queue.",
+              "Page layout reworked so a single quote is enough."
+            ]
+          },
+          {
+            "emoji": "🏷️",
+            "title": "Naming Decision",
+            "start_at": "02:10", "end_at": "04:19",
+            "bullets": [
+              "Evocative names cost search traffic and buy little at current scale.",
+              "Docs are a major acquisition channel and rank on descriptive terms.",
+              "Decided as Smart Routing and announced publicly to avoid relitigation."
+            ]
+          },
+          {
+            "emoji": "🎬",
+            "title": "Demo Video",
+            "start_at": "04:19", "end_at": "05:33",
+            "bullets": [
+              "The rough cut runs 4:30; watch-through falls off a cliff at 90 seconds.",
+              "The first two minutes explain a problem the viewer already believes they have.",
+              "Recut to open on the product in action."
+            ]
+          },
+          {
+            "emoji": "⚠️",
+            "title": "Known Limitations & Enablement",
+            "start_at": "05:33", "end_at": "07:56",
+            "bullets": [
+              "Custom rules won't ship at launch; presets only, with custom roughly six weeks out.",
+              "State the limitation on the page in plain language rather than letting customers find it.",
+              "Book the sales enablement session now even though it runs in launch week."
+            ]
+          }
+        ],
+        "action_items": [
+          {"text": "Rework the launch page layout so it works with a single customer quote.", "assignee_name": "Sofia Marchetti", "at": "01:53", "priority": "high", "due_days": 3},
+          {"text": "Post the Smart Routing naming decision in the engineering channel with the reasoning.", "assignee_name": "Priya Raman", "at": "04:04", "priority": "medium", "due_days": 0, "status": "completed"},
+          {"text": "Recut the demo video to open on the product and come in under 90 seconds.", "assignee_name": "Sofia Marchetti", "at": "05:22", "priority": "high", "due_days": 5},
+          {"text": "Write the known-limitations section covering custom rules and get it into the launch page copy.", "assignee_name": "Priya Raman", "at": "06:47", "priority": "high", "due_days": 4},
+          {"text": "Send the calendar invite for the sales enablement session in launch week.", "assignee_name": "Sofia Marchetti", "at": "07:42", "priority": "medium", "due_days": 2}
+        ]
+      }
+    },
+    {
+      "file": "hiring-debrief-backend.vtt",
+      "title": "Hiring Debrief — Senior Backend Engineer",
+      "days_ago": 4,
+      "at": "13:00",
+      "source": "upload",
+      "media_type": "audio",
+      "tags": ["Hiring", "Engineering"],
+      "participants": [
+        {"name": "Grace Adeyemi", "email": "grace@lumina.dev", "is_host": true},
+        {"name": "Daniel Okafor", "email": "daniel@lumina.dev"},
+        {"name": "Aisha Bello", "email": "aisha@lumina.dev"},
+        {"name": "Kenji Watanabe", "email": "kenji@lumina.dev"}
+      ],
+      "notes": {
+        "gist": "Unanimous hire for Nadia with one coaching note on how she absorbs pushback; the offer needs to move today against a Thursday deadline.",
+        "overview": "The panel gave independent reads before hearing each other. Daniel and Aisha were strong hires: she reached bounded-drift rate limiting unprompted, and in the debugging round she asked for logs before touching code and wrote a failing test to prove the race before fixing it. Kenji was a softer hire with one flag — she defended a position through three repetitions of the same objection without asking what he was actually worried about, though he conceded she was mostly right. The panel read that as a coachable communication habit and a placement consideration rather than a hiring objection. Nadia has a competing final round with a Thursday deadline, so the offer moves today.",
+        "sentiment": "positive",
+        "keywords": ["Strong Hire", "System Design", "Debugging Round", "Pushback", "Onboarding Buddy", "Competing Offer"],
+        "questions": [
+          "Was it stubbornness, or was she right and you were wrong?",
+          "Does anyone want to change their read now that we've heard each other?"
+        ],
+        "bullet_points": [
+          "Unanimous hire: two strong hires and one hire with a coaching note.",
+          "The concern is a communication habit under pressure, treated as coachable and as a placement consideration.",
+          "Offer must go out today against Nadia's Thursday decision deadline.",
+          "Kenji volunteered as onboarding buddy, since he raised the concern."
+        ],
+        "topics": [
+          {
+            "emoji": "🏗️",
+            "title": "System Design Round",
+            "start_at": "00:03", "end_at": "01:19",
+            "bullets": [
+              "Reached a token bucket in four minutes, then went to coordination cost at ten times traffic unprompted.",
+              "Proposed a sloppy-counter approach with bounded drift — the production answer.",
+              "Most candidates at this level need prompting to get there at all."
+            ]
+          },
+          {
+            "emoji": "🔬",
+            "title": "Debugging Round",
+            "start_at": "01:19", "end_at": "01:59",
+            "bullets": [
+              "Found the race condition in eleven minutes by reasoning rather than guessing.",
+              "Asked to see logs before touching code, which almost no candidate does.",
+              "Wrote a failing test to prove the race before fixing it."
+            ]
+          },
+          {
+            "emoji": "🗣️",
+            "title": "The Collaboration Concern",
+            "start_at": "01:59", "end_at": "04:34",
+            "bullets": [
+              "Defended her position through three repetitions of the same objection.",
+              "She was mostly right, but never asked what the objection was actually about.",
+              "Read as a coachable communication habit; pair her early with someone comfortable interrupting."
+            ]
+          },
+          {
+            "emoji": "⏱️",
+            "title": "Offer Timing",
+            "start_at": "04:34", "end_at": "06:42",
+            "bullets": [
+              "Competing final round with a Thursday decision deadline — the offer moves today.",
+              "A call from the hiring manager converts far better than a recruiter call at this level.",
+              "Kenji volunteered as onboarding buddy to work on the concern he raised."
+            ]
+          }
+        ],
+        "action_items": [
+          {"text": "Get the offer approved with finance this afternoon.", "assignee_name": "Grace Adeyemi", "at": "05:23", "priority": "high", "due_days": 0},
+          {"text": "Call Nadia directly once the offer is sent, and answer the team-structure question dodged in the interview.", "assignee_name": "Daniel Okafor", "at": "06:03", "priority": "high", "due_days": 0},
+          {"text": "Record the pushback observation as an onboarding placement note rather than a hiring objection.", "assignee_name": "Grace Adeyemi", "at": "04:17", "priority": "low", "due_days": 2, "status": "completed"},
+          {"text": "Set up as onboarding buddy if Nadia accepts.", "assignee_name": "Kenji Watanabe", "at": "06:15", "priority": "medium", "due_days": 10}
+        ]
+      }
+    }
+  ]
+}

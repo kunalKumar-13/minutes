@@ -1,0 +1,36 @@
+[00:03] Mei Lin: Okay, this is the second review of the checkout redesign. Last time the feedback was that step three was doing too much. I've split it. Let me walk through what changed and then I want to hear where it still hurts.
+[00:29] Mei Lin: The old flow was cart, shipping, payment and review together, then confirmation. Four screens but the third one had eleven fields and three decisions. That's where we saw the drop.
+[00:56] Aisha Bello: How big was the drop on that step specifically?
+[01:04] Tomás Ferreira: Thirty-one percent abandonment on step three alone. The other three steps combined lose about twelve percent. It's the whole problem in one screen.
+[01:24] Mei Lin: Right. So the new flow separates payment from review. Payment is now its own screen with four fields and nothing else on it. Review is a read-only summary with one button.
+[01:51] Aisha Bello: I like it, but you've added a screen. Doesn't more steps usually mean more drop-off?
+[02:04] Mei Lin: That's the conventional wisdom and it's mostly wrong. More steps hurt when each step adds friction. Splitting a hard step into two easy ones usually helps, because people can see the end.
+[02:31] Mei Lin: The progress indicator matters a lot here. Four of four feels finishable. Eleven fields with no indication of how much is left feels infinite.
+[02:52] Aisha Bello: That's persuasive. What about the address autocomplete? It's fighting me in this prototype.
+[03:06] Mei Lin: It's fighting everyone. The dropdown covers the next field, so if you tab too fast you end up typing your city into the postcode box. I've seen it in five of six sessions.
+[03:32] Daniel Okafor: That one's on us. The autocomplete component positions absolutely without checking available space. It's a known bug, we just never prioritised it because it only showed up in checkout.
+[03:57] Daniel Okafor: I can fix the positioning so it flips above when there's no room below. That's maybe half a day.
+[04:12] Mei Lin: If you can do that, it removes the single worst moment in the flow.
+[04:21] Aisha Bello: Can I raise something about the guest checkout path? Right now the account creation prompt is a full-screen interstitial before payment. That feels like a wall.
+[04:44] Mei Lin: I went back and forth on that. The growth team wants account creation, and interstitials do convert better than inline prompts in isolation.
+[05:03] Tomás Ferreira: They convert better on the prompt and worse on the purchase. We ran this exact test in March. Interstitial got nineteen percent account creation and cost us four points of completed checkout.
+[05:29] Aisha Bello: Four points of checkout is worth far more than nineteen percent of account creation.
+[05:39] Tomás Ferreira: By a factor of about six on revenue, yes. I can dig up the exact analysis if it's useful.
+[05:52] Mei Lin: Please do. If I have that number I can push back on growth with evidence instead of taste.
+[06:05] Tomás Ferreira: I'll pull the March analysis and send it to you with the revenue breakdown.
+[06:16] Mei Lin: Then I'll move account creation to the confirmation screen. Post-purchase, when they already trust us and have nothing to lose.
+[06:33] Aisha Bello: That's much better. You capture the same intent without gating the money.
+[06:44] Daniel Okafor: One technical note on that. If they create an account after purchase we need to associate the guest order with the new account. That's not automatic right now.
+[07:04] Mei Lin: Is that hard?
+[07:09] Daniel Okafor: Not hard, but it needs to be deliberate. We'd match on email at account creation time and backfill the order history. I'd want to handle the case where the email already has an account.
+[07:33] Daniel Okafor: I'll write up the edge cases so we don't discover them in production.
+[07:44] Aisha Bello: What about error states? I didn't see a declined-card design.
+[07:53] Mei Lin: You're right, I haven't done it. That's a real gap and it's the highest-stress moment in the whole flow.
+[08:08] Aisha Bello: It's also where people blame themselves and leave. The copy matters enormously there.
+[08:20] Mei Lin: I'll design the declined-card and expired-card states before the next review, and I'll write the copy rather than leaving it to a placeholder.
+[08:38] Tomás Ferreira: For what it's worth, about two point three percent of attempts decline, and only forty percent of those retry. If we could get retry to seventy percent that's meaningful money.
+[09:02] Mei Lin: That's a great number to design against. Thank you.
+[09:11] Aisha Bello: Last thing from me. Are we testing this or shipping it?
+[09:19] Mei Lin: I'd like to A/B it. Fifty-fifty, two weeks, primary metric is completed checkout rate.
+[09:32] Tomás Ferreira: Two weeks at current volume gives us enough power to detect a two-point change. Anything smaller than that we won't be able to call.
+[09:50] Mei Lin: Two points is the bar I'd want anyway. Alright, I think that's everything. Next review once I have the error states.

@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:03.000 --> 00:00:26.000
+<v Grace Adeyemi>Right, let's debrief on Nadia. Rule as always, we go round and give our read before anyone hears anyone else's, so we don't anchor. Daniel, you did the system design round, you go first.
+
+2
+00:00:27.000 --> 00:00:52.000
+<v Daniel Okafor>Strong hire. She designed a rate limiter and got to a token bucket within about four minutes, which is fine, but what impressed me was what happened after. I asked what breaks at ten times the traffic and she immediately went to the coordination cost between nodes.
+
+3
+00:00:53.000 --> 00:01:18.000
+<v Daniel Okafor>Most candidates at this level either don't get there or need a lot of prompting. She got there unprompted and then proposed a sloppy-counter approach with bounded drift, which is the actual production answer.
+
+4
+00:01:19.000 --> 00:01:34.000
+<v Aisha Bello>That matches my round. I did the debugging exercise. She found the race condition in about eleven minutes and, more importantly, she found it by reasoning rather than by guessing.
+
+5
+00:01:35.000 --> 00:01:58.000
+<v Aisha Bello>She asked to see the logs before she touched the code. Almost nobody does that. Then she wrote a failing test to prove the race before fixing it. That's a real engineer's instinct, not an interview performance.
+
+6
+00:01:59.000 --> 00:02:14.000
+<v Kenji Watanabe>I'm the dissenting voice, though it's softer than that sounds. I did the collaboration round and I had one concern.
+
+7
+00:02:15.000 --> 00:02:42.000
+<v Kenji Watanabe>When I pushed back on her approach, she defended it well but she defended it for a long time. I had to say the same objection three times before it landed. I want to know how that plays out in a code review with someone more junior.
+
+8
+00:02:43.000 --> 00:02:56.000
+<v Grace Adeyemi>That's a fair flag. Was it stubbornness or was she right and you were wrong?
+
+9
+00:02:57.000 --> 00:03:20.000
+<v Kenji Watanabe>Honestly? She was mostly right. My objection was about a case that turned out not to matter. But she didn't ask what I was worried about, she just kept explaining. That's the bit I noticed.
+
+10
+00:03:21.000 --> 00:03:38.000
+<v Daniel Okafor>That reads more like a communication habit than a character problem. Those are coachable in a way that arrogance isn't.
+
+11
+00:03:39.000 --> 00:03:56.000
+<v Aisha Bello>I'd also say the pressure of an interview makes people over-explain. She had no way to know you were testing the interaction rather than the answer.
+
+12
+00:03:57.000 --> 00:04:16.000
+<v Kenji Watanabe>That's true, and I want to be clear I'm still a hire. I'd just want her first few months paired with someone who's comfortable interrupting.
+
+13
+00:04:17.000 --> 00:04:34.000
+<v Grace Adeyemi>That's a useful onboarding note rather than a hiring objection. Let's write it down as a placement consideration.
+
+14
+00:04:35.000 --> 00:04:54.000
+<v Grace Adeyemi>So I'm hearing two strong hires and one hire with a coaching note. Anyone want to change their read now that we've heard each other?
+
+15
+00:04:55.000 --> 00:05:06.000
+<v Daniel Okafor>No change. If anything Kenji's story makes me more confident, because being right and being persistent is the failure mode I'd choose.
+
+16
+00:05:07.000 --> 00:05:22.000
+<v Aisha Bello>No change from me either. I'd move quickly on this one. She mentioned she's in a final round somewhere else.
+
+17
+00:05:23.000 --> 00:05:44.000
+<v Grace Adeyemi>She is. She told me Thursday is her decision deadline. So we need to move today, not next week. I'll get the offer approved with finance this afternoon.
+
+18
+00:05:45.000 --> 00:06:02.000
+<v Grace Adeyemi>Daniel, could you call her directly once the offer goes out? Candidates at this level respond much better to hearing from the person they'd work with than from a recruiter.
+
+19
+00:06:03.000 --> 00:06:14.000
+<v Daniel Okafor>I'll call her as soon as the offer's sent. I'll also answer the team-structure question she asked me, which I dodged in the interview.
+
+20
+00:06:15.000 --> 00:06:30.000
+<v Kenji Watanabe>One last thing. If she accepts, I'd like to be her onboarding buddy. Since I'm the one who raised the concern, I should be the one to work on it with her.
+
+21
+00:06:31.000 --> 00:06:42.000
+<v Grace Adeyemi>That's a genuinely good instinct. Noted. Let's get the offer out.
