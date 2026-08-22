@@ -172,6 +172,9 @@ const config: Config = {
         "slide-in-right": { from: { opacity: "0", transform: "translateX(16px)" }, to: { opacity: "1", transform: "translateX(0)" } },
         "scale-in": { from: { opacity: "0", transform: "scale(0.97)" }, to: { opacity: "1", transform: "scale(1)" } },
         shimmer: { "100%": { transform: "translateX(100%)" } },
+        // The track holds two copies of the list, so translating by exactly
+        // half its width lands copy two where copy one began — seamless.
+        marquee: { from: { transform: "translateX(0)" }, to: { transform: "translateX(-50%)" } },
       },
       animation: {
         "fade-in": "fade-in 160ms ease-out",
@@ -179,6 +182,7 @@ const config: Config = {
         "slide-in-right": "slide-in-right 220ms cubic-bezier(0.16, 1, 0.3, 1)",
         "scale-in": "scale-in 140ms cubic-bezier(0.16, 1, 0.3, 1)",
         shimmer: "shimmer 1.6s infinite",
+        marquee: "marquee 38s linear infinite",
       },
     },
   },
