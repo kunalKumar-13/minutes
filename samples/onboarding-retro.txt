@@ -1,0 +1,17 @@
+[00:00:03] Marco Silva: This is the retro on the onboarding revamp. Format as usual — what worked, what didn't, what we change. I'll keep us to twenty minutes.
+[00:00:22] Lena Fischer: What worked is that we shipped it. Six weeks, on the date we said, and the activation number moved. That's rare enough to say out loud.
+[00:00:41] Marco Silva: How much did it move?
+[00:00:47] Lena Fischer: Activation went from forty-one to fifty-two percent. Time to first value dropped from about nine minutes to under three.
+[00:01:05] Omar Haddad: The part that didn't work was the handoff to support. They found out about the new flow from a customer, not from us.
+[00:01:22] Omar Haddad: That's the second time this year. It's not a support problem, it's a process gap on our side.
+[00:01:34] Lena Fischer: That's fair and I own it. I assumed the release note covered it. Nobody reads release notes.
+[00:01:48] Marco Silva: So the change is that support enablement becomes a launch checklist item, not an afterthought. Lena, can you add that to the launch template?
+[00:02:04] Lena Fischer: I'll add a support enablement step to the launch checklist template this week.
+[00:02:15] Omar Haddad: I'd also want the checklist to name a person, not a team. "Support has been briefed" with nobody's name on it is how this happened.
+[00:02:33] Marco Silva: Agreed. Named owner per line.
+[00:02:39] Lena Fischer: One more thing that didn't work. We tested with new accounts only. Existing users hit the new flow and were confused because their state didn't match any of our test cases.
+[00:03:01] Omar Haddad: How many complaints?
+[00:03:06] Lena Fischer: Eleven tickets in the first three days. All the same shape — halfway through the old flow, dropped into the new one.
+[00:03:20] Marco Silva: That's a migration design problem. Omar, can you write up what a mid-flow migration should look like so we have a pattern next time?
+[00:03:36] Omar Haddad: I'll draft the mid-flow migration pattern and circulate it before the next launch.
+[00:03:48] Marco Silva: Good retro. Short and it produced three real changes.

@@ -1,0 +1,17 @@
+{
+  "meeting": "Weekly Product Sync",
+  "segments": [
+    { "speaker": "Ana Duarte", "start_ms": 2000, "end_ms": 16000, "text": "Quick sync. Two things: the beta feedback, and whether we hold or move the launch date." },
+    { "speaker": "Jonas Weber", "start_ms": 17000, "end_ms": 34000, "text": "Beta feedback is better than I expected. Nineteen of twenty-four testers used it more than once, which is the number I actually care about." },
+    { "speaker": "Ana Duarte", "start_ms": 35000, "end_ms": 46000, "text": "What did the five who didn't come back say?" },
+    { "speaker": "Jonas Weber", "start_ms": 47000, "end_ms": 66000, "text": "Four of them never finished setup. One said it did what they wanted on the first try and they had no reason to return, which is arguably a compliment." },
+    { "speaker": "Sofia Marchetti", "start_ms": 67000, "end_ms": 84000, "text": "Setup is the thing then. If four of five churned before finishing setup, the product is fine and the front door is broken." },
+    { "speaker": "Ana Duarte", "start_ms": 85000, "end_ms": 99000, "text": "Jonas, can you pull the setup funnel by step so we can see exactly where they stop?" },
+    { "speaker": "Jonas Weber", "start_ms": 100000, "end_ms": 112000, "text": "I'll pull the step-by-step setup funnel and share it before Thursday." },
+    { "speaker": "Ana Duarte", "start_ms": 113000, "end_ms": 128000, "text": "Second thing. The launch date. We said the fourteenth. Do we still believe it?" },
+    { "speaker": "Sofia Marchetti", "start_ms": 129000, "end_ms": 148000, "text": "Sales does. We have three customers who've been told the fourteenth. Moving it costs more credibility than shipping something imperfect." },
+    { "speaker": "Jonas Weber", "start_ms": 149000, "end_ms": 166000, "text": "Engineering can hit the fourteenth if setup is the only thing we change. If we add anything else, it slips." },
+    { "speaker": "Ana Duarte", "start_ms": 167000, "end_ms": 182000, "text": "Then we agreed: the date holds, and setup is the only change that goes in. Everything else waits." },
+    { "speaker": "Sofia Marchetti", "start_ms": 183000, "end_ms": 196000, "text": "I'll tell the three customers the date is confirmed so nobody is guessing." }
+  ]
+}

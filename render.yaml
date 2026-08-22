@@ -1,0 +1,27 @@
+# Render blueprint for the FastAPI backend.
+#
+# The SQLite file lives on a mounted disk so meetings created through the UI
+# survive a redeploy. Without the disk the container's filesystem is ephemeral
+# and the app would simply re-seed on every boot — usable for a demo, but the
+# disk makes it behave like the real thing.
+services:
+  - type: web
+    name: fireflies-clone-api
+    runtime: docker
+    plan: free
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:////data/fireflies.db
+      - key: AUTO_SEED
+        value: "true"
+      - key: CORS_ORIGINS
+        # Replace with the deployed frontend origin. *.vercel.app previews are
+        # already allowed by the regex in app/main.py.
+        value: http://localhost:3000
+    disk:
+      name: fireflies-data
+      mountPath: /data
+      sizeGB: 1

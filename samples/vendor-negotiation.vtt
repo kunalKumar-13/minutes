@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:02.000 --> 00:00:14.000
+<v Dana Wu>Thanks for making time. I want to get the vendor contract closed this week, so let's go straight to the two open items: the term length and the support SLA.
+
+2
+00:00:15.000 --> 00:00:31.000
+<v Eli Roth>On term length, they've come down from three years to two. I think two is fine. Three was always about their forecast, not our needs.
+
+3
+00:00:32.000 --> 00:00:48.000
+<v Dana Wu>Agreed. The SLA is the one I care about. Their standard is next business day, and that's useless to us if something breaks on a Friday evening.
+
+4
+00:00:49.000 --> 00:01:06.000
+<v Priya Nair>I pushed on that. They'll do four-hour response for a severity one, but only if we commit to the two-year term. It's a trade, not a freebie.
+
+5
+00:01:07.000 --> 00:01:18.000
+<v Dana Wu>That's a trade I'll take. Two years for a real SLA is better than one year with a promise.
+
+6
+00:01:19.000 --> 00:01:34.000
+<v Eli Roth>I'll send the redlines to legal tomorrow morning with the four-hour SLA written into the body rather than an appendix.
+
+7
+00:01:35.000 --> 00:01:47.000
+<v Priya Nair>Please make sure the severity definitions are in there too. Last time we argued about what counted as severity one for a fortnight.
+
+8
+00:01:48.000 --> 00:01:58.000
+<v Eli Roth>Good catch. I'll add explicit severity definitions so there's nothing left to interpret.
+
+9
+00:01:59.000 --> 00:02:12.000
+<v Dana Wu>Last thing. Priya, can you confirm the security review is finished before we sign? I don't want to discover a gap afterwards.
+
+10
+00:02:13.000 --> 00:02:24.000
+<v Priya Nair>I'll get the security sign-off confirmed by Thursday and forward it to both of you.
