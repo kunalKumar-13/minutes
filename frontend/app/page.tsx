@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight, BarChart3, Bot, Check, ChevronDown, Crosshair, Database, Download,
-  Globe, Lock, Menu, Scissors, Search, Shield, Sparkles, Star, Upload, Users, X, Zap,
+  Github, Globe, Lock, Menu, Scissors, Search, Shield, Sparkles, Star, Upload, Users, X, Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/ui/Logo";
@@ -557,18 +557,35 @@ export default function LandingPage() {
       </section>
 
       {/* ------------------------------------------------------------- CTA */}
-      <section className="bg-[#100730] py-24 text-center text-white">
-        <div className="mx-auto max-w-[760px] px-5">
+      <section className="relative overflow-hidden bg-[#100730] py-28 text-center text-white">
+        {/* Aurora bloom on the right, plus the same starfield as the hero. */}
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0" style={{ backgroundImage: STARS, backgroundRepeat: "no-repeat" }} />
+          <div className="absolute -right-32 top-1/2 h-[420px] w-[720px] -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(161,101,249,0.45),rgba(122,90,248,0.18),transparent)] blur-2xl" />
+          <div className="absolute -left-24 bottom-0 h-[300px] w-[520px] rounded-full bg-[radial-gradient(closest-side,rgba(87,127,255,0.28),transparent)] blur-2xl" />
+        </div>
+
+        <div className="relative mx-auto max-w-[760px] px-5">
           <SectionHeading className="text-white">
-            Unlock The Knowledge Buried Inside Your Conversations
+            Unlock The Knowledge Buried
+            <br />
+            Inside Your Conversations
           </SectionHeading>
-          <Link
-            href="/login"
-            className="mt-8 inline-flex h-12 items-center gap-2 rounded-lg bg-cta-purple px-6 text-md font-medium text-white shadow-e2 transition-opacity hover:opacity-90"
-          >
-            Get Started Free
-            <ArrowRight className="size-4" />
-          </Link>
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/login"
+              className="inline-flex h-12 items-center gap-2 rounded-lg bg-cta-purple px-6 text-md font-medium text-white shadow-e2 transition-opacity hover:opacity-90"
+            >
+              Try It For Free
+              <ArrowRight className="size-4" />
+            </Link>
+            <Link
+              href="#how"
+              className="inline-flex h-12 items-center rounded-lg bg-white/10 px-6 text-md font-medium text-white transition-colors hover:bg-white/15"
+            >
+              See How It Works
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -619,46 +636,114 @@ function Shot({
 
 
 function SiteFooter() {
-  const columns = [
-    { head: "Product", items: ["Notetaker", "AI summaries", "Search", "Soundbites", "Analytics"] },
-    { head: "Use cases", items: ["Sales", "Recruiting", "Engineering", "Product research"] },
-    { head: "Learn", items: ["Help centre", "Blog", "Customers", "Changelog"] },
-    { head: "Company", items: ["About", "Careers", "Terms of service", "Privacy policy"] },
+  /*
+   * Five columns, two of which stack a second heading underneath — the same
+   * shape as the original. The content is this project's own: what it actually
+   * does, what it is built on, and where to read the reasoning.
+   */
+  const product = [
+    "Meetings library", "Interactive transcript", "AI notes & chapters", "Action items",
+    "Soundbites", "Workspace search", "Analytics", "Uploads", "Comments", "Exports",
+    "Dark mode", "Keyboard shortcuts",
   ];
+  const useCases = [
+    "Sales calls", "Customer QBRs", "Interviews", "Standups",
+    "Design reviews", "Retros", "Research", "Hiring debriefs",
+  ];
+  const builtWith = [
+    "Next.js 15", "React 19", "TypeScript", "Tailwind CSS",
+    "FastAPI", "SQLAlchemy 2.0", "SQLite + FTS5", "Pydantic",
+  ];
+  const project = ["README", "Architecture", "Database schema", "API reference"];
+  const learn = ["Design notes", "Layout spec", "Sample transcripts", "Seed data"];
+  const openIt = ["Open the app", "Sign in", "API docs"];
+  const help = ["GitHub repository", "Report an issue"];
+
+  const Column = ({ title, items }: { title: string; items: string[] }) => (
+    <div>
+      <p className="text-md font-semibold text-white">{title}</p>
+      <ul className="mt-5 space-y-2.5">
+        {items.map((item) => (
+          <li key={item}>
+            <span className="text-base text-gray-400 transition-colors hover:text-white">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
   return (
-    <footer className="bg-gray-900 py-16 text-gray-400">
+    <footer className="bg-[#0a0518] pb-10 pt-20">
       <div className="mx-auto max-w-[1140px] px-5">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5">
-              <Logo size={26} />
-              <span className="font-display text-lg font-medium text-white">fireflies.ai</span>
-            </Link>
-            <p className="mt-4 max-w-xs text-base leading-6">
-              An independent clone built as an engineering assignment. Not affiliated with Fireflies.ai.
-            </p>
+          <Column title="Product" items={product} />
+          <Column title="Use Cases" items={useCases} />
+          <Column title="Built With" items={builtWith} />
+
+          <div className="space-y-10">
+            <Column title="Project" items={project} />
+            <Column title="Learn" items={learn} />
           </div>
 
-          {columns.map((column) => (
-            <div key={column.head}>
-              <p className="text-base font-semibold text-white">{column.head}</p>
-              <ul className="mt-4 space-y-2.5">
-                {column.items.map((item) => (
-                  <li key={item} className="text-base">
-                    {item}
+          <div className="space-y-10">
+            <div>
+              <p className="text-md font-semibold text-white">Open It</p>
+              <div className="mt-5 rounded-xl border border-white/10 bg-white/[0.04] p-4">
+                <p className="text-base leading-6 text-gray-400">
+                  The demo workspace is seeded and ready — no signup, no credential.
+                </p>
+                <Link
+                  href="/login"
+                  className="mt-3 inline-flex items-center gap-1.5 text-base font-medium text-purple-300 hover:text-purple-200"
+                >
+                  Open the app
+                  <ArrowRight className="size-3.5" />
+                </Link>
+              </div>
+              <ul className="mt-5 space-y-2.5">
+                {openIt.map((item) => (
+                  <li key={item}>
+                    <span className="text-base text-gray-400 transition-colors hover:text-white">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-          ))}
+            <Column title="Help" items={help} />
+          </div>
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-base">
-          <p>Built by Kunal Kumar as an SDE Fullstack assignment.</p>
-          <Link href="/login" className="inline-flex items-center gap-1.5 text-white hover:underline">
-            Open the app
-            <ArrowRight className="size-4" />
-          </Link>
+        {/* Bottom bar: mark and copyright, then the tech line, then links. */}
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-white/10 pt-7">
+          <div className="flex items-center gap-3">
+            <Logo size={22} />
+            <p className="text-base text-gray-500">
+              © {new Date().getFullYear()} Minutes — an independent Fireflies.ai clone. Not affiliated.
+            </p>
+          </div>
+
+          <p className="text-base text-gray-500">
+            {["Next.js", "FastAPI", "SQLite"].map((t, i) => (
+              <span key={t}>
+                {i > 0 && <span className="mx-1.5 text-gray-700">·</span>}
+                {t}
+              </span>
+            ))}
+          </p>
+
+          <div className="flex items-center gap-5">
+            <a
+              href="https://github.com/kunalKumar-13/minutes"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Source on GitHub"
+              className="text-gray-500 transition-colors hover:text-white"
+            >
+              <Github className="size-4" />
+            </a>
+            <Link href="/login" className="text-base text-gray-500 transition-colors hover:text-white">
+              Open the app
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
