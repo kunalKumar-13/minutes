@@ -155,7 +155,7 @@ export default function LandingPage() {
         <nav className="mx-auto flex h-[72px] max-w-[1200px] items-center gap-8 px-5" aria-label="Main">
           <Link href="/" className="flex shrink-0 items-center gap-2.5">
             <Logo size={26} />
-            <span className="font-display text-lg font-medium text-white">fireflies.ai</span>
+            <span className="font-display text-lg font-medium text-white">Minutes</span>
           </Link>
 
           <div className="hidden items-center gap-7 lg:flex">

@@ -39,9 +39,19 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: { default: "Fireflies clone — AI notetaker for your meetings", template: "%s — Fireflies clone" },
+  title: { default: "Minutes — meeting notes and transcription workspace", template: "%s — Minutes" },
   description:
     "Transcribe, summarize, search and analyze your meetings. Interactive transcripts, AI summaries, action items and workspace-wide search.",
+  manifest: "/site.webmanifest",
+  applicationName: "Minutes",
+  authors: [{ name: "Kunal Kumar" }],
+  keywords: ["meeting notes", "transcription", "AI summaries", "action items"],
+  openGraph: {
+    title: "Minutes — meeting notes and transcription workspace",
+    description:
+      "Interactive transcripts, AI summaries, action items and workspace-wide search. A functional clone of the Fireflies.ai meeting assistant.",
+    type: "website",
+  },
 };
 
 export const viewport: Viewport = {

@@ -85,7 +85,7 @@ export function IconRail() {
       aria-label="Main"
       className="flex w-[65px] shrink-0 flex-col items-center border-r border-[var(--app-border)] bg-[var(--app-surface)]"
     >
-      <Link href="/home" aria-label="Fireflies home" className="flex h-[57px] items-center justify-center">
+      <Link href="/home" aria-label="Minutes home" className="flex h-[57px] items-center justify-center">
         <Logo size={26} />
       </Link>
 

@@ -173,8 +173,8 @@ function Showcase() {
               AF
             </span>
             <span>
-              <span className="block text-base font-medium text-[#d3d4d7]">A Fireflies user</span>
-              <span className="block text-base text-[#6d6e71]">Head of Growth</span>
+              <span className="block text-base font-medium text-[#d3d4d7]">From the seeded workspace</span>
+              <span className="block text-base text-[#6d6e71]">A sample meeting, not a real quote</span>
             </span>
           </footer>
         </blockquote>
