@@ -103,7 +103,7 @@ function LogoWall() {
     { name: "Beacon", suffix: "HEALTH" },
   ];
   return (
-    <section className="bg-[#100730] pb-20 pt-40 sm:pt-56">
+    <section className="bg-[#100730] pb-16 pt-40 sm:pt-56">
       <div className="mx-auto max-w-[1140px] px-5 text-center">
         <p className="text-base font-semibold uppercase tracking-[0.12em] text-gray-400">
           Built for teams that live in meetings
@@ -128,7 +128,13 @@ function LogoWall() {
 
 function SectionHeading({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <h2 className={cn("font-display text-4xl font-medium leading-tight tracking-tight sm:text-5xl", className)}>
+    <h2
+      className={cn(
+        // 40px on a 56px line with -0.4px tracking — the original's H2, measured.
+        "font-display text-[32px] font-medium leading-[1.4] tracking-[-0.4px] sm:text-[40px]",
+        className,
+      )}
+    >
       {children}
     </h2>
   );
@@ -225,12 +231,12 @@ export default function LandingPage() {
         </div>
 
         <div className="relative mx-auto max-w-[1080px] px-5">
-          <h1 className="font-display text-[40px] font-medium leading-[1.24] tracking-[0.02em] text-gray-50 sm:text-[56px] lg:text-[64px]">
+          <h1 className="font-display text-[36px] font-medium leading-[1.32] tracking-[0.02em] text-gray-50 sm:text-[46px] lg:text-[56px]">
             The #1 AI Assistant For
             <br />
             Your Meetings
           </h1>
-          <p className="mx-auto mt-7 max-w-2xl text-lg leading-7 text-gray-300 lg:text-xl">
+          <p className="mx-auto mt-6 max-w-[560px] text-[18px] leading-[1.56] tracking-[-0.22px] text-gray-300">
             Transcribe, summarize, search, and analyze all your team conversations.
           </p>
 
@@ -296,7 +302,7 @@ export default function LandingPage() {
       {/* ------------------------------------------------- transcription */}
       <LogoWall />
 
-      <section id="how" className="bg-gray-25 py-24">
+      <section id="how" className="bg-gray-25 py-16">
         <div className="mx-auto grid max-w-[1140px] items-center gap-16 px-5 lg:grid-cols-2">
           <div>
             <SectionHeading>
@@ -314,12 +320,12 @@ export default function LandingPage() {
               <ArrowRight className="size-4" />
             </Link>
 
-            <dl className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+            <dl className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
               {TRANSCRIPTION_FACTS.map((fact) => (
                 <div key={fact.title}>
                   <span className="text-gray-900">{fact.icon}</span>
-                  <dt className="mt-3 text-md font-medium text-gray-900">{fact.title}</dt>
-                  <dd className="mt-1 text-base leading-6 text-gray-500">{fact.body}</dd>
+                  <dt className="mt-3 text-[16px] font-medium leading-[1.48] tracking-[-0.16px] text-gray-900">{fact.title}</dt>
+                  <dd className="mt-1 text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-500">{fact.body}</dd>
                 </div>
               ))}
             </dl>
@@ -336,14 +342,14 @@ export default function LandingPage() {
       </section>
 
       {/* ---------------------------------------------------- AI summaries */}
-      <section className="bg-[#100730] py-24 text-white">
+      <section className="bg-[#100730] py-16 text-white">
         <div className="mx-auto max-w-[1140px] px-5">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-xl">
               <SectionHeading className="text-white">
                 Comprehensive <span className="text-purple-400">AI Summaries</span>
               </SectionHeading>
-              <p className="mt-4 text-md leading-7 text-gray-300">
+              <p className="mt-5 max-w-[480px] text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-400">
                 An overview, timestamped chapters, action items attributed to whoever committed to them, and the
                 decisions the meeting actually reached.
               </p>
@@ -377,13 +383,13 @@ export default function LandingPage() {
             alt="AI notes beside the analysis panel: overview, chapters, action items, sentiment and talk time"
             width={1122}
             height={904}
-            className="mt-10 ring-white/10"
+            className="mx-auto mt-10 max-w-[960px] ring-white/10"
           />
         </div>
       </section>
 
       {/* --------------------------------------------------------- capture */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-16">
         <div className="mx-auto max-w-[1140px] px-5 text-center">
           <SectionHeading>
             <span className="text-purple-600">Capture</span> Meetings{" "}
@@ -395,7 +401,7 @@ export default function LandingPage() {
             alt="The uploads screen, listing every transcript format that can be ingested"
             width={1600}
             height={1000}
-            className="mt-12"
+            className="mx-auto mt-10 max-w-[960px]"
           />
 
           <div className="mt-8 grid gap-5 text-left md:grid-cols-3">
@@ -404,8 +410,8 @@ export default function LandingPage() {
                 <span className="flex size-10 items-center justify-center rounded-xl bg-white text-purple-600 shadow-e1 dark:bg-ink-500">
                   {way.icon}
                 </span>
-                <h3 className="mt-4 text-lg font-semibold text-gray-900">{way.title}</h3>
-                <p className="mt-1.5 text-base leading-6 text-gray-600">{way.body}</p>
+                <h3 className="mt-4 text-[16px] font-medium leading-[1.48] tracking-[-0.16px] text-gray-900">{way.title}</h3>
+                <p className="mt-1.5 text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-500">{way.body}</p>
               </div>
             ))}
           </div>
@@ -413,14 +419,14 @@ export default function LandingPage() {
       </section>
 
       {/* ---------------------------------------------------------- search */}
-      <section className="bg-gray-25 py-24">
+      <section className="bg-gray-25 py-16">
         <div className="mx-auto grid max-w-[1140px] items-center gap-16 px-5 lg:grid-cols-2">
           <div>
             <SectionHeading>
               Remember Every Conversation With{" "}
               <span className="text-purple-600">AI Powered Search</span>
             </SectionHeading>
-            <p className="mt-4 text-md leading-7 text-gray-600">
+            <p className="mt-5 max-w-[480px] text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-500">
               One query across every transcript, meeting title and action item — ranked by a real full-text index,
               not a substring scan. Ask a question and get an answer that cites the lines it came from.
             </p>
@@ -431,7 +437,7 @@ export default function LandingPage() {
                 "Filter by participant, channel or date",
                 "Answers grounded in cited transcript lines",
               ].map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-base text-gray-700">
+                <li key={item} className="flex items-start gap-2.5 text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-600">
                   <Check className="mt-1 size-4 shrink-0 text-purple-600" />
                   {item}
                 </li>
@@ -450,7 +456,7 @@ export default function LandingPage() {
       </section>
 
       {/* ------------------------------------------------------- analytics */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-16">
         <div className="mx-auto max-w-[1140px] px-5">
           <SectionHeading className="max-w-2xl">
             Drive Insights With <span className="text-purple-600">Conversation Intelligence</span>
@@ -461,7 +467,7 @@ export default function LandingPage() {
             alt="Analytics: talk time, meeting volume and recurring topics"
             width={1600}
             height={1000}
-            className="mt-12"
+            className="mx-auto mt-10 max-w-[960px]"
           />
 
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -475,8 +481,8 @@ export default function LandingPage() {
                 <span className="flex size-9 items-center justify-center rounded-lg bg-purple-50 text-purple-600">
                   {card.icon}
                 </span>
-                <h3 className="mt-4 text-md font-semibold text-gray-900">{card.title}</h3>
-                <p className="mt-1.5 text-base leading-6 text-gray-500">{card.body}</p>
+                <h3 className="mt-4 text-[16px] font-medium leading-[1.48] tracking-[-0.16px] text-gray-900">{card.title}</h3>
+                <p className="mt-1.5 text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-500">{card.body}</p>
               </div>
             ))}
           </div>
@@ -484,20 +490,20 @@ export default function LandingPage() {
       </section>
 
       {/* -------------------------------------------------- integrations */}
-      <section className="bg-gray-25 py-24">
+      <section className="bg-gray-25 py-16">
         <div className="mx-auto max-w-[1140px] px-5 text-center">
           <SectionHeading>
             Designed To Fit <span className="text-purple-600">Your Stack</span>
           </SectionHeading>
-          <p className="mx-auto mt-4 max-w-2xl text-md leading-7 text-gray-600">
+          <p className="mx-auto mt-5 max-w-[480px] text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-500">
             The ingest pipeline takes a transcript from anywhere, so connecting a source is a matter of
             writing an adapter rather than reworking the app.
           </p>
 
-          <div className="mt-14 grid gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-12 grid gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {INTEGRATIONS.map((group) => (
               <div key={group.title} className="rounded-2xl border border-gray-200 bg-white p-5 text-left">
-                <p className="text-base font-semibold text-gray-900">{group.title}</p>
+                <p className="text-[16px] font-medium leading-[1.48] tracking-[-0.16px] text-gray-900">{group.title}</p>
                 <ul className="mt-3 space-y-1.5">
                   {group.items.map((item) => (
                     <li key={item} className="text-base text-gray-500">
@@ -517,13 +523,13 @@ export default function LandingPage() {
       </section>
 
       {/* ------------------------------------------------------- security */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-16">
         <div className="mx-auto grid max-w-[1140px] items-center gap-16 px-5 lg:grid-cols-2">
           <div>
             <SectionHeading>
               Your Conversations, <span className="text-purple-600">Your Data</span>
             </SectionHeading>
-            <p className="mt-4 text-md leading-7 text-gray-600">
+            <p className="mt-5 max-w-[480px] text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-500">
               Everything lives in a single database beside the API. No third-party analytics, and no
               transcript leaves the server unless you configure a model key yourself.
             </p>
@@ -534,7 +540,7 @@ export default function LandingPage() {
                 "No telemetry, no trackers, no third-party scripts",
                 "Export everything as Markdown, plain text or JSON",
               ].map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-base text-gray-700">
+                <li key={item} className="flex items-start gap-2.5 text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-600">
                   <Check className="mt-1 size-4 shrink-0 text-purple-600" />
                   {item}
                 </li>
@@ -553,7 +559,7 @@ export default function LandingPage() {
                 <span className="flex size-9 items-center justify-center rounded-lg bg-white text-purple-600 shadow-e1">
                   {card.icon}
                 </span>
-                <p className="mt-4 text-md font-semibold text-gray-900">{card.t}</p>
+                <p className="mt-4 text-[16px] font-medium leading-[1.48] tracking-[-0.16px] text-gray-900">{card.t}</p>
                 <p className="mt-1 text-base leading-6 text-gray-500">{card.b}</p>
               </div>
             ))}
@@ -562,11 +568,11 @@ export default function LandingPage() {
       </section>
 
       {/* ------------------------------------------------------------- FAQ */}
-      <section className="bg-gray-25 py-24">
+      <section className="bg-gray-25 py-16">
         <div className="mx-auto max-w-[800px] px-5">
           <SectionHeading className="text-center">Frequently Asked Questions</SectionHeading>
 
-          <dl className="mt-14">
+          <dl className="mt-12">
             {FAQS.map((faq, index) => {
               const open = openFaq === index;
               return (
@@ -578,7 +584,7 @@ export default function LandingPage() {
                       onClick={() => setOpenFaq(open ? null : index)}
                       className="group flex w-full items-center justify-between gap-6 py-5 text-left"
                     >
-                      <span className="text-md text-gray-800 transition-colors group-hover:text-gray-900">
+                      <span className="text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-800 transition-colors group-hover:text-gray-900">
                         {faq.q}
                       </span>
                       {/* A plus that turns into a cross, as on the original. */}
@@ -591,14 +597,14 @@ export default function LandingPage() {
                     </button>
                   </dt>
                   {open && (
-                    <dd className="pb-6 pr-12 text-md leading-7 text-gray-600">{faq.a}</dd>
+                    <dd className="max-w-[620px] pb-6 pr-12 text-[16px] leading-[1.62] tracking-[-0.16px] text-gray-500">{faq.a}</dd>
                   )}
                 </div>
               );
             })}
           </dl>
 
-          <p className="mt-10 text-center text-md leading-7 text-gray-600">
+          <p className="mx-auto mt-10 max-w-[560px] text-center text-[16px] leading-[1.62] tracking-[-0.16px] text-gray-500">
             Still have questions? The{" "}
             <a
               href="https://github.com/kunalKumar-13/minutes#readme"
