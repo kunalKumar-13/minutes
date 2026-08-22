@@ -62,7 +62,7 @@ export function FeatureSection({
       )}
 
       {cta && (
-        <CtaButton href={cta.href} variant={onDark ? "gradient" : "primary"} className="mt-7">
+        <CtaButton href={cta.href} variant="primary" className="mt-7">
           {cta.label}
         </CtaButton>
       )}

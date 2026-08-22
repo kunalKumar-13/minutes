@@ -23,7 +23,7 @@ export function ClosingCta() {
           Inside Your Conversations
         </SectionHeading>
         <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-          <CtaButton variant="gradient" size="lg">
+          <CtaButton variant="primary" size="lg">
             Try It For Free
           </CtaButton>
           <CtaButton href="#how" variant="ghost" size="lg">

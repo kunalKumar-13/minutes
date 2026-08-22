@@ -1,6 +1,9 @@
 import { CalendarClock, Scissors, SquareCheckBig, Users } from "lucide-react";
 import { CtaButton, SectionHeading, Shot } from "./primitives";
 
+/** The four measured card washes, cycled so the grid reads as colour. */
+const TINTS = ["bg-[#f4f3ff]", "bg-[#fffaeb]", "bg-[#fdf4ff]", "bg-[#f0fdf9]"];
+
 /**
  * Everything a meeting leaves behind, in one place.
  *
@@ -30,9 +33,9 @@ export function KnowledgeSection() {
         </div>
 
         <dl className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {STATS.map((stat) => (
-            <div key={stat.label} className="rounded-2xl bg-purple-25 p-6 ring-1 ring-gray-200">
-              <span className="flex size-9 items-center justify-center rounded-lg bg-white text-purple-600 shadow-e1">
+          {STATS.map((stat, i) => (
+            <div key={stat.label} className={`rounded-xl p-8 ${TINTS[i % TINTS.length]}`}>
+              <span className="flex size-10 items-center justify-center rounded bg-white text-purple-600">
                 {stat.icon}
               </span>
               <dd className="mt-4 font-display text-[32px] font-medium leading-none tracking-[-0.4px] text-gray-900">

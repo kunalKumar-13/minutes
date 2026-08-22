@@ -1,6 +1,9 @@
 import { Database, Download, Lock, Shield } from "lucide-react";
 import { SectionHeading } from "./primitives";
 
+/** The four measured card washes, cycled so a grid reads as colour. */
+const TINTS = ["bg-[#f4f3ff]", "bg-[#fffaeb]", "bg-[#fdf4ff]", "bg-[#f0fdf9]"];
+
 /**
  * Two trust sections: what this connects to, and what it does with your data.
  *
@@ -30,8 +33,11 @@ export function StackSection() {
         </p>
 
         <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {GROUPS.map((group) => (
-            <div key={group.title} className="rounded-2xl border border-gray-200 bg-white p-5 text-left">
+          {GROUPS.map((group, i) => (
+            <div
+              key={group.title}
+              className={`rounded-xl p-8 text-left ${TINTS[i % TINTS.length]}`}
+            >
               <p className="text-[16px] font-medium leading-[1.48] tracking-[-0.16px] text-gray-900">
                 {group.title}
               </p>
@@ -93,9 +99,9 @@ export function SecuritySection() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          {GUARANTEES.map((card) => (
-            <div key={card.title} className="rounded-2xl bg-purple-25 p-6 ring-1 ring-gray-200">
-              <span className="flex size-9 items-center justify-center rounded-lg bg-white text-purple-600 shadow-e1">
+          {GUARANTEES.map((card, i) => (
+            <div key={card.title} className={`rounded-xl p-8 ${TINTS[i % TINTS.length]}`}>
+              <span className="flex size-10 items-center justify-center rounded bg-white text-purple-600">
                 {card.icon}
               </span>
               <p className="mt-4 text-[16px] font-medium leading-[1.48] tracking-[-0.16px] text-gray-900">

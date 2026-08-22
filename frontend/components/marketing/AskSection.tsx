@@ -61,7 +61,7 @@ export function AskSection() {
           <dl className="mt-10 space-y-6">
             {POINTS.map((point) => (
               <div key={point.title} className="flex gap-4">
-                <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-white/[0.07] text-purple-300">
+                <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded bg-white/[0.07] text-purple-300">
                   {point.icon}
                 </span>
                 <div>
@@ -76,19 +76,19 @@ export function AskSection() {
             ))}
           </dl>
 
-          <CtaButton variant="gradient" className="mt-10">
+          <CtaButton variant="primary" className="mt-10">
             Try It For Free
           </CtaButton>
         </div>
 
         {/* A rendering of a real exchange rather than a screenshot, so the
             citation links read at this size. */}
-        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-sm">
+        <div className="rounded-xl bg-white/[0.06] p-8">
           {EXCHANGE.map((turn) =>
             turn.role === "you" ? (
               <p
                 key={turn.text}
-                className="ml-auto w-fit max-w-[80%] rounded-2xl rounded-br-md bg-purple-600 px-4 py-2.5 text-[16px] leading-[1.48] tracking-[-0.16px] text-white"
+                className="ml-auto w-fit max-w-[80%] rounded-xl rounded-br bg-purple-600 px-4 py-2.5 text-[16px] leading-[1.48] tracking-[-0.16px] text-white"
               >
                 {turn.text}
               </p>
