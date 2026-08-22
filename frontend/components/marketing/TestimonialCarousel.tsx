@@ -6,6 +6,9 @@ import { cn } from "@/lib/utils";
 import { Avatar } from "@/components/ui/Avatar";
 import { SectionHeading } from "./primitives";
 
+/** The four measured card washes, cycled so the rail reads as colour. */
+const TINTS = ["bg-[#f4f3ff]", "bg-[#fffaeb]", "bg-[#fdf4ff]", "bg-[#f0fdf9]"];
+
 /**
  * A horizontally scrollable card rail.
  *
@@ -114,27 +117,27 @@ export function TestimonialCarousel() {
             <ChevronRight className="size-4" />
           </button>
         </div>
-      </div>
 
-      {/* Full-bleed rail so cards run to the edge as they scroll away. */}
-      <div
-        ref={railRef}
-        onScroll={sync}
-        tabIndex={0}
-        role="region"
-        aria-label="What this build does"
-        className="ff-scroll mt-5 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-[max(1.25rem,calc((100vw-1140px)/2))] pb-4"
-      >
-        {CARDS.map((card) => (
+        {/* The rail sits inside the page container so the first card lines up
+            with the heading above it. */}
+        <div
+          ref={railRef}
+          onScroll={sync}
+          tabIndex={0}
+          role="region"
+          aria-label="What this build does"
+          className="ff-scroll mt-5 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-4"
+        >
+        {CARDS.map((card, i) => (
           <article
             key={card.source}
-            className="flex w-[340px] shrink-0 snap-start flex-col rounded-2xl bg-purple-25 p-6 ring-1 ring-gray-200 sm:w-[380px]"
+            className={`flex w-[340px] shrink-0 snap-start flex-col rounded-xl p-8 sm:w-[380px] ${TINTS[i % TINTS.length]}`}
           >
             <Quote className="size-5 text-purple-300" />
             <p className="mt-4 flex-1 text-[16px] leading-[1.62] tracking-[-0.16px] text-gray-700">
               {card.line}
             </p>
-            <footer className="mt-6 flex items-center gap-3 border-t border-gray-200 pt-4">
+            <footer className="mt-6 flex items-center gap-3 border-t border-black/[0.06] pt-4">
               <Avatar name={card.person} size="lg" className="rounded-full" />
               <span className="min-w-0">
                 <span className="block truncate text-[16px] font-medium leading-[1.48] tracking-[-0.16px] text-gray-900">
@@ -146,7 +149,8 @@ export function TestimonialCarousel() {
               </span>
             </footer>
           </article>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

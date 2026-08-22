@@ -52,12 +52,12 @@ export function SkillsSection() {
         <div className="absolute inset-0" style={{ backgroundImage: STARS, backgroundRepeat: "no-repeat" }} />
       </div>
 
-      <div className="relative">
-        <div className="mx-auto max-w-[1140px] px-5">
+      <div className="relative mx-auto max-w-[1140px] px-5">
+        <div>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-[620px]">
               <SectionHeading onDark>
-                Go Beyond Notetaking With <span className="text-purple-400">AI Skills</span>
+                Go Beyond Notetaking With <span className="whitespace-nowrap text-purple-400">AI Skills</span>
               </SectionHeading>
               <p className="mt-5 max-w-[480px] text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-400">
                 A skill is a prompt run over a transcript to produce an extra section of notes. Four run
@@ -100,15 +100,15 @@ export function SkillsSection() {
           tabIndex={0}
           role="region"
           aria-label="AI skills"
-          className="ff-scroll mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-[max(1.25rem,calc((100vw-1140px)/2))] pb-4"
+          className="ff-scroll mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4"
         >
           {SKILLS.map((skill) => (
             <article
               key={skill.name}
-              className="flex w-[290px] shrink-0 snap-start flex-col rounded-2xl border border-white/[0.08] bg-white/[0.04] p-5"
+              className="flex w-[290px] shrink-0 snap-start flex-col rounded-xl bg-white/[0.06] p-6"
             >
               <div className="flex items-start justify-between gap-3">
-                <span className={cn("flex size-11 items-center justify-center rounded-xl text-white", skill.tint)}>
+                <span className={cn("flex size-11 items-center justify-center rounded text-white", skill.tint)}>
                   <Sparkles className="size-5 fill-current" />
                 </span>
                 <span
