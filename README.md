@@ -439,9 +439,21 @@ The frontend is typechecked (`npm run typecheck`) and linted as part of
 ## Deployment
 
 **Backend → Render.** [`render.yaml`](render.yaml) is a ready blueprint using
-`backend/Dockerfile`. It mounts a 1GB disk at `/data` so the SQLite file
-survives redeploys; without it the container filesystem is ephemeral and the app
-re-seeds on every boot. Set `CORS_ORIGINS` to the deployed frontend origin.
+`backend/Dockerfile`. Deploy it first, so the frontend has an API URL to point at.
+
+Two things worth knowing about the free plan:
+
+- **Storage is ephemeral** — Render only offers persistent disks on paid
+  instances. The app creates its schema and seeds the sample workspace whenever
+  it finds an empty database, so a restart comes back fully populated; meetings
+  you create through the UI are what get lost. The blueprint has the disk config
+  commented out and ready if you move to a paid instance.
+- **Instances sleep after inactivity**, so the first request after a quiet spell
+  takes roughly 50 seconds while the container wakes. Subsequent requests are
+  normal. Worth loading the API's `/api/health` once before demoing.
+
+Once Vercel has given you a URL, set `CORS_ORIGINS` on the Render service to
+that origin.
 
 **Frontend → Vercel.** Set root directory to `frontend/` and
 `NEXT_PUBLIC_API_URL` to the backend URL. `*.vercel.app` origins are already

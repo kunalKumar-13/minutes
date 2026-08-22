@@ -1,9 +1,14 @@
 # Render blueprint for the FastAPI backend.
 #
-# The SQLite file lives on a mounted disk so meetings created through the UI
-# survive a redeploy. Without the disk the container's filesystem is ephemeral
-# and the app would simply re-seed on every boot — usable for a demo, but the
-# disk makes it behave like the real thing.
+# Storage note: Render's free plan does not support persistent disks, so the
+# container filesystem is ephemeral. That is fine here — the app creates its
+# schema and seeds the sample workspace on boot whenever the database is empty,
+# so a redeploy or a cold start comes back fully populated. What it does mean is
+# that meetings created through the UI do not survive a restart.
+#
+# To make it behave like the real thing, move to a paid instance type and
+# uncomment the disk block below; the DATABASE_URL already points at the mount
+# path, so nothing else changes.
 services:
   - type: web
     name: fireflies-clone-api
@@ -13,15 +18,18 @@ services:
     dockerfilePath: ./Dockerfile
     healthCheckPath: /api/health
     envVars:
+      # Ephemeral on the free plan. With a disk attached, switch this to
+      # sqlite:////data/fireflies.db to persist across deploys.
       - key: DATABASE_URL
-        value: sqlite:////data/fireflies.db
+        value: sqlite:///./fireflies.db
       - key: AUTO_SEED
         value: "true"
+      # Set this to the deployed frontend origin once Vercel has given you one.
+      # *.vercel.app preview URLs are already allowed by the regex in main.py.
       - key: CORS_ORIGINS
-        # Replace with the deployed frontend origin. *.vercel.app previews are
-        # already allowed by the regex in app/main.py.
         value: http://localhost:3000
-    disk:
-      name: fireflies-data
-      mountPath: /data
-      sizeGB: 1
+    # plan: starter          # required for a disk
+    # disk:
+    #   name: fireflies-data
+    #   mountPath: /data
+    #   sizeGB: 1
