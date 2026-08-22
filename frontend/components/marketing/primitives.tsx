@@ -49,7 +49,7 @@ export function SectionHeading({
   return (
     <h2
       className={cn(
-        "font-display text-[32px] font-medium leading-[1.4] tracking-[-0.4px] sm:text-[40px]",
+        "text-balance font-display text-[32px] font-medium leading-[1.4] tracking-[-0.4px] sm:text-[40px]",
         onDark ? "text-white" : "text-gray-900",
         className,
       )}
@@ -72,7 +72,7 @@ export function Lede({
   return (
     <p
       className={cn(
-        "mt-5 max-w-[480px] text-[16px] leading-[1.48] tracking-[-0.16px]",
+        "mt-5 max-w-[480px] text-pretty text-[16px] leading-[1.48] tracking-[-0.16px]",
         onDark ? "text-gray-400" : "text-gray-500",
         className,
       )}
@@ -87,34 +87,71 @@ export function CtaButton({
   children = "Get Started",
   variant = "primary",
   size = "md",
+  arrow = true,
   className,
 }: {
   href?: string;
   children?: React.ReactNode;
-  variant?: "primary" | "ghost" | "gradient";
+  variant?: "primary" | "ghost" | "outline" | "white";
   size?: "md" | "lg";
+  arrow?: boolean;
   className?: string;
 }) {
   const tone = {
     primary: "bg-purple-500 text-white hover:bg-purple-600",
-    gradient: "bg-cta-purple text-white shadow-e2 hover:opacity-90",
-    ghost: "bg-white/10 text-white hover:bg-white/15",
+    // Measured on dark: a near-white wash at 14%, over a 8% white hairline.
+    // The border is what stops it dissolving into the ground — dropping it, as
+    // an earlier pass did, is why the secondary button read as a grey smudge.
+    ghost: "bg-[rgba(241,241,249,0.14)] text-white ring-1 ring-inset ring-white/[0.08] hover:bg-[rgba(241,241,249,0.2)]",
+    outline: "text-white ring-1 ring-inset ring-white/30 hover:bg-white/10",
+    white: "bg-white text-gray-900 ring-1 ring-inset ring-gray-200 hover:bg-gray-50",
   }[variant];
 
   return (
     <Link
       href={href}
       className={cn(
-        "inline-flex items-center gap-2 rounded-lg font-medium transition-colors",
-        size === "lg" ? "h-12 px-6 text-[16px]" : "h-11 px-5 text-[16px]",
+        // 4px, not 8px. Their entire page uses a 4px radius on controls — 46 of
+        // 68 rounded boxes — and DM Sans, not the body face.
+        "inline-flex items-center justify-center gap-2 rounded font-display text-[16px] font-medium transition-colors",
+        size === "lg" ? "h-12 px-3.5 py-3" : "h-10 px-3.5 py-2",
         tone,
         className,
       )}
     >
       {children}
-      <ArrowRight className="size-4" />
+      {arrow ? <ArrowRight className="size-4" /> : null}
     </Link>
   );
+}
+
+/**
+ * A feature panel.
+ *
+ * Measured off theirs: 12px radius, 32px padding, a soft tinted ground, and
+ * **no border and no shadow**. Mine were white boxes with a grey hairline,
+ * which is what made the page read as a wireframe — their colour comes from
+ * broad washes, not outlines.
+ */
+export const TINT = {
+  violet: "bg-[#f4f3ff]",
+  amber: "bg-[#fffaeb]",
+  fuchsia: "bg-[#fdf4ff]",
+  mint: "bg-[#f0fdf9]",
+  sky: "bg-[#f0f9ff]",
+  night: "bg-[#0e0539] text-white",
+} as const;
+
+export function Card({
+  tint = "violet",
+  className,
+  children,
+}: {
+  tint?: keyof typeof TINT;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return <div className={cn("rounded-xl p-8", TINT[tint], className)}>{children}</div>;
 }
 
 /**
@@ -141,7 +178,7 @@ export function Shot({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-xl bg-white shadow-[0_20px_60px_rgba(16,24,40,0.16)] ring-1 ring-gray-200",
+        "overflow-hidden rounded-xl bg-white shadow-[0_20px_60px_rgba(16,24,40,0.16)]",
         className,
       )}
     >
