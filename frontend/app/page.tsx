@@ -579,13 +579,6 @@ export default function LandingPage() {
 
 /* -------------------------------------------------------------- mockups */
 
-function BrowserFrame({ children, className }: { children: React.ReactNode; className?: string }) {
-  return (
-    <div className={cn("overflow-hidden rounded-xl border border-gray-200 bg-white shadow-e4", className)}>
-      {children}
-    </div>
-  );
-}
 
 /**
  * A real screenshot of the app, framed.
