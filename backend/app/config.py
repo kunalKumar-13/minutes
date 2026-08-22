@@ -12,7 +12,7 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
-    app_name: str = "Fireflies Clone API"
+    app_name: str = "Minutes API"
     api_prefix: str = "/api"
 
     # SQLite lives beside the backend package by default so a fresh clone runs

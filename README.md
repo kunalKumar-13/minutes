@@ -1,9 +1,12 @@
-# Fireflies.ai Clone — Meeting Notes & Transcription Platform
+# Minutes
 
-A working clone of the Fireflies.ai meeting-assistant web app: a library of past
-meetings, an interactive transcript wired to a media player, AI-generated
-summaries with chapters and action items, and full-text search across every
-meeting.
+**A meeting notes and transcription workspace** — browse a library of meetings,
+read interactive transcripts with speaker labels and timestamps, get AI-generated
+summaries and action items, and search across every conversation.
+
+This is a functional clone of the [Fireflies.ai](https://fireflies.ai) meeting
+assistant, built as an SDE Fullstack assignment. It reproduces the product's
+design and its post-meeting workflows; it is not affiliated with Fireflies.ai.
 
 Real speech-to-text is out of scope. Transcripts are seeded or uploaded, and AI
 notes come from a deterministic extractive summariser built into the backend —

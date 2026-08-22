@@ -11,7 +11,7 @@
 # path, so nothing else changes.
 services:
   - type: web
-    name: fireflies-clone-api
+    name: minutes-api
     runtime: docker
     plan: free
     rootDir: backend
@@ -30,6 +30,6 @@ services:
         value: http://localhost:3000
     # plan: starter          # required for a disk
     # disk:
-    #   name: fireflies-data
+    #   name: minutes-data
     #   mountPath: /data
     #   sizeGB: 1
