@@ -53,15 +53,15 @@ export function ContentTopbar({ title, onCapture, onOpenNav }: ContentTopbarProp
   };
 
   return (
-    <header className="flex h-[56px] shrink-0 items-center gap-3 border-b border-[var(--app-border)] bg-[var(--app-surface)] px-4">
+    <header className="grid h-[56px] shrink-0 grid-cols-[1fr_auto_1fr] items-center gap-3 border-b border-[var(--app-border)] bg-[var(--app-surface)] px-4">
       {onOpenNav && (
         <IconButton label="Open navigation" onClick={onOpenNav} className="-ml-1">
           <Menu className="size-[18px]" />
         </IconButton>
       )}
-      <div className="min-w-0 shrink-0 text-md font-medium text-gray-900 dark:text-gray-100">{title}</div>
+      <div className="flex min-w-0 items-center text-md font-medium text-gray-900 dark:text-gray-100">{title}</div>
 
-      <form onSubmit={submit} className="mx-auto hidden w-full max-w-[420px] md:block">
+      <form onSubmit={submit} className="hidden w-[360px] lg:block">
         <div className="relative">
           <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-gray-400" />
           <input
@@ -79,13 +79,7 @@ export function ContentTopbar({ title, onCapture, onOpenNav }: ContentTopbarProp
         </div>
       </form>
 
-      <div className="ml-auto flex shrink-0 items-center gap-2">
-        <span className="hidden items-center gap-1.5 text-base text-gray-500 xl:flex dark:text-gray-400">
-          <span className="rounded bg-green-100 px-1.5 py-0.5 text-sm font-semibold tabular-nums text-green-700 dark:bg-green-500/15 dark:text-green-300">
-            {tasks?.length ?? 0}
-          </span>
-          open tasks
-        </span>
+      <div className="flex items-center justify-end gap-2">
 
         <button
           type="button"
@@ -152,7 +146,12 @@ export function ContentTopbar({ title, onCapture, onOpenNav }: ContentTopbarProp
           align="end"
           trigger={
             <button type="button" aria-label="Account menu" className={cn("rounded-md transition-opacity hover:opacity-85")}>
-              <Avatar name={user?.name ?? "Guest"} color="green" size="lg" className="rounded-md" />
+              <Avatar
+                name={(user?.name ?? "Guest").split(" ")[0]}
+                color="green"
+                size="lg"
+                className="rounded-md"
+              />
             </button>
           }
           items={[

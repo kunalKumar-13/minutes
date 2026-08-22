@@ -4,12 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import {
-  ArrowUp, Layers, Mic, PanelRightClose, Plus, Sparkles, X,
+  ArrowUp, HelpCircle, Layers, Mic, MoreHorizontal, PanelRightClose, Plus, Sparkles, X,
 } from "lucide-react";
 import { api, queryKeys } from "@/lib/api";
 import type { SegmentMatch } from "@/lib/types";
 import { cn, formatTimestamp } from "@/lib/utils";
 import { IconButton } from "@/components/ui/Button";
+import { Dropdown } from "@/components/ui/Dropdown";
 import { useSession } from "./SessionProvider";
 
 interface Exchange {
@@ -92,6 +93,18 @@ export function AskFredPanel({ onClose }: { onClose: () => void }) {
           <Sparkles className="size-3.5 fill-current" />
         </span>
         <h2 className="flex-1 text-md font-medium text-gray-900 dark:text-gray-100">AskFred</h2>
+        <Dropdown
+          align="end"
+          trigger={
+            <IconButton label="Assistant options" size="sm">
+              <MoreHorizontal className="size-4" />
+            </IconButton>
+          }
+          items={[
+            { key: "clear", label: "Clear conversation", onSelect: () => setHistory([]) },
+            { key: "about", label: "Answers cite the transcript", disabled: true },
+          ]}
+        />
         <IconButton label="New conversation" size="sm" onClick={() => setHistory([])}>
           <Plus className="size-4" />
         </IconButton>
@@ -183,6 +196,20 @@ export function AskFredPanel({ onClose }: { onClose: () => void }) {
             ))}
           </ul>
         )}
+      </div>
+
+      {/* Floating help affordance, pinned above the composer. */}
+      <div className="pointer-events-none relative">
+        <a
+          href="https://github.com/kunalKumar-13/minutes#readme"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="How this assistant works"
+          title="How this assistant works"
+          className="pointer-events-auto absolute -top-16 right-4 flex size-10 items-center justify-center rounded-full bg-purple-700 text-white shadow-e3 transition-colors hover:bg-purple-800"
+        >
+          <HelpCircle className="size-5" />
+        </a>
       </div>
 
       <div className="shrink-0 p-3">

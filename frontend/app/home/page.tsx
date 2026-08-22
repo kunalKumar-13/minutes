@@ -82,7 +82,7 @@ export default function HomePage() {
     <AppShell title="Home" askFred onCapture={() => setCreateOpen(true)}>
       {/* The soft gradient wash behind the greeting, as on the real Home. */}
       <div className="bg-home-wash dark:bg-home-wash-dark">
-        <div className="mx-auto w-full max-w-[820px] px-6 pb-14 pt-12">
+        <div className="mx-auto w-full max-w-[868px] px-6 pb-7 pt-9">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h1 className="font-appDisplay text-[28px] font-medium leading-9 tracking-title text-gray-900 dark:text-gray-100">
               {greeting()}, {user?.name?.split(" ")[0] ?? "there"} <span aria-hidden>☀️</span>
@@ -96,7 +96,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-7 flex items-center justify-between">
+          <div className="mt-6 flex items-center justify-between">
             <p className="inline-flex items-center gap-1.5 text-base font-medium text-gray-600 dark:text-gray-400">
               <Sparkles className="size-4 text-purple-500" />
               Personal Assistant
@@ -147,14 +147,14 @@ export default function HomePage() {
               </span>
               <p className="mt-4 text-md text-gray-900 dark:text-gray-100">Tasks</p>
               <p className="mt-1 text-base text-gray-500 dark:text-gray-400">
-                {tasksQuery.isLoading ? "Loading…" : `${openTasks.length} new task${openTasks.length === 1 ? "" : "s"}`}
+                {tasksQuery.isLoading ? "Loading…" : `${openTasks.length} New task${openTasks.length === 1 ? "" : "s"}`}
               </p>
             </Link>
           </div>
 
           <Link
             href="/integrations"
-            className="mt-9 flex items-center gap-3 rounded-lg bg-purple-50/80 px-4 py-4 backdrop-blur-sm transition-colors hover:bg-purple-100/70 dark:bg-purple-500/10 dark:hover:bg-purple-500/15"
+            className="mt-7 flex items-center gap-3 rounded-lg bg-purple-50/80 px-4 py-3.5 backdrop-blur-sm transition-colors hover:bg-purple-100/70 dark:bg-purple-500/10 dark:hover:bg-purple-500/15"
           >
             <span className="flex shrink-0 -space-x-2">
               <span className="flex size-7 items-center justify-center rounded-md bg-white shadow-e1 ring-1 ring-black/5">
@@ -176,7 +176,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-[820px] px-6 py-8">
+      <div className="mx-auto w-full max-w-[868px] px-6 pb-10 pt-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex gap-1 rounded-lg bg-gray-50 p-1 dark:bg-white/5">
             {(
@@ -226,12 +226,13 @@ export default function HomePage() {
                   <li key={meeting.id}>
                     <Link
                       href={`/view/${meeting.id}`}
-                      className="flex items-center gap-3 rounded-lg px-2 py-2.5 transition-colors hover:bg-gray-50 dark:hover:bg-white/[0.03]"
+                      className="flex items-center gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-gray-50 dark:hover:bg-white/[0.03]"
                     >
                       <Avatar
                         name={meeting.participants[0]?.name ?? meeting.title}
                         color={meeting.participants[0]?.color}
                         size="lg"
+                        className="rounded-full"
                       />
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-md font-medium text-gray-900 dark:text-gray-100">
