@@ -4,8 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  ArrowRight, BarChart3, Bot, Check, ChevronDown, Crosshair, Globe,
-  Lock, Menu, Scissors, Search, Sparkles, Star, Upload, Users, X, Zap,
+  ArrowRight, BarChart3, Bot, Check, ChevronDown, Crosshair, Database, Download,
+  Globe, Lock, Menu, Scissors, Search, Shield, Sparkles, Star, Upload, Users, X, Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/ui/Logo";
@@ -26,16 +26,23 @@ const STARS = [
   .join(", ");
 
 const TRANSCRIPTION_FACTS = [
-  { icon: <Crosshair className="size-4" />, title: "95% accurate", body: "Speaker-attributed transcripts you can actually quote from." },
-  { icon: <Globe className="size-4" />, title: "100+ languages", body: "English, Spanish, French, Hindi and many more." },
-  { icon: <Users className="size-4" />, title: "Speaker recognition", body: "Every line attributed, and renameable in one click." },
-  { icon: <Zap className="size-4" />, title: "Auto language detection", body: "Switch between languages meeting to meeting." },
+  { icon: <Crosshair className="size-4" />, title: "95% Accurate", body: "Speaker-attributed transcripts you can actually quote from." },
+  { icon: <Globe className="size-4" />, title: "100+ Languages", body: "English, Spanish, French, Hindi and many more." },
+  { icon: <Users className="size-4" />, title: "Speaker Recognition", body: "Every line attributed, and renameable in one click." },
+  { icon: <Zap className="size-4" />, title: "Auto-Language Detection", body: "Switch between languages meeting to meeting." },
 ];
 
 const CAPTURE_WAYS = [
-  { icon: <Bot className="size-4" />, title: "Notetaker bot", body: "Invite the bot to a call, or let it auto-join from your calendar.", tint: "bg-purple-50 dark:bg-purple-500/10" },
-  { icon: <Upload className="size-4" />, title: "Upload a recording", body: "Drop in a .txt, .vtt, .srt or .json transcript and it is parsed instantly.", tint: "bg-yellow-50 dark:bg-yellow-500/10" },
-  { icon: <Sparkles className="size-4" />, title: "Paste anything", body: "Even an untimed wall of text gets speakers and a working timeline.", tint: "bg-teal-50 dark:bg-teal-500/10" },
+  { icon: <Bot className="size-4" />, title: "Notetaker Bot", body: "Invite the bot to a call, or let it auto-join from your calendar.", tint: "bg-purple-50 dark:bg-purple-500/10" },
+  { icon: <Upload className="size-4" />, title: "Upload A Recording", body: "Drop in a .txt, .vtt, .srt or .json transcript and it is parsed instantly.", tint: "bg-yellow-50 dark:bg-yellow-500/10" },
+  { icon: <Sparkles className="size-4" />, title: "Paste Anything", body: "Even an untimed wall of text gets speakers and a working timeline.", tint: "bg-teal-50 dark:bg-teal-500/10" },
+];
+
+const INTEGRATIONS = [
+  { title: "Meeting platforms", items: ["Zoom", "Google Meet", "Microsoft Teams", "Webex"] },
+  { title: "Calendars", items: ["Google Calendar", "Outlook", "iCal feeds"] },
+  { title: "Where work happens", items: ["Slack", "Notion", "Asana", "Jira"] },
+  { title: "Customer records", items: ["Salesforce", "HubSpot", "Pipedrive"] },
 ];
 
 const FAQS = [
@@ -56,6 +63,44 @@ const FAQS = [
     a: "Everything lives in a single SQLite database beside the API. There is no third-party analytics, and no transcript leaves the server unless you configure an LLM key yourself.",
   },
 ];
+
+/**
+ * The social-proof band under the hero.
+ *
+ * The companies are the fictional ones from this project's own seed data. Real
+ * logos here would assert that real organisations use this, which is not true —
+ * a clone should copy a layout, not borrow someone else's customers.
+ */
+function LogoWall() {
+  const companies = [
+    { name: "Northwind", suffix: "TRADERS" },
+    { name: "LUMINA", suffix: "LABS" },
+    { name: "Acme", suffix: "INC" },
+    { name: "Beacon", suffix: "HEALTH" },
+  ];
+  return (
+    <section className="bg-[#100730] pb-24 pt-40 sm:pt-56">
+      <div className="mx-auto max-w-[1140px] px-5 text-center">
+        <p className="text-base font-semibold uppercase tracking-[0.12em] text-gray-400">
+          Built for teams that live in meetings
+        </p>
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-x-20 gap-y-10">
+          {companies.map((company) => (
+            <span key={company.name} className="flex items-baseline gap-2 opacity-45 grayscale">
+              <span className="font-display text-2xl font-medium tracking-tight text-white">
+                {company.name}
+              </span>
+              <span className="text-xs font-semibold tracking-[0.18em] text-white">{company.suffix}</span>
+            </span>
+          ))}
+        </div>
+        <p className="mx-auto mt-12 max-w-lg text-base leading-6 text-gray-500">
+          The organisations above are the fictional ones seeded into the demo workspace.
+        </p>
+      </div>
+    </section>
+  );
+}
 
 function SectionHeading({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
@@ -225,25 +270,27 @@ export default function LandingPage() {
       </section>
 
       {/* ------------------------------------------------- transcription */}
-      <section id="how" className="bg-gray-25 pb-24 pt-40 sm:pt-56">
-        <div className="mx-auto grid max-w-[1140px] items-center gap-14 px-5 lg:grid-cols-2">
+      <LogoWall />
+
+      <section id="how" className="bg-gray-25 py-32">
+        <div className="mx-auto grid max-w-[1140px] items-center gap-16 px-5 lg:grid-cols-2">
           <div>
             <SectionHeading>
-              High quality meeting
+              High Quality Meeting
               <br />
-              <span className="text-purple-600">transcription</span> &amp;{" "}
-              <span className="text-purple-600">recording</span>
+              <span className="text-purple-600">Transcription</span> &amp;{" "}
+              <span className="text-purple-600">Recording</span>
             </SectionHeading>
 
             <Link
               href="/login"
               className="mt-7 inline-flex h-11 items-center gap-2 rounded-lg bg-cta-purple px-5 text-base font-medium text-white shadow-e2 transition-opacity hover:opacity-90"
             >
-              Get started
+              Get Started
               <ArrowRight className="size-4" />
             </Link>
 
-            <dl className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+            <dl className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2">
               {TRANSCRIPTION_FACTS.map((fact) => (
                 <div key={fact.title}>
                   <span className="text-gray-900">{fact.icon}</span>
@@ -259,12 +306,12 @@ export default function LandingPage() {
       </section>
 
       {/* ---------------------------------------------------- AI summaries */}
-      <section className="bg-[#100730] py-24 text-white">
+      <section className="bg-[#100730] py-32 text-white">
         <div className="mx-auto max-w-[1140px] px-5">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-xl">
               <SectionHeading className="text-white">
-                Comprehensive <span className="text-purple-400">AI summaries</span>
+                Comprehensive <span className="text-purple-400">AI Summaries</span>
               </SectionHeading>
               <p className="mt-4 text-md leading-7 text-gray-300">
                 An overview, timestamped chapters, action items attributed to whoever committed to them, and the
@@ -275,9 +322,24 @@ export default function LandingPage() {
               href="/login"
               className="inline-flex h-11 shrink-0 items-center gap-2 rounded-lg bg-purple-500 px-5 text-base font-medium text-white transition-colors hover:bg-purple-600"
             >
-              Get started
+              Get Started
               <ArrowRight className="size-4" />
             </Link>
+          </div>
+
+          {/* The original previews its note formats behind a pill switcher. */}
+          <div className="mt-12 flex flex-wrap justify-center gap-2">
+            {["Overview", "Bullet Points", "Action Items", "Custom Notes"].map((tab, index) => (
+              <span
+                key={tab}
+                className={cn(
+                  "rounded-md px-3.5 py-2 text-base font-medium",
+                  index === 2 ? "bg-purple-500/25 text-white ring-1 ring-purple-400/40" : "bg-white/[0.07] text-gray-300",
+                )}
+              >
+                {tab}
+              </span>
+            ))}
           </div>
 
           <NotesMock />
@@ -285,14 +347,14 @@ export default function LandingPage() {
       </section>
 
       {/* --------------------------------------------------------- capture */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-32">
         <div className="mx-auto max-w-[1140px] px-5 text-center">
           <SectionHeading>
-            <span className="text-purple-600">Capture</span> meetings{" "}
-            <span className="text-purple-600">anywhere</span> &amp; anytime
+            <span className="text-purple-600">Capture</span> Meetings{" "}
+            <span className="text-purple-600">Anywhere</span> &amp; Anytime
           </SectionHeading>
 
-          <div className="mt-12 grid gap-4 text-left md:grid-cols-3">
+          <div className="mt-14 grid gap-5 text-left md:grid-cols-3">
             {CAPTURE_WAYS.map((way) => (
               <div key={way.title} className={cn("rounded-2xl p-6", way.tint)}>
                 <span className="flex size-10 items-center justify-center rounded-xl bg-white text-purple-600 shadow-e1 dark:bg-ink-500">
@@ -307,12 +369,12 @@ export default function LandingPage() {
       </section>
 
       {/* ---------------------------------------------------------- search */}
-      <section className="bg-gray-25 py-24">
-        <div className="mx-auto grid max-w-[1140px] items-center gap-14 px-5 lg:grid-cols-2">
+      <section className="bg-gray-25 py-32">
+        <div className="mx-auto grid max-w-[1140px] items-center gap-16 px-5 lg:grid-cols-2">
           <div>
             <SectionHeading>
-              Remember every conversation with{" "}
-              <span className="text-purple-600">AI powered search</span>
+              Remember Every Conversation With{" "}
+              <span className="text-purple-600">AI Powered Search</span>
             </SectionHeading>
             <p className="mt-4 text-md leading-7 text-gray-600">
               One query across every transcript, meeting title and action item — ranked by a real full-text index,
@@ -338,15 +400,15 @@ export default function LandingPage() {
       </section>
 
       {/* ------------------------------------------------------- analytics */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-32">
         <div className="mx-auto max-w-[1140px] px-5">
           <SectionHeading className="max-w-2xl">
-            Drive insights with <span className="text-purple-600">conversation intelligence</span>
+            Drive Insights With <span className="text-purple-600">Conversation Intelligence</span>
           </SectionHeading>
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: <BarChart3 className="size-4" />, title: "Talk time", body: "Who dominated, and who never got a word in." },
+              { icon: <BarChart3 className="size-4" />, title: "Talk Time", body: "Who dominated, and who never got a word in." },
               { icon: <Sparkles className="size-4" />, title: "Topics", body: "What this workspace actually spends its time on." },
               { icon: <Scissors className="size-4" />, title: "Soundbites", body: "Clip the moment that mattered and keep it." },
               { icon: <Search className="size-4" />, title: "Trends", body: "Meeting volume and follow-through over time." },
@@ -363,10 +425,88 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* -------------------------------------------------- integrations */}
+      <section className="bg-gray-25 py-32">
+        <div className="mx-auto max-w-[1140px] px-5 text-center">
+          <SectionHeading>
+            Designed To Fit <span className="text-purple-600">Your Stack</span>
+          </SectionHeading>
+          <p className="mx-auto mt-4 max-w-2xl text-md leading-7 text-gray-600">
+            The ingest pipeline takes a transcript from anywhere, so connecting a source is a matter of
+            writing an adapter rather than reworking the app.
+          </p>
+
+          <div className="mt-14 grid gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            {INTEGRATIONS.map((group) => (
+              <div key={group.title} className="rounded-2xl border border-gray-200 bg-white p-5 text-left">
+                <p className="text-base font-semibold text-gray-900">{group.title}</p>
+                <ul className="mt-3 space-y-1.5">
+                  {group.items.map((item) => (
+                    <li key={item} className="text-base text-gray-500">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <p className="mx-auto mt-10 max-w-xl text-base leading-6 text-gray-500">
+            Uploading a transcript works today. The connectors above are the roadmap, and the app says so
+            wherever one would appear.
+          </p>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------- security */}
+      <section className="bg-white py-32">
+        <div className="mx-auto grid max-w-[1140px] items-center gap-16 px-5 lg:grid-cols-2">
+          <div>
+            <SectionHeading>
+              Your Conversations, <span className="text-purple-600">Your Data</span>
+            </SectionHeading>
+            <p className="mt-4 text-md leading-7 text-gray-600">
+              Everything lives in a single database beside the API. No third-party analytics, and no
+              transcript leaves the server unless you configure a model key yourself.
+            </p>
+            <ul className="mt-8 space-y-3">
+              {[
+                "Sessions carry a real token and expiry, revocable at any time",
+                "The edge guard runs before any application code",
+                "No telemetry, no trackers, no third-party scripts",
+                "Export everything as Markdown, plain text or JSON",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-base text-gray-700">
+                  <Check className="mt-1 size-4 shrink-0 text-purple-600" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {[
+              { icon: <Lock className="size-4" />, t: "Session control", b: "Issue and revoke per browser." },
+              { icon: <Shield className="size-4" />, t: "Guarded routes", b: "Enforced at the edge." },
+              { icon: <Database className="size-4" />, t: "Single store", b: "One file you can back up." },
+              { icon: <Download className="size-4" />, t: "Full export", b: "Nothing is locked in." },
+            ].map((card) => (
+              <div key={card.t} className="rounded-2xl bg-gray-25 p-6 ring-1 ring-gray-200">
+                <span className="flex size-9 items-center justify-center rounded-lg bg-white text-purple-600 shadow-e1">
+                  {card.icon}
+                </span>
+                <p className="mt-4 text-md font-semibold text-gray-900">{card.t}</p>
+                <p className="mt-1 text-base leading-6 text-gray-500">{card.b}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ------------------------------------------------------------- FAQ */}
-      <section className="bg-gray-25 py-24">
+      <section className="bg-gray-25 py-32">
         <div className="mx-auto max-w-[820px] px-5">
-          <SectionHeading className="text-center">Frequently asked questions</SectionHeading>
+          <SectionHeading className="text-center">Frequently Asked Questions</SectionHeading>
 
           <dl className="mt-12 divide-y divide-gray-100 border-y border-gray-200">
             {FAQS.map((faq, index) => {
@@ -393,16 +533,16 @@ export default function LandingPage() {
       </section>
 
       {/* ------------------------------------------------------------- CTA */}
-      <section className="bg-[#100730] py-20 text-center text-white">
+      <section className="bg-[#100730] py-28 text-center text-white">
         <div className="mx-auto max-w-[760px] px-5">
           <SectionHeading className="text-white">
-            Unlock the knowledge buried inside your conversations
+            Unlock The Knowledge Buried Inside Your Conversations
           </SectionHeading>
           <Link
             href="/login"
             className="mt-8 inline-flex h-12 items-center gap-2 rounded-lg bg-cta-purple px-6 text-md font-medium text-white shadow-e2 transition-opacity hover:opacity-90"
           >
-            Get started free
+            Get Started Free
             <ArrowRight className="size-4" />
           </Link>
         </div>
