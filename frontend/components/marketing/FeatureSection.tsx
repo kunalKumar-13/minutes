@@ -129,7 +129,7 @@ export function FeatureSection({
       className={cn(
         "relative",
         GROUND[ground],
-        clearsOverhang ? "pb-16 pt-40 sm:pt-56" : "py-16",
+        clearsOverhang ? "pb-24 pt-40 sm:pt-56" : "py-24",
         onDark && "overflow-hidden",
       )}
     >

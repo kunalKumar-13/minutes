@@ -15,8 +15,11 @@ import { cn } from "@/lib/utils";
 /** Alternating page grounds. Light is lavender-tinted, not neutral grey. */
 export const GROUND = {
   light: "bg-purple-25",
+  grey: "bg-[#f9fafb]",
+  offwhite: "bg-[#fcfcfd]",
   white: "bg-white",
   dark: "bg-[#100730] text-white",
+  black: "bg-black text-white",
 } as const;
 
 export function Section({
@@ -31,7 +34,7 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={cn(GROUND[ground], "py-16", className)}>
+    <section id={id} className={cn(GROUND[ground], "py-24", className)}>
       <div className="mx-auto max-w-[1140px] px-5">{children}</div>
     </section>
   );
@@ -218,3 +221,41 @@ export const STARS = [
 ]
   .map(([x, y, r, a]) => `radial-gradient(${r}px ${r}px at ${x} ${y}, rgba(255,255,255,${a}), transparent)`)
   .join(", ");
+
+/**
+ * A tinted card framing a white product panel.
+ *
+ * This is the shape most of their content sections are built from: a wash of
+ * colour with the real UI floating inside it, rather than a screenshot sitting
+ * bare on the page. The panel is deliberately taller than its frame and clipped,
+ * so it reads as a window onto the app instead of a cropped image.
+ */
+export function PanelCard({
+  tint = "violet",
+  title,
+  body,
+  children,
+  className,
+}: {
+  tint?: keyof typeof TINT;
+  title?: string;
+  body?: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={cn("flex flex-col overflow-hidden rounded-xl p-8", TINT[tint], className)}>
+      {title ? (
+        <p className="text-[20px] font-medium leading-[1.2] tracking-[-0.2px] text-gray-900">{title}</p>
+      ) : null}
+      {body ? (
+        <p className="mt-2 text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-500">{body}</p>
+      ) : null}
+      <div className="relative mt-7 flex-1">
+        <div className="h-[330px] overflow-hidden rounded-lg bg-white shadow-[0_8px_28px_rgba(16,24,40,0.10)]">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -9,7 +9,7 @@ import { CtaButton, SectionHeading, STARS } from "./primitives";
  */
 export function ClosingCta() {
   return (
-    <section className="relative overflow-hidden bg-[#100730] py-20 text-center text-white">
+    <section className="relative overflow-hidden bg-[#100730] py-28 text-center text-white">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0" style={{ backgroundImage: STARS, backgroundRepeat: "no-repeat" }} />
         <div className="absolute -right-32 top-1/2 h-[420px] w-[720px] -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(161,101,249,0.45),rgba(122,90,248,0.18),transparent)] blur-2xl" />

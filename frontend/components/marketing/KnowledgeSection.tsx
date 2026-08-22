@@ -20,7 +20,7 @@ const STATS = [
 
 export function KnowledgeSection() {
   return (
-    <section className="bg-white py-16">
+    <section className="bg-white py-24">
       <div className="mx-auto max-w-[1140px] px-5">
         <div className="max-w-[620px]">
           <SectionHeading>

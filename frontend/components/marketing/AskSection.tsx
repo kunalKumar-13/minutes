@@ -43,7 +43,7 @@ const EXCHANGE = [
 
 export function AskSection() {
   return (
-    <section className="relative overflow-hidden bg-[#100730] py-16 text-white">
+    <section className="relative overflow-hidden bg-black py-24 text-white">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0" style={{ backgroundImage: STARS, backgroundRepeat: "no-repeat" }} />
       </div>

@@ -60,21 +60,21 @@ export function FaqSection() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="bg-purple-25 py-16">
+    <section className="bg-white py-24">
       <div className="mx-auto max-w-[800px] px-5">
         <SectionHeading className="text-center">Frequently Asked Questions</SectionHeading>
 
-        <dl className="mt-12">
+        <dl className="mt-16">
           {FAQS.map((faq, index) => {
             const isOpen = open === index;
             return (
-              <div key={faq.q} className="border-b border-gray-200">
+              <div key={faq.q} className="border-b border-gray-100">
                 <dt>
                   <button
                     type="button"
                     aria-expanded={isOpen}
                     onClick={() => setOpen(isOpen ? null : index)}
-                    className="group flex w-full items-center justify-between gap-6 py-5 text-left"
+                    className="group flex w-full items-center justify-between gap-6 py-6 text-left"
                   >
                     <span className="text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-800 transition-colors group-hover:text-gray-900">
                       {faq.q}
@@ -82,7 +82,7 @@ export function FaqSection() {
                     {/* A plus that turns into a cross, as on the original. */}
                     <Plus
                       className={cn(
-                        "size-5 shrink-0 text-gray-400 transition-transform duration-200",
+                        "size-5 shrink-0 text-gray-900 transition-transform duration-200",
                         isOpen && "rotate-45",
                       )}
                     />

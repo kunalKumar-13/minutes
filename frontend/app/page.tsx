@@ -9,6 +9,7 @@ import { FeatureSection } from "@/components/marketing/FeatureSection";
 import { Hero } from "@/components/marketing/Hero";
 import { KnowledgeSection } from "@/components/marketing/KnowledgeSection";
 import { LogoMarquee } from "@/components/marketing/LogoMarquee";
+import { SearchShowcase } from "@/components/marketing/SearchShowcase";
 import { AnnouncementBar, MarketingNav } from "@/components/marketing/MarketingNav";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SkillsSection } from "@/components/marketing/SkillsSection";
@@ -96,30 +97,7 @@ export default function LandingPage() {
           }}
         />
 
-        <FeatureSection
-          ground="light"
-          reversed
-          heading={
-            <>
-              Remember Every Conversation With{" "}
-              <span className="text-purple-600">AI Powered Search</span>
-            </>
-          }
-          lede="One query across every transcript, meeting title and action item — ranked by a real full-text index, not a substring scan."
-          checklist={[
-            "Full-text search with relevance ranking",
-            "Highlighted matches with prev/next stepping",
-            "Filter by participant, channel or date",
-            "Answers grounded in cited transcript lines",
-          ]}
-          cta={null}
-          shot={{
-            src: "/shot-search.png",
-            alt: "Workspace-wide search, faceted across meetings, transcript lines and action items",
-            width: 1600,
-            height: 1000,
-          }}
-        />
+        <SearchShowcase />
 
         <AskSection />
 
