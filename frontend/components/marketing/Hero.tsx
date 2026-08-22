@@ -35,14 +35,14 @@ export function Hero() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
           <Link
             href="/login"
-            className="inline-flex h-12 items-center gap-2 rounded-lg bg-purple-500 px-6 text-[16px] font-medium text-white transition-colors hover:bg-purple-600"
+            className="inline-flex h-12 items-center gap-2 rounded bg-purple-500 px-3.5 font-display text-[16px] font-medium text-white transition-colors hover:bg-purple-600"
           >
             Get Started
             <ArrowRight className="size-4" />
           </Link>
           <Link
             href="#how"
-            className="inline-flex h-12 items-center rounded-lg bg-white/10 px-6 text-[16px] font-medium text-white transition-colors hover:bg-white/15"
+            className="inline-flex h-12 items-center rounded bg-[rgba(241,241,249,0.14)] px-3.5 font-display text-[16px] font-medium text-white ring-1 ring-inset ring-white/[0.08] transition-colors hover:bg-[rgba(241,241,249,0.2)]"
           >
             Request Demo
           </Link>

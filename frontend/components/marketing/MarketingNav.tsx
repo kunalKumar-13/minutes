@@ -59,13 +59,13 @@ export function MarketingNav() {
           </Link>
           <Link
             href="/login"
-            className="hidden h-10 items-center rounded-lg bg-white px-4 text-[16px] font-medium text-gray-900 transition-colors hover:bg-gray-100 sm:inline-flex"
+            className="hidden h-10 items-center rounded font-display bg-white px-3.5 text-[16px] font-medium text-gray-900 ring-1 ring-inset ring-gray-200 transition-colors hover:bg-gray-50 sm:inline-flex"
           >
             Request Demo
           </Link>
           <Link
             href="/login"
-            className="inline-flex h-10 items-center rounded-lg bg-purple-500 px-4 text-[16px] font-medium text-white transition-colors hover:bg-purple-600"
+            className="inline-flex h-10 items-center rounded font-display bg-purple-500 px-3.5 text-[16px] font-medium text-white transition-colors hover:bg-purple-600"
           >
             Get Started
           </Link>
