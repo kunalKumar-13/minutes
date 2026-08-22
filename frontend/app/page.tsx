@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight, BarChart3, Bot, Check, ChevronDown, Crosshair, Database, Download,
-  Github, Globe, Lock, Menu, Scissors, Search, Shield, Sparkles, Star, Upload, Users, X, Zap,
+  Github, Globe, Lock, Menu, Plus, Scissors, Search, Shield, Sparkles, Star, Upload, Users, X, Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/ui/Logo";
@@ -48,19 +48,43 @@ const INTEGRATIONS = [
 const FAQS = [
   {
     q: "Is this the real Fireflies.ai?",
-    a: "No. It is an independent clone built as an engineering assignment, to reproduce the product's design and its post-meeting workflows. It is not affiliated with Fireflies.ai.",
+    a: "No. It is an independent clone built as an engineering assignment, reproducing the product's design and its post-meeting workflows. It is not affiliated with Fireflies.ai, and no code from their product was used — the design tokens and layout were measured from the running site, and every line of implementation was written for this project.",
   },
   {
     q: "Does it actually transcribe audio?",
-    a: "No — speech-to-text is deliberately out of scope. Meetings start from a transcript you already have: seeded samples, a pasted block of text, or an uploaded .txt / .vtt / .srt / .json file.",
+    a: "No, and that is deliberate — speech-to-text is explicitly out of scope for the assignment. Meetings start from a transcript you already have: seeded samples, a block of text you paste, or a file you upload. Everything downstream of that is real.",
+  },
+  {
+    q: "So what is real, and what is a placeholder?",
+    a: "Real: transcript parsing, the notes engine, full-text search, every CRUD path, sessions, exports, and the analysis panel. Placeholders, each labelled as such in the UI: live capture, third-party integrations, team sharing, custom AI skills, and the identity check behind sign-in.",
   },
   {
     q: "Where do the AI summaries come from?",
-    a: "A deterministic extractive summariser built into the backend: it scores sentences by keyword density and position, splits the meeting into chapters, and pulls out commitments using a small grammar of who-owes-what. Point it at an Anthropic key and Claude writes them instead.",
+    a: "A deterministic extractive summariser built into the backend. It scores sentences by keyword density and position, splits the meeting into chapters, and extracts commitments using a small grammar of who-owes-what. Set an Anthropic key and Claude writes them instead, into the same shape — the LLM is an upgrade, never a dependency.",
+  },
+  {
+    q: "How are action items attributed to the right person?",
+    a: "By the grammar of the sentence. First person — \u201cI\u2019ll send it\u201d — belongs to whoever is speaking. Second person — \u201ccan you send it\u201d — belongs to whoever is being addressed, and a name in the vocative position wins over one mentioned later. In \u201cTom\u00e1s, can you draft the schema and send it to Daniel?\u201d the owner is Tom\u00e1s, not Daniel.",
+  },
+  {
+    q: "What transcript formats can I upload?",
+    a: "Plain text in four different layouts, WebVTT, SubRip, and JSON in a couple of shapes. Untimed text works too — timings are synthesised from a reading rate so the player and click-to-seek still function. There are sample files in the repository to try.",
+  },
+  {
+    q: "How does search work?",
+    a: "A real SQLite FTS5 index with bm25 ranking, not a substring scan. Every token you type is quoted before it reaches the index, so operators and stray quotes cannot be read as query syntax. A search box narrows as you add words; a question asked of a meeting ORs its content words instead, because no single line contains every word of a question.",
+  },
+  {
+    q: "Is there really no password?",
+    a: "Correct. The assignment scopes authentication as a placeholder, so no credential is checked and any provider signs you into the demo workspace. The session behind it is real though: a token with an expiry that the API validates, that you can revoke from Settings, and that the edge middleware enforces before any page renders.",
   },
   {
     q: "Is my data stored anywhere?",
-    a: "Everything lives in a single SQLite database beside the API. There is no third-party analytics, and no transcript leaves the server unless you configure an LLM key yourself.",
+    a: "Everything lives in a single SQLite database beside the API. There is no third-party analytics, no tracker, and no transcript leaves the server unless you configure a model key yourself. You can export any meeting as Markdown, plain text or JSON.",
+  },
+  {
+    q: "Can I run it myself?",
+    a: "Yes — the repository has setup instructions for both halves. The backend creates its schema and seeds a sample workspace on first boot, so a fresh clone is usable immediately with no configuration.",
   },
 ];
 
@@ -112,7 +136,7 @@ function SectionHeading({ children, className }: { children: React.ReactNode; cl
 
 export default function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
     <div className="min-h-dvh bg-white font-sans text-gray-900">
@@ -539,30 +563,53 @@ export default function LandingPage() {
 
       {/* ------------------------------------------------------------- FAQ */}
       <section className="bg-gray-25 py-24">
-        <div className="mx-auto max-w-[820px] px-5">
+        <div className="mx-auto max-w-[800px] px-5">
           <SectionHeading className="text-center">Frequently Asked Questions</SectionHeading>
 
-          <dl className="mt-12 divide-y divide-gray-100 border-y border-gray-200">
+          <dl className="mt-14">
             {FAQS.map((faq, index) => {
               const open = openFaq === index;
               return (
-                <div key={faq.q}>
+                <div key={faq.q} className="border-b border-gray-200">
                   <dt>
                     <button
                       type="button"
                       aria-expanded={open}
                       onClick={() => setOpenFaq(open ? null : index)}
-                      className="flex w-full items-center justify-between gap-4 py-5 text-left"
+                      className="group flex w-full items-center justify-between gap-6 py-5 text-left"
                     >
-                      <span className="text-md font-medium text-gray-900">{faq.q}</span>
-                      <ChevronDown className={cn("size-5 shrink-0 text-gray-400 transition-transform", open && "rotate-180")} />
+                      <span className="text-md text-gray-800 transition-colors group-hover:text-gray-900">
+                        {faq.q}
+                      </span>
+                      {/* A plus that turns into a cross, as on the original. */}
+                      <Plus
+                        className={cn(
+                          "size-5 shrink-0 text-gray-400 transition-transform duration-200",
+                          open && "rotate-45",
+                        )}
+                      />
                     </button>
                   </dt>
-                  {open && <dd className="pb-5 pr-10 text-base leading-7 text-gray-600">{faq.a}</dd>}
+                  {open && (
+                    <dd className="pb-6 pr-12 text-md leading-7 text-gray-600">{faq.a}</dd>
+                  )}
                 </div>
               );
             })}
           </dl>
+
+          <p className="mt-10 text-center text-md leading-7 text-gray-600">
+            Still have questions? The{" "}
+            <a
+              href="https://github.com/kunalKumar-13/minutes#readme"
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium text-purple-700 underline underline-offset-2 hover:text-purple-800"
+            >
+              README
+            </a>{" "}
+            covers the architecture, the schema and the reasoning behind both.
+          </p>
         </div>
       </section>
 
