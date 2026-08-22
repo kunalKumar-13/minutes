@@ -302,7 +302,7 @@ export default function LandingPage() {
       {/* ------------------------------------------------- transcription */}
       <LogoWall />
 
-      <section id="how" className="bg-gray-25 py-16">
+      <section id="how" className="bg-purple-25 py-16">
         <div className="mx-auto grid max-w-[1140px] items-center gap-16 px-5 lg:grid-cols-2">
           <div>
             <SectionHeading>
@@ -335,8 +335,8 @@ export default function LandingPage() {
             src="/shot-transcript.png"
             alt="The transcript panel: speaker labels, timestamps and inline search"
             width={432}
-            height={904}
-            className="mx-auto max-w-[400px]"
+            height={544}
+            className="mx-auto w-full max-w-[440px]"
           />
         </div>
       </section>
@@ -419,7 +419,7 @@ export default function LandingPage() {
       </section>
 
       {/* ---------------------------------------------------------- search */}
-      <section className="bg-gray-25 py-16">
+      <section className="bg-purple-25 py-16">
         <div className="mx-auto grid max-w-[1140px] items-center gap-16 px-5 lg:grid-cols-2">
           <div>
             <SectionHeading>
@@ -490,7 +490,7 @@ export default function LandingPage() {
       </section>
 
       {/* -------------------------------------------------- integrations */}
-      <section className="bg-gray-25 py-16">
+      <section className="bg-purple-25 py-16">
         <div className="mx-auto max-w-[1140px] px-5 text-center">
           <SectionHeading>
             Designed To Fit <span className="text-purple-600">Your Stack</span>
@@ -555,7 +555,7 @@ export default function LandingPage() {
               { icon: <Database className="size-4" />, t: "Single store", b: "One file you can back up." },
               { icon: <Download className="size-4" />, t: "Full export", b: "Nothing is locked in." },
             ].map((card) => (
-              <div key={card.t} className="rounded-2xl bg-gray-25 p-6 ring-1 ring-gray-200">
+              <div key={card.t} className="rounded-2xl bg-purple-25 p-6 ring-1 ring-gray-200">
                 <span className="flex size-9 items-center justify-center rounded-lg bg-white text-purple-600 shadow-e1">
                   {card.icon}
                 </span>
@@ -568,7 +568,7 @@ export default function LandingPage() {
       </section>
 
       {/* ------------------------------------------------------------- FAQ */}
-      <section className="bg-gray-25 py-16">
+      <section className="bg-purple-25 py-16">
         <div className="mx-auto max-w-[800px] px-5">
           <SectionHeading className="text-center">Frequently Asked Questions</SectionHeading>
 
@@ -703,9 +703,9 @@ function SiteFooter() {
     "Sales calls", "Customer QBRs", "Interviews", "Standups",
     "Design reviews", "Retros", "Research", "Hiring debriefs",
   ];
-  const builtWith = [
-    "Next.js 15", "React 19", "TypeScript", "Tailwind CSS",
-    "FastAPI", "SQLAlchemy 2.0", "SQLite + FTS5", "Pydantic",
+  const integrations = [
+    "Zoom", "Google Meet", "Microsoft Teams", "Google Calendar",
+    "Outlook", "Slack", "Salesforce", "HubSpot",
   ];
   const project = ["README", "Architecture", "Database schema", "API reference"];
   const learn = ["Design notes", "Layout spec", "Sample transcripts", "Seed data"];
@@ -731,7 +731,7 @@ function SiteFooter() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <Column title="Product" items={product} />
           <Column title="Use Cases" items={useCases} />
-          <Column title="Built With" items={builtWith} />
+          <Column title="Integrations" items={integrations} />
 
           <div className="space-y-10">
             <Column title="Project" items={project} />
