@@ -302,9 +302,11 @@ export default function LandingPage() {
           </div>
 
           <Shot
-            src="/hero-app.png"
-            alt="An interactive transcript with speaker labels and timestamps"
-            crop="right"
+            src="/shot-transcript.png"
+            alt="The transcript panel: speaker labels, timestamps and inline search"
+            width={432}
+            height={904}
+            className="mx-auto max-w-[400px]"
           />
         </div>
       </section>
@@ -347,8 +349,10 @@ export default function LandingPage() {
           </div>
 
           <Shot
-            src="/hero-app.png"
-            alt="AI notes: an overview, timestamped chapters and attributed action items"
+            src="/shot-notes.png"
+            alt="AI notes beside the analysis panel: overview, chapters, action items, sentiment and talk time"
+            width={1122}
+            height={904}
             className="mt-10 ring-white/10"
           />
         </div>
@@ -363,8 +367,10 @@ export default function LandingPage() {
           </SectionHeading>
 
           <Shot
-            src="/hero-library.png"
-            alt="The meetings library, with channels, filters and search"
+            src="/shot-upload.png"
+            alt="The uploads screen, listing every transcript format that can be ingested"
+            width={1600}
+            height={1000}
             className="mt-12"
           />
 
@@ -412,6 +418,8 @@ export default function LandingPage() {
           <Shot
             src="/shot-search.png"
             alt="Workspace-wide search, faceted across meetings, transcript lines and action items"
+            width={1600}
+            height={1000}
             className="lg:-mr-10"
           />
         </div>
@@ -427,6 +435,8 @@ export default function LandingPage() {
           <Shot
             src="/shot-analytics.png"
             alt="Analytics: talk time, meeting volume and recurring topics"
+            width={1600}
+            height={1000}
             className="mt-12"
           />
 
@@ -605,12 +615,13 @@ export default function LandingPage() {
  * is both more honest and what fills the space.
  */
 function Shot({
-  src, alt, className, crop = "top",
+  src, alt, width, height, className,
 }: {
   src: string;
   alt: string;
+  width: number;
+  height: number;
   className?: string;
-  crop?: "top" | "right" | "full";
 }) {
   return (
     <div
@@ -619,21 +630,10 @@ function Shot({
         className,
       )}
     >
-      <div className={cn(crop === "right" && "aspect-[4/3] overflow-hidden")}>
-        <Image
-          src={src}
-          alt={alt}
-          width={1600}
-          height={1000}
-          className={cn("w-full", crop === "right" && "w-[190%] max-w-none -translate-x-[52%]")}
-        />
-      </div>
+      <Image src={src} alt={alt} width={width} height={height} className="w-full" />
     </div>
   );
 }
-
-
-
 
 function SiteFooter() {
   /*
@@ -688,18 +688,19 @@ function SiteFooter() {
           <div className="space-y-10">
             <div>
               <p className="text-md font-semibold text-white">Open It</p>
-              <div className="mt-5 rounded-xl border border-white/10 bg-white/[0.04] p-4">
-                <p className="text-base leading-6 text-gray-400">
-                  The demo workspace is seeded and ready — no signup, no credential.
-                </p>
-                <Link
-                  href="/login"
-                  className="mt-3 inline-flex items-center gap-1.5 text-base font-medium text-purple-300 hover:text-purple-200"
-                >
-                  Open the app
-                  <ArrowRight className="size-3.5" />
-                </Link>
+              {/* A real code: it encodes the repository URL and scans. */}
+              <div className="mt-5 w-fit rounded-xl bg-white p-2.5">
+                <Image
+                  src="/qr-repo.png"
+                  alt="QR code linking to the source repository on GitHub"
+                  width={492}
+                  height={492}
+                  className="size-[132px]"
+                />
               </div>
+              <p className="mt-3 max-w-[190px] text-base leading-6 text-gray-400">
+                Scan for the source, or open the seeded demo — no signup, no credential.
+              </p>
               <ul className="mt-5 space-y-2.5">
                 {openIt.map((item) => (
                   <li key={item}>
