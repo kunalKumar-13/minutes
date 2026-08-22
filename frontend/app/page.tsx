@@ -79,7 +79,7 @@ function LogoWall() {
     { name: "Beacon", suffix: "HEALTH" },
   ];
   return (
-    <section className="bg-[#100730] pb-24 pt-40 sm:pt-56">
+    <section className="bg-[#100730] pb-20 pt-40 sm:pt-56">
       <div className="mx-auto max-w-[1140px] px-5 text-center">
         <p className="text-base font-semibold uppercase tracking-[0.12em] text-gray-400">
           Built for teams that live in meetings
@@ -272,7 +272,7 @@ export default function LandingPage() {
       {/* ------------------------------------------------- transcription */}
       <LogoWall />
 
-      <section id="how" className="bg-gray-25 py-32">
+      <section id="how" className="bg-gray-25 py-24">
         <div className="mx-auto grid max-w-[1140px] items-center gap-16 px-5 lg:grid-cols-2">
           <div>
             <SectionHeading>
@@ -301,12 +301,16 @@ export default function LandingPage() {
             </dl>
           </div>
 
-          <TranscriptMock />
+          <Shot
+            src="/hero-app.png"
+            alt="An interactive transcript with speaker labels and timestamps"
+            crop="right"
+          />
         </div>
       </section>
 
       {/* ---------------------------------------------------- AI summaries */}
-      <section className="bg-[#100730] py-32 text-white">
+      <section className="bg-[#100730] py-24 text-white">
         <div className="mx-auto max-w-[1140px] px-5">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-xl">
@@ -342,19 +346,29 @@ export default function LandingPage() {
             ))}
           </div>
 
-          <NotesMock />
+          <Shot
+            src="/hero-app.png"
+            alt="AI notes: an overview, timestamped chapters and attributed action items"
+            className="mt-10 ring-white/10"
+          />
         </div>
       </section>
 
       {/* --------------------------------------------------------- capture */}
-      <section className="bg-white py-32">
+      <section className="bg-white py-24">
         <div className="mx-auto max-w-[1140px] px-5 text-center">
           <SectionHeading>
             <span className="text-purple-600">Capture</span> Meetings{" "}
             <span className="text-purple-600">Anywhere</span> &amp; Anytime
           </SectionHeading>
 
-          <div className="mt-14 grid gap-5 text-left md:grid-cols-3">
+          <Shot
+            src="/hero-library.png"
+            alt="The meetings library, with channels, filters and search"
+            className="mt-12"
+          />
+
+          <div className="mt-8 grid gap-5 text-left md:grid-cols-3">
             {CAPTURE_WAYS.map((way) => (
               <div key={way.title} className={cn("rounded-2xl p-6", way.tint)}>
                 <span className="flex size-10 items-center justify-center rounded-xl bg-white text-purple-600 shadow-e1 dark:bg-ink-500">
@@ -369,7 +383,7 @@ export default function LandingPage() {
       </section>
 
       {/* ---------------------------------------------------------- search */}
-      <section className="bg-gray-25 py-32">
+      <section className="bg-gray-25 py-24">
         <div className="mx-auto grid max-w-[1140px] items-center gap-16 px-5 lg:grid-cols-2">
           <div>
             <SectionHeading>
@@ -395,18 +409,28 @@ export default function LandingPage() {
             </ul>
           </div>
 
-          <SearchMock />
+          <Shot
+            src="/shot-search.png"
+            alt="Workspace-wide search, faceted across meetings, transcript lines and action items"
+            className="lg:-mr-10"
+          />
         </div>
       </section>
 
       {/* ------------------------------------------------------- analytics */}
-      <section className="bg-white py-32">
+      <section className="bg-white py-24">
         <div className="mx-auto max-w-[1140px] px-5">
           <SectionHeading className="max-w-2xl">
             Drive Insights With <span className="text-purple-600">Conversation Intelligence</span>
           </SectionHeading>
 
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <Shot
+            src="/shot-analytics.png"
+            alt="Analytics: talk time, meeting volume and recurring topics"
+            className="mt-12"
+          />
+
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { icon: <BarChart3 className="size-4" />, title: "Talk Time", body: "Who dominated, and who never got a word in." },
               { icon: <Sparkles className="size-4" />, title: "Topics", body: "What this workspace actually spends its time on." },
@@ -426,7 +450,7 @@ export default function LandingPage() {
       </section>
 
       {/* -------------------------------------------------- integrations */}
-      <section className="bg-gray-25 py-32">
+      <section className="bg-gray-25 py-24">
         <div className="mx-auto max-w-[1140px] px-5 text-center">
           <SectionHeading>
             Designed To Fit <span className="text-purple-600">Your Stack</span>
@@ -459,7 +483,7 @@ export default function LandingPage() {
       </section>
 
       {/* ------------------------------------------------------- security */}
-      <section className="bg-white py-32">
+      <section className="bg-white py-24">
         <div className="mx-auto grid max-w-[1140px] items-center gap-16 px-5 lg:grid-cols-2">
           <div>
             <SectionHeading>
@@ -504,7 +528,7 @@ export default function LandingPage() {
       </section>
 
       {/* ------------------------------------------------------------- FAQ */}
-      <section className="bg-gray-25 py-32">
+      <section className="bg-gray-25 py-24">
         <div className="mx-auto max-w-[820px] px-5">
           <SectionHeading className="text-center">Frequently Asked Questions</SectionHeading>
 
@@ -533,7 +557,7 @@ export default function LandingPage() {
       </section>
 
       {/* ------------------------------------------------------------- CTA */}
-      <section className="bg-[#100730] py-28 text-center text-white">
+      <section className="bg-[#100730] py-24 text-center text-white">
         <div className="mx-auto max-w-[760px] px-5">
           <SectionHeading className="text-white">
             Unlock The Knowledge Buried Inside Your Conversations
@@ -563,120 +587,43 @@ function BrowserFrame({ children, className }: { children: React.ReactNode; clas
   );
 }
 
-function TranscriptMock() {
-  const lines = [
-    { name: "Cate", color: "bg-red-400", time: "00:53", text: "There's some concern about onboarding. Clients feel it's not intuitive enough." },
-    { name: "Rohan", color: "bg-orange-400", time: "01:24", text: "Noted. We'll pass that to product. On the seating front, how are we doing with capacity?" },
-    { name: "Tom", color: "bg-pink-400", time: "01:47", text: "We have room for another forty seats before we need to renegotiate." },
-  ];
+/**
+ * A real screenshot of the app, framed.
+ *
+ * These sections were previously small hand-drawn mocks floating in a lot of
+ * padding, which made the page read as unfinished. Showing the product at size
+ * is both more honest and what fills the space.
+ */
+function Shot({
+  src, alt, className, crop = "top",
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  crop?: "top" | "right" | "full";
+}) {
   return (
-    <BrowserFrame>
-      <p className="border-b border-gray-200 px-5 py-4 text-lg font-semibold text-gray-900">Transcript</p>
-      <div className="p-4">
-        <div className="flex h-10 items-center gap-2 rounded-lg bg-gray-50 px-3 text-base text-gray-400">
-          <Search className="size-4" />
-          Search
-        </div>
-        <div className="mt-4 space-y-5">
-          {lines.map((line) => (
-            <div key={line.time}>
-              <div className="flex items-center gap-2">
-                <span className={cn("flex size-7 items-center justify-center rounded-sm text-[11px] font-semibold text-white", line.color)}>
-                  {line.name[0]}
-                </span>
-                <span className="text-md font-medium text-gray-900">{line.name}</span>
-                <ChevronDown className="size-3.5 text-gray-400" />
-                <span className="text-gray-300">·</span>
-                <span className="text-base font-medium tabular-nums text-blue-700 underline decoration-blue-300 underline-offset-2">
-                  {line.time}
-                </span>
-              </div>
-              <p className="mt-1 pl-9 text-md leading-7 text-gray-700">{line.text}</p>
-            </div>
-          ))}
-        </div>
+    <div
+      className={cn(
+        "overflow-hidden rounded-xl bg-white shadow-[0_20px_60px_rgba(16,24,40,0.16)] ring-1 ring-gray-200",
+        className,
+      )}
+    >
+      <div className={cn(crop === "right" && "aspect-[4/3] overflow-hidden")}>
+        <Image
+          src={src}
+          alt={alt}
+          width={1600}
+          height={1000}
+          className={cn("w-full", crop === "right" && "w-[190%] max-w-none -translate-x-[52%]")}
+        />
       </div>
-    </BrowserFrame>
+    </div>
   );
 }
 
-function NotesMock() {
-  return (
-    <BrowserFrame className="mt-12">
-      <div className="flex items-center gap-2 border-b border-gray-200 px-4 py-3">
-        <span className="text-base text-gray-500"># Sales</span>
-        <span className="text-gray-300">/</span>
-        <span className="text-base font-medium text-gray-900">Kickoff Call</span>
-        <span className="rounded bg-teal-50 px-1.5 py-0.5 text-2xs font-bold uppercase text-teal-700">Rec</span>
-        <span className="ml-auto inline-flex h-8 items-center gap-1.5 rounded-md bg-purple-600 px-3 text-base font-medium text-white">
-          <Globe className="size-3.5" />
-          Share
-        </span>
-      </div>
 
-      <div className="p-6 text-left">
-        <p className="text-lg font-semibold text-gray-900">Action Items</p>
 
-        <p className="mt-4 text-base text-gray-500">Chris</p>
-        <ul className="mt-1.5 space-y-1.5">
-          {[
-            ["Prepare technical requirements for setting up integrations.", "01:47"],
-            ["Provide a final list of 50 users for initial training by Thursday.", "24:42"],
-          ].map(([text, time]) => (
-            <li key={time} className="flex gap-3">
-              <span className="mt-2.5 size-1 shrink-0 rounded-full bg-gray-400" />
-              <span className="text-md leading-7 text-gray-700">
-                {text} <span className="tabular-nums text-blue-700">{time}</span>
-              </span>
-            </li>
-          ))}
-        </ul>
-
-        <p className="mt-5 text-base text-gray-500">Sarah</p>
-        <ul className="mt-1.5 space-y-1.5">
-          <li className="flex gap-3">
-            <span className="mt-2.5 size-1 shrink-0 rounded-full bg-gray-400" />
-            <span className="text-md leading-7 text-gray-700">
-              Schedule training sessions for the team, with weekly feedback calls.{" "}
-              <span className="tabular-nums text-blue-700">02:19</span>
-            </span>
-          </li>
-        </ul>
-      </div>
-    </BrowserFrame>
-  );
-}
-
-function SearchMock() {
-  return (
-    <BrowserFrame>
-      <div className="p-5">
-        <div className="flex h-11 items-center gap-2 rounded-lg border border-purple-200 bg-white px-3 text-md text-gray-900 ring-4 ring-purple-100">
-          <Search className="size-4 text-gray-400" />
-          renewal
-        </div>
-        <div className="mt-4 space-y-3">
-          {[
-            ["Marguerite Dubois", "05:22", "I'm not trying to be adversarial. I just won't ", "renewal", " a number I can't justify."],
-            ["Grace Adeyemi", "05:33", "We look at the number again at sixty days out, before the ", "renewal", "."],
-          ].map(([name, time, before, hit, after]) => (
-            <div key={time} className="rounded-lg border border-gray-200 p-3">
-              <div className="flex items-center gap-2">
-                <span className="text-base font-medium text-gray-900">{name}</span>
-                <span className="text-sm tabular-nums text-blue-700">{time}</span>
-              </div>
-              <p className="mt-1 text-base leading-6 text-gray-700">
-                {before}
-                <mark className="rounded bg-yellow-200 px-0.5">{hit}</mark>
-                {after}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </BrowserFrame>
-  );
-}
 
 function SiteFooter() {
   const columns = [
