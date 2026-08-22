@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --app-bg: theme("colors.white");
+    --app-surface: theme("colors.white");
+    --app-border: theme("colors.gray.200");
+    /* Body copy sits at gray-700; gray-900 is reserved for headings. */
+    --app-text: theme("colors.gray.700");
+    --app-heading: theme("colors.gray.900");
+    --app-muted: theme("colors.gray.500");
+    --app-faint: theme("colors.gray.400");
+    /* Measured off the live app — see docs/app-layout-spec.md. */
+    --banner-h: 40px;
+    --rail-w: 65px;
+    --sidebar-w: 250px;
+    --topbar-h: 52px;
+    --askfred-w: 400px;
+  }
+
+  .dark {
+    --app-bg: theme("colors.ink.900");
+    --app-surface: theme("colors.ink.800");
+    --app-border: rgba(255, 255, 255, 0.08);
+    --app-text: #d3d4d7;
+    --app-heading: #f2f4f7;
+    --app-muted: #8b8d91;
+    --app-faint: #6d6e71;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--app-bg);
+    color: var(--app-text);
+    font-size: 15px;
+    line-height: 24.375px;
+    letter-spacing: -0.11px;
+  }
+
+  /*
+   * Headings default to the app's display face. Marketing and login opt back
+   * out with `font-display`, which is the DM Sans stack.
+   */
+  h1, h2, h3, h4 {
+    color: var(--app-heading);
+    letter-spacing: -0.18px;
+  }
+
+  ::selection {
+    background-color: theme("colors.purple.100");
+    color: theme("colors.purple.900");
+  }
+
+  *:focus-visible {
+    outline: 2px solid theme("colors.purple.600");
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  .ff-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: theme("colors.gray.300") transparent;
+  }
+  .ff-scroll::-webkit-scrollbar { width: 10px; height: 10px; }
+  .ff-scroll::-webkit-scrollbar-track { background: transparent; }
+  .ff-scroll::-webkit-scrollbar-thumb {
+    background-color: theme("colors.gray.300");
+    border-radius: 9999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  .ff-scroll::-webkit-scrollbar-thumb:hover { background-color: theme("colors.gray.400"); }
+  .dark .ff-scroll { scrollbar-color: theme("colors.ink.300") transparent; }
+  .dark .ff-scroll::-webkit-scrollbar-thumb { background-color: theme("colors.ink.300"); }
+
+  .ff-surface {
+    background-color: var(--app-surface);
+    border-color: var(--app-border);
+  }
+
+  /* The purple gradient wordmark Fireflies uses for AI-generated affordances. */
+  .ff-gradient-text {
+    background: theme("backgroundImage.brand-radial");
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .ff-skeleton {
+    position: relative;
+    overflow: hidden;
+    background-color: theme("colors.gray.100");
+  }
+  .dark .ff-skeleton { background-color: theme("colors.ink.600"); }
+  /* The shimmer ramp the product uses on its own loading placeholders. */
+  .ff-skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.45) 40%,
+      rgba(255, 255, 255, 0.75) 50%,
+      rgba(255, 255, 255, 0.45) 60%,
+      transparent 100%
+    );
+    animation: shimmer 1.6s infinite;
+  }
+  .dark .ff-skeleton::after {
+    background-image: theme("backgroundImage.shimmer-light");
+  }
+
+  /* Transcript search highlight — the same yellow the real app uses. */
+  .ff-mark {
+    background-color: theme("colors.yellow.200");
+    color: theme("colors.gray.900");
+    border-radius: 3px;
+    padding: 1px 2px;
+  }
+  .ff-mark[data-active="true"] {
+    background-color: theme("colors.yellow.400");
+    box-shadow: 0 0 0 2px theme("colors.yellow.300");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
