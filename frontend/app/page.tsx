@@ -1,20 +1,21 @@
 import {
-  Bot, Crosshair, Globe, Sparkles, Upload, Users, Zap,
+  Crosshair, Globe, Users, Zap,
 } from "lucide-react";
 
 import { AskSection } from "@/components/marketing/AskSection";
+import { CaptureSection } from "@/components/marketing/CaptureSection";
 import { ClosingCta } from "@/components/marketing/ClosingCta";
 import { CollaborationSection } from "@/components/marketing/CollaborationSection";
 import { FaqSection } from "@/components/marketing/FaqSection";
 import { FeatureSection } from "@/components/marketing/FeatureSection";
 import { Hero } from "@/components/marketing/Hero";
 import { InsightsSection } from "@/components/marketing/InsightsSection";
-import { KnowledgeSection } from "@/components/marketing/KnowledgeSection";
 import { LogoMarquee } from "@/components/marketing/LogoMarquee";
 import { SearchShowcase } from "@/components/marketing/SearchShowcase";
 import { AnnouncementBar, MarketingNav } from "@/components/marketing/MarketingNav";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SkillsSection } from "@/components/marketing/SkillsSection";
+import { TabbedShowcase } from "@/components/marketing/TabbedShowcase";
 import { SecuritySection, StackSection } from "@/components/marketing/StackSection";
 import { TestimonialCarousel } from "@/components/marketing/TestimonialCarousel";
 
@@ -67,40 +68,18 @@ export default function LandingPage() {
           }}
         />
 
-        <FeatureSection
+        <TabbedShowcase
           ground="light"
-          layout="below"
           heading={<>Comprehensive <span className="text-purple-600">AI Summaries</span></>}
           lede="An overview, timestamped chapters, action items attributed to whoever committed to them, and the decisions the meeting actually reached."
-          shot={{
-            src: "/shot-notes.png",
-            alt: "AI notes beside the analysis panel: overview, chapters, action items, sentiment and talk time",
-            width: 1122,
-            height: 904,
-          }}
+          tabs={[
+            { label: "Overview", src: "/panel-notes.png", alt: "A meeting's notes, opening with the overview" },
+            { label: "Chapters", src: "/panel-chapters.png", alt: "The meeting split into timestamped chapters" },
+            { label: "Action items", src: "/panel-tasks.png", alt: "Action items across the workspace, with owners and due dates" },
+          ]}
         />
 
-        <FeatureSection
-          layout="below"
-          heading={
-            <>
-              <span className="text-purple-600">Start</span> From Any{" "}
-              <span className="text-purple-600">Transcript</span>
-            </>
-          }
-          lede="Drop in a file, paste raw text, or bring a transcript across from the tools you already run calls on. Speakers, timestamps and a searchable timeline in seconds."
-          features={[
-            { icon: <Bot className="size-4" />, title: "Connect Your Calls", body: "Bring across the transcript Zoom, Meet, Teams or Slack hands you." },
-            { icon: <Upload className="size-4" />, title: "Upload A Transcript", body: "Drop in .txt, .vtt, .srt or .json and it is parsed instantly." },
-            { icon: <Sparkles className="size-4" />, title: "Paste Anything", body: "Even an untimed wall of text gets speakers and a working timeline." },
-          ]}
-          shot={{
-            src: "/shot-upload.png",
-            alt: "The uploads screen, listing every transcript format that can be ingested",
-            width: 1600,
-            height: 1000,
-          }}
-        />
+        <CaptureSection />
 
         <SearchShowcase />
 
@@ -108,7 +87,16 @@ export default function LandingPage() {
 
         <InsightsSection />
 
-        <KnowledgeSection />
+        <TabbedShowcase
+          ground="dark"
+          heading={<>All Your Tasks, People &amp; <span className="text-purple-400">Knowledge</span> In One Place</>}
+          lede="Commitments do not stay buried in the meeting they were made in. Every action item across the workspace collects on one page, grouped by whoever owes it."
+          tabs={[
+            { label: "Tasks", src: "/panel-tasks.png", alt: "Every action item across the workspace, grouped by owner" },
+            { label: "People", src: "/panel-people.png", alt: "Everyone who has spoken in the workspace, with their meetings" },
+            { label: "Soundbites", src: "/panel-soundbites.png", alt: "Clipped moments saved from across the meetings" },
+          ]}
+        />
         <SkillsSection />
         <StackSection />
         <SecuritySection />
