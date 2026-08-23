@@ -308,3 +308,95 @@ class Soundbite(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
 
     meeting: Mapped[Meeting] = relationship(back_populates="soundbites")
+
+
+class Skill(Base):
+    """An AI Skill: a saved prompt that runs over meetings on a schedule.
+
+    This is the generalisation of the notes engine. The summariser already turns
+    a transcript into Overview/chapters/action items using a fixed prompt; a
+    Skill is the same machinery with the prompt, the schedule and the filters
+    lifted out of the code and into a row. That is why `instructions` is plain
+    text rather than an enum of supported behaviours — adding a new kind of
+    output must be a data change, not a deploy.
+
+    Skills seeded from the built-in catalogue keep `template_key` set so the
+    Discover tab can tell "the BANT template" from "a copy the user edited",
+    and so re-seeding never duplicates them.
+    """
+
+    __tablename__ = "skills"
+    __table_args__ = (UniqueConstraint("owner_id", "name", name="uq_skill_owner_name"),)
+
+    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=_uuid)
+    owner_id: Mapped[str] = mapped_column(String(32), ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+
+    name: Mapped[str] = mapped_column(String(160), nullable=False)
+    description: Mapped[str | None] = mapped_column(Text)
+    category: Mapped[str] = mapped_column(String(40), default="general")
+
+    # The prompt. Shown and edited verbatim in the UI — never templated behind
+    # the user's back, because "edit the instructions" is the whole feature.
+    instructions: Mapped[str] = mapped_column(Text, nullable=False)
+
+    # per_meeting runs after each call; the cadences run across a window.
+    schedule: Mapped[str] = mapped_column(String(20), default="per_meeting")
+    output_type: Mapped[str] = mapped_column(String(20), default="text")
+
+    # scope="all" runs on every meeting; "custom" applies the three filters
+    # below, matching the real product's title / host / participant filters.
+    scope: Mapped[str] = mapped_column(String(20), default="all")
+    filter_title: Mapped[str | None] = mapped_column(String(240))
+    filter_host: Mapped[str | None] = mapped_column(String(200))
+    filter_participant: Mapped[str | None] = mapped_column(String(200))
+
+    is_enabled: Mapped[bool] = mapped_column(Boolean, default=False)
+    # Which built-in template this came from, or None for a user-authored skill.
+    template_key: Mapped[str | None] = mapped_column(String(60))
+    tint: Mapped[str] = mapped_column(String(30), default="indigo")
+
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow, onupdate=utcnow)
+
+    owner: Mapped[User] = relationship()
+    runs: Mapped[list[SkillRun]] = relationship(
+        back_populates="skill", cascade="all, delete-orphan", order_by="SkillRun.created_at.desc()"
+    )
+
+
+Index("ix_skills_owner_enabled", Skill.owner_id, Skill.is_enabled)
+
+
+class SkillRun(Base):
+    """One execution of a Skill against one meeting — a row in the Feed.
+
+    Runs are kept even when they fail. A skill that errored on a meeting is
+    information the user needs, and silently dropping it would make the Feed
+    lie about what ran.
+
+    `credits_used` is stored per run rather than computed later so that changing
+    the pricing rule never rewrites history: what a run cost is what it cost.
+    """
+
+    __tablename__ = "skill_runs"
+    __table_args__ = (UniqueConstraint("skill_id", "meeting_id", name="uq_run_skill_meeting"),)
+
+    id: Mapped[str] = mapped_column(String(32), primary_key=True, default=_uuid)
+    skill_id: Mapped[str] = mapped_column(String(32), ForeignKey("skills.id", ondelete="CASCADE"), nullable=False)
+    meeting_id: Mapped[str] = mapped_column(String(32), ForeignKey("meetings.id", ondelete="CASCADE"), nullable=False)
+
+    status: Mapped[str] = mapped_column(String(20), default="ready")
+    # Rendered output. Text skills store {"body": "..."}; chart skills store
+    # {"body": "...", "chart": {"label": [...], "value": [...]}}.
+    content: Mapped[dict] = mapped_column(JSON, default=dict)
+    error: Mapped[str | None] = mapped_column(Text)
+
+    generated_by: Mapped[str] = mapped_column(String(20), default="extractive")
+    credits_used: Mapped[int] = mapped_column(Integer, default=1)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=utcnow)
+
+    skill: Mapped[Skill] = relationship(back_populates="runs")
+    meeting: Mapped[Meeting] = relationship()
+
+
+Index("ix_skill_runs_created", SkillRun.created_at.desc())

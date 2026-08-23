@@ -11,6 +11,7 @@ import type {
   GlobalSearchResult, LoginResponse, Meeting, MeetingDetail, MeetingFilters,
   MeetingInsights, MeetingPage, Participant, Segment, SegmentMatch, SessionInfo, Soundbite,
   SoundbiteWithMeeting, Summary, TagCount, Topic, User,
+  Credits, Skill, SkillPayload, SkillPreview, SkillRun, SkillTemplate,
 } from "./types";
 
 export const API_BASE =
@@ -174,6 +175,29 @@ export const api = {
   search: (q: string) => request<GlobalSearchResult>(`/search${query({ q })}`),
   ask: (meetingId: string, question: string) =>
     request<AskResponse>(`/meetings/${meetingId}/ask`, { method: "POST", body: JSON.stringify({ question }) }),
+
+  // -- ai skills ---------------------------------------------------------
+  skillTemplates: (category?: string) => request<SkillTemplate[]>(`/skills/templates${query({ category })}`),
+  skillCategories: () => request<string[]>("/skills/categories"),
+  credits: () => request<Credits>("/skills/credits"),
+
+  skills: (params: { enabled?: boolean; category?: string } = {}) =>
+    request<Skill[]>(`/skills${query(params)}`),
+  skill: (id: string) => request<Skill>(`/skills/${id}`),
+  createSkill: (body: SkillPayload) => request<Skill>("/skills", { method: "POST", body: JSON.stringify(body) }),
+  updateSkill: (id: string, body: Partial<SkillPayload>) =>
+    request<Skill>(`/skills/${id}`, { method: "PATCH", body: JSON.stringify(body) }),
+  deleteSkill: (id: string) => request<void>(`/skills/${id}`, { method: "DELETE" }),
+
+  /** "Try skill" — real output, nothing persisted, no credit charged. */
+  previewSkill: (id: string, limit = 3) =>
+    request<SkillPreview>(`/skills/${id}/preview${query({ limit })}`, { method: "POST" }),
+  runSkill: (id: string, body: { meeting_id?: string; limit?: number } = {}) =>
+    request<SkillRun[]>(`/skills/${id}/run`, { method: "POST", body: JSON.stringify(body) }),
+
+  skillFeed: (params: { skill_id?: string; schedule?: string; category?: string } = {}) =>
+    request<SkillRun[]>(`/skills/feed${query(params)}`),
+  meetingSkillRuns: (meetingId: string) => request<SkillRun[]>(`/meetings/${meetingId}/skill-runs`),
 };
 
 /** Query keys, centralised so invalidation after a mutation can't drift. */
@@ -188,4 +212,9 @@ export const queryKeys = {
   search: (q: string) => ["search", q] as const,
   transcriptSearch: (id: string, q: string) => ["transcript-search", id, q] as const,
   insights: (id: string) => ["insights", id] as const,
+  skills: (params: Record<string, unknown>) => ["skills", params] as const,
+  skillTemplates: (category?: string) => ["skill-templates", category ?? "all"] as const,
+  skillFeed: (params: Record<string, unknown>) => ["skill-feed", params] as const,
+  credits: ["credits"] as const,
+  meetingSkillRuns: (id: string) => ["meeting-skill-runs", id] as const,
 };

@@ -270,3 +270,108 @@ export interface MeetingFilters {
   page?: number;
   page_size?: number;
 }
+
+// --------------------------------------------------------------------- skills
+export type SkillSchedule = "per_meeting" | "daily" | "weekly" | "monthly";
+export type SkillOutputType = "text" | "chart";
+export type SkillScope = "all" | "custom";
+
+export interface Skill {
+  id: string;
+  name: string;
+  description: string | null;
+  category: string;
+  instructions: string;
+  schedule: SkillSchedule;
+  output_type: SkillOutputType;
+  scope: SkillScope;
+  filter_title: string | null;
+  filter_host: string | null;
+  filter_participant: string | null;
+  is_enabled: boolean;
+  template_key: string | null;
+  tint: string;
+  created_at: string;
+  updated_at: string;
+  run_count: number;
+  last_run_at: string | null;
+}
+
+export interface SkillTemplate {
+  key: string;
+  name: string;
+  description: string;
+  category: string;
+  instructions: string;
+  output_type: SkillOutputType;
+  tint: string;
+  skill_id: string | null;
+  is_enabled: boolean;
+}
+
+/** Chart skills return this alongside the prose body. */
+export interface SkillChart {
+  labels: string[];
+  values: number[];
+  shares: number[];
+  unit: string;
+}
+
+export interface SkillContent {
+  body?: string;
+  findings?: { text: string; speaker?: string; timestamp?: string; start_ms?: number }[];
+  commitments?: { text: string; owner?: string | null; timestamp_ms?: number | null }[];
+  chart?: SkillChart;
+}
+
+export interface SkillRun {
+  id: string;
+  skill_id: string;
+  skill_name: string;
+  skill_tint: string;
+  output_type: SkillOutputType;
+  meeting_id: string;
+  meeting_title: string;
+  meeting_date: string;
+  status: string;
+  content: SkillContent;
+  error: string | null;
+  generated_by: string;
+  credits_used: number;
+  created_at: string;
+}
+
+export interface SkillPreview {
+  skill_name: string;
+  output_type: SkillOutputType;
+  results: {
+    meeting_id: string;
+    meeting_title: string;
+    meeting_date: string;
+    generated_by: string;
+    content: SkillContent;
+  }[];
+}
+
+export interface Credits {
+  used: number;
+  allowance: number;
+  remaining: number;
+  per_run: number;
+}
+
+export interface SkillPayload {
+  name: string;
+  instructions: string;
+  description?: string | null;
+  category?: string;
+  schedule?: SkillSchedule;
+  output_type?: SkillOutputType;
+  scope?: SkillScope;
+  filter_title?: string | null;
+  filter_host?: string | null;
+  filter_participant?: string | null;
+  is_enabled?: boolean;
+  template_key?: string | null;
+  tint?: string;
+}

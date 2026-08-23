@@ -10,7 +10,7 @@ from fastapi.responses import JSONResponse
 
 from .config import settings
 from .database import Base, SessionLocal, engine, init_fts
-from .routers import action_items, auth, engagement, meetings, notes, search, workspace
+from .routers import action_items, auth, engagement, meetings, notes, search, skills, workspace
 from .services.transcript_parser import TranscriptParseError
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
@@ -68,5 +68,5 @@ def health() -> dict[str, str]:
     return {"status": "ok", "service": settings.app_name}
 
 
-for module in (auth, meetings, notes, action_items, engagement, search, workspace):
+for module in (auth, meetings, notes, action_items, engagement, search, skills, workspace):
     app.include_router(module.router, prefix=settings.api_prefix)

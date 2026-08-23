@@ -393,3 +393,119 @@ class AskResponse(BaseModel):
     answer: str
     citations: list[SegmentMatch]
     generated_by: str
+
+
+# --------------------------------------------------------------------------- skills
+SkillSchedule = Literal["per_meeting", "daily", "weekly", "monthly"]
+SkillOutput = Literal["text", "chart"]
+SkillScope = Literal["all", "custom"]
+
+
+class SkillCreate(BaseModel):
+    name: str = Field(min_length=1, max_length=160)
+    instructions: str = Field(min_length=10, max_length=4000)
+    description: str | None = Field(default=None, max_length=400)
+    category: str = Field(default="general", max_length=40)
+    schedule: SkillSchedule = "per_meeting"
+    output_type: SkillOutput = "text"
+    scope: SkillScope = "all"
+    filter_title: str | None = Field(default=None, max_length=240)
+    filter_host: str | None = Field(default=None, max_length=200)
+    filter_participant: str | None = Field(default=None, max_length=200)
+    is_enabled: bool = False
+    # Set when enabling one of the built-in catalogue entries.
+    template_key: str | None = Field(default=None, max_length=60)
+    tint: str = Field(default="indigo", max_length=30)
+
+
+class SkillUpdate(BaseModel):
+    name: str | None = Field(default=None, min_length=1, max_length=160)
+    instructions: str | None = Field(default=None, min_length=10, max_length=4000)
+    description: str | None = Field(default=None, max_length=400)
+    category: str | None = Field(default=None, max_length=40)
+    schedule: SkillSchedule | None = None
+    output_type: SkillOutput | None = None
+    scope: SkillScope | None = None
+    filter_title: str | None = Field(default=None, max_length=240)
+    filter_host: str | None = Field(default=None, max_length=200)
+    filter_participant: str | None = Field(default=None, max_length=200)
+    is_enabled: bool | None = None
+    tint: str | None = Field(default=None, max_length=30)
+
+
+class SkillOut(ORMModel):
+    id: str
+    name: str
+    description: str | None
+    category: str
+    instructions: str
+    schedule: str
+    output_type: str
+    scope: str
+    filter_title: str | None
+    filter_host: str | None
+    filter_participant: str | None
+    is_enabled: bool
+    template_key: str | None
+    tint: str
+    created_at: datetime
+    updated_at: datetime
+    run_count: int = 0
+    last_run_at: datetime | None = None
+
+
+class SkillTemplateOut(BaseModel):
+    """A catalogue entry on the Discover tab.
+
+    `skill_id` is set once the user has enabled or edited this template, which
+    is how the tab knows to show "Enabled" instead of "Try skill".
+    """
+
+    key: str
+    name: str
+    description: str
+    category: str
+    instructions: str
+    output_type: str
+    tint: str
+    skill_id: str | None = None
+    is_enabled: bool = False
+
+
+class SkillRunOut(BaseModel):
+    id: str
+    skill_id: str
+    skill_name: str
+    skill_tint: str
+    output_type: str
+    meeting_id: str
+    meeting_title: str
+    meeting_date: datetime
+    status: str
+    content: dict[str, Any]
+    error: str | None
+    generated_by: str
+    credits_used: int
+    created_at: datetime
+
+
+class SkillPreviewOut(BaseModel):
+    """`Try skill` — real output against recent meetings, nothing persisted."""
+
+    skill_name: str
+    output_type: str
+    results: list[dict[str, Any]]
+
+
+class SkillRunRequest(BaseModel):
+    """Run a skill now. Omit `meeting_id` to run across everything it matches."""
+
+    meeting_id: str | None = None
+    limit: int = Field(default=10, ge=1, le=50)
+
+
+class CreditsOut(BaseModel):
+    used: int
+    allowance: int
+    remaining: int
+    per_run: int
