@@ -42,15 +42,18 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   ),
-  title: { default: "Minutes — AI notes, transcripts and answers for every meeting", template: "%s — Minutes" },
+  title: {
+    default: "Fireflies.ai — AI notes, transcripts and answers for every meeting",
+    template: "%s — Fireflies.ai",
+  },
   description:
     "Transcribe, summarize, search and analyze your meetings. Interactive transcripts, AI summaries, action items and workspace-wide search.",
   manifest: "/site.webmanifest",
-  applicationName: "Minutes",
+  applicationName: "Fireflies.ai",
   authors: [{ name: "Kunal Kumar" }],
   keywords: ["meeting notes", "transcription", "AI summaries", "action items"],
   openGraph: {
-    title: "Minutes — AI notes, transcripts and answers for every meeting",
+    title: "Fireflies.ai — AI notes, transcripts and answers for every meeting",
     description:
       "Interactive transcripts, AI summaries, action items and workspace-wide search. A functional clone of the Fireflies.ai meeting assistant.",
     type: "website",

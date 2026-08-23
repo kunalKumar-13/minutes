@@ -21,7 +21,7 @@ import { SectionHeading } from "./primitives";
  */
 const FAQS = [
   {
-    q: "What is Minutes?",
+    q: "What is Fireflies.ai?",
     a: "It turns a meeting into something you can actually use afterwards. Every conversation becomes an interactive transcript with speakers and timestamps, a set of AI notes that opens with an overview and breaks the hour into chapters, and a list of action items with owners. All of it is searchable across your whole workspace the moment the call ends.",
   },
   {
