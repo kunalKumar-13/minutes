@@ -20,40 +20,94 @@ import { RAIL } from "./primitives";
  * translations and no accounts, and a dead switcher is worse than no switcher.
  */
 
-const COLUMNS = {
+type Item = { label: string; href: string };
+
+const COLUMNS: Record<string, Item[]> = {
   product: [
-    "Meetings library", "Interactive transcript", "AI notes & chapters", "Action items",
-    "Soundbites", "Workspace search", "Ask your meetings", "Analytics",
-    "Uploads", "Comments", "Exports", "Dark mode", "Keyboard shortcuts",
+    { label: "Meetings library", href: "/meetings" },
+    { label: "Interactive transcript", href: "#how" },
+    { label: "AI notes & chapters", href: "#summaries" },
+    { label: "Action items", href: "/tasks" },
+    { label: "Soundbites", href: "/soundbites" },
+    { label: "Workspace search", href: "/search" },
+    { label: "Ask your meetings", href: "/ask-fred" },
+    { label: "Analytics", href: "/analytics" },
+    { label: "Uploads", href: "/upload" },
+    { label: "Comments", href: "#collaboration" },
+    { label: "Exports", href: "#collaboration" },
+    { label: "Dark mode", href: "#collaboration" },
+    { label: "Keyboard shortcuts", href: "#collaboration" },
   ],
   useCases: [
-    "Sales calls", "Customer QBRs", "Interviews", "Standups",
-    "Design reviews", "Retros", "User research", "Hiring debriefs",
+    { label: "Sales calls", href: "#capabilities" },
+    { label: "Customer QBRs", href: "#capabilities" },
+    { label: "Interviews", href: "#skills" },
+    { label: "Standups", href: "#skills" },
+    { label: "Design reviews", href: "#insights" },
+    { label: "Retros", href: "#insights" },
+    { label: "User research", href: "#search" },
+    { label: "Hiring debriefs", href: "#skills" },
   ],
   integrations: [
-    "Zoom", "Google Meet", "Microsoft Teams", "Google Calendar",
-    "Outlook", "Slack", "Salesforce", "HubSpot",
+    { label: "Zoom", href: "#integrations" },
+    { label: "Google Meet", href: "#integrations" },
+    { label: "Microsoft Teams", href: "#integrations" },
+    { label: "Google Calendar", href: "#integrations" },
+    { label: "Outlook", href: "#integrations" },
+    { label: "Slack", href: "#integrations" },
+    { label: "Salesforce", href: "#integrations" },
+    { label: "HubSpot", href: "#integrations" },
   ],
   resources: [
-    "Getting started", "Transcript formats", "Search & filters", "Exports", "Keyboard shortcuts",
+    { label: "Getting started", href: "/login" },
+    { label: "Transcript formats", href: "#capture" },
+    { label: "Search & filters", href: "#search" },
+    { label: "Exports", href: "#collaboration" },
+    { label: "Keyboard shortcuts", href: "#collaboration" },
   ],
-  learn: ["How AI notes work", "Ask with citations", "Meeting analytics", "Soundbites & clips"],
-  getStarted: ["Open the app", "Sign in", "API reference"],
-  help: ["Contact us", "Help centre", "Report an issue"],
+  learn: [
+    { label: "How AI notes work", href: "#summaries" },
+    { label: "Ask with citations", href: "#ask" },
+    { label: "Meeting analytics", href: "#insights" },
+    { label: "Soundbites & clips", href: "/soundbites" },
+  ],
+  getStarted: [
+    { label: "Open the app", href: "/login" },
+    { label: "Sign in", href: "/login" },
+    { label: "API reference", href: "#faq" },
+  ],
+  help: [
+    { label: "Contact us", href: "https://github.com/kunalKumar-13/minutes/issues" },
+    { label: "Help centre", href: "#faq" },
+    { label: "Report an issue", href: "https://github.com/kunalKumar-13/minutes/issues" },
+  ],
 };
 
 const HEADING = "font-display text-[18px] font-medium leading-[20.16px] tracking-[-0.36px] text-[#fafafa]";
 const LINK =
   "text-[14px] leading-[20.16px] text-[rgba(250,250,253,0.78)] transition-colors hover:text-white";
 
-function Column({ title, items }: { title: string; items: string[] }) {
+function FooterLink({ item }: { item: Item }) {
+  // Anything off-site opens in a new tab; everything else routes in-app.
+  return item.href.startsWith("http") ? (
+    <a href={item.href} target="_blank" rel="noreferrer" className={LINK}>
+      {item.label}
+    </a>
+  ) : (
+    <Link href={item.href} className={LINK}>
+      {item.label}
+    </Link>
+  );
+}
+
+function Column({ title, items }: { title: string; items: Item[] }) {
   return (
     <div>
       <h2 className={HEADING}>{title}</h2>
       <ul className="mt-8 space-y-4">
         {items.map((item) => (
-          <li key={item}>
-            <span className={LINK}>{item}</span>
+          <li key={item.label}>
+            <FooterLink item={item} />
           </li>
         ))}
       </ul>
@@ -90,8 +144,8 @@ export function SiteFooter() {
               </div>
               <ul className="mt-6 space-y-4">
                 {COLUMNS.getStarted.map((item) => (
-                  <li key={item}>
-                    <span className={LINK}>{item}</span>
+                  <li key={item.label}>
+                    <FooterLink item={item} />
                   </li>
                 ))}
               </ul>

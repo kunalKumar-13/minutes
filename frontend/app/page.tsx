@@ -67,7 +67,7 @@ export default function LandingPage() {
           }}
         />
 
-        <TabbedShowcase
+        <TabbedShowcase id="summaries"
           ground="light"
           heading={<>Comprehensive <span className="text-purple-600">AI Summaries</span></>}
           lede="An overview, timestamped chapters, action items attributed to whoever committed to them, and the decisions the meeting actually reached."
@@ -78,15 +78,15 @@ export default function LandingPage() {
           ]}
         />
 
-        <CaptureSection />
+        <CaptureSection id="capture" />
 
-        <SearchShowcase />
+        <SearchShowcase id="search" />
 
-        <AskSection />
+        <AskSection id="ask" />
 
-        <InsightsSection />
+        <InsightsSection id="insights" />
 
-        <TabbedShowcase
+        <TabbedShowcase id="tasks"
           ground="dark"
           heading={<>All Your Tasks, People &amp; <span className="text-purple-400">Knowledge</span> In One Place</>}
           lede="Commitments do not stay buried in the meeting they were made in. Every action item across the workspace collects on one page, grouped by whoever owes it."
@@ -96,12 +96,12 @@ export default function LandingPage() {
             { label: "Soundbites", src: "/panel-soundbites.png", alt: "Clipped moments saved from across the meetings" },
           ]}
         />
-        <SkillsSection />
-        <StackSection />
-        <SecuritySection />
-        <CollaborationSection />
-        <TestimonialCarousel />
-        <FaqSection />
+        <SkillsSection id="skills" />
+        <StackSection id="integrations" />
+        <SecuritySection id="security" />
+        <CollaborationSection id="collaboration" />
+        <TestimonialCarousel id="capabilities" />
+        <FaqSection id="faq" />
         <ClosingCta />
       </main>
 

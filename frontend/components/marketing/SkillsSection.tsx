@@ -42,12 +42,12 @@ const SKILLS: Skill[] = [
 
 const CATEGORIES = ["General", "Sales", "Recruiting", "Engineering"] as const;
 
-export function SkillsSection() {
+export function SkillsSection({ id }: { id?: string }) {
   const [active, setActive] = useState<string>("General");
   const shown = SKILLS.filter((s) => s.cats.includes(active));
 
   return (
-    <Section ground="white">
+    <Section id={id} ground="white">
       <div className="mx-auto max-w-[760px] text-center">
         <SectionHeading>
           Go <span className="text-purple-600">Beyond Notetaking</span>, Whatever Your Team Does

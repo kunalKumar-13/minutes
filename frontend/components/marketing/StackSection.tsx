@@ -44,9 +44,9 @@ const GROUPS = [
   },
 ];
 
-export function StackSection() {
+export function StackSection({ id }: { id?: string }) {
   return (
-    <section className="relative overflow-hidden bg-black py-20 text-white lg:py-[120px]">
+    <section id={id} className="relative overflow-hidden bg-black py-20 text-white lg:py-[120px]">
       <div className={cn(RAIL, "relative")}>
         <div className="mx-auto max-w-[760px] text-center">
           <SectionHeading onDark>
@@ -122,9 +122,9 @@ const GUARANTEES = [
   },
 ];
 
-export function SecuritySection() {
+export function SecuritySection({ id }: { id?: string }) {
   return (
-    <Section ground="grey">
+    <Section id={id} ground="grey">
       <div className="mx-auto max-w-[760px] text-center">
         <SectionHeading>
           Your Conversations, <span className="text-purple-600">Your Data</span>

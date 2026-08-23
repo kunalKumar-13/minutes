@@ -7,9 +7,59 @@ import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 import { RAIL } from "./primitives";
 
-/** The dropdown labels are inert: this project has no marketing sub-pages. */
-const NAV = ["Product", "Solutions", "Integration", "Resources"];
-const FLAT = ["Enterprise", "Pricing"];
+/**
+ * Each label scrolls to the section it names. There are no marketing sub-pages,
+ * so an anchor into the page is the honest destination — and it is a real one,
+ * which an inert <span> never was.
+ */
+const NAV: { label: string; href: string; items: { label: string; href: string }[] }[] = [
+  {
+    label: "Product",
+    href: "#summaries",
+    items: [
+      { label: "AI notes & chapters", href: "#summaries" },
+      { label: "Interactive transcript", href: "#how" },
+      { label: "Workspace search", href: "#search" },
+      { label: "Ask your meetings", href: "#ask" },
+      { label: "Conversation intelligence", href: "#insights" },
+      { label: "Action items", href: "#tasks" },
+    ],
+  },
+  {
+    label: "Solutions",
+    href: "#capabilities",
+    items: [
+      { label: "Sales calls", href: "#capabilities" },
+      { label: "User research", href: "#capabilities" },
+      { label: "Hiring debriefs", href: "#skills" },
+      { label: "Engineering standups", href: "#skills" },
+    ],
+  },
+  {
+    label: "Integration",
+    href: "#integrations",
+    items: [
+      { label: "Meeting platforms", href: "#integrations" },
+      { label: "Calendars", href: "#integrations" },
+      { label: "Transcript formats", href: "#capture" },
+      { label: "Exports", href: "#collaboration" },
+    ],
+  },
+  {
+    label: "Resources",
+    href: "#faq",
+    items: [
+      { label: "Frequently asked", href: "#faq" },
+      { label: "AI skills", href: "#skills" },
+      { label: "Security & data", href: "#security" },
+      { label: "Open the app", href: "/login" },
+    ],
+  },
+];
+const FLAT = [
+  { label: "Enterprise", href: "#security" },
+  { label: "Pricing", href: "/login" },
+];
 
 function AnnouncementBar() {
   const [shown, setShown] = useState(true);
@@ -118,27 +168,53 @@ export function MarketingHeader() {
         {/* 14px / 500 / DM Sans, not 16px Inter — measured on theirs. */}
         <div className="hidden items-center gap-7 lg:flex">
           {NAV.map((item) => (
-            <span
-              key={item}
-              className={cn(
-                "flex cursor-default items-center gap-1 font-display text-[14px] font-medium transition-colors",
-                scrolled ? "text-gray-600" : "text-[rgba(250,250,253,0.78)]",
-              )}
-            >
-              {item}
-              <ChevronDown className="size-3.5 opacity-70" />
-            </span>
+            <div key={item.label} className="group relative">
+              <Link
+                href={item.href}
+                className={cn(
+                  "flex items-center gap-1 py-2 font-display text-[14px] font-medium transition-colors",
+                  scrolled ? "text-gray-600 hover:text-gray-900" : "text-[rgba(250,250,253,0.78)] hover:text-white",
+                )}
+              >
+                {item.label}
+                <ChevronDown className="size-3.5 opacity-70 transition-transform group-hover:rotate-180" />
+              </Link>
+              {/* Opens on hover and on keyboard focus, so it is reachable without a pointer. */}
+              <div
+                className={cn(
+                  "invisible absolute left-0 top-full z-50 w-[248px] rounded-lg p-2 opacity-0 shadow-e3 transition-opacity",
+                  "group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100",
+                  scrolled ? "border border-gray-200 bg-white" : "border border-white/10 bg-[#170c3d]",
+                )}
+              >
+                {item.items.map((sub) => (
+                  <Link
+                    key={sub.label}
+                    href={sub.href}
+                    className={cn(
+                      "block rounded px-3 py-2 text-[14px] leading-[20px] transition-colors",
+                      scrolled
+                        ? "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                        : "text-gray-300 hover:bg-white/10 hover:text-white",
+                    )}
+                  >
+                    {sub.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
           ))}
           {FLAT.map((item) => (
-            <span
-              key={item}
+            <Link
+              key={item.label}
+              href={item.href}
               className={cn(
-                "cursor-default font-display text-[14px] font-medium transition-colors",
-                scrolled ? "text-gray-600" : "text-[rgba(250,250,253,0.78)]",
+                "font-display text-[14px] font-medium transition-colors",
+                scrolled ? "text-gray-600 hover:text-gray-900" : "text-[rgba(250,250,253,0.78)] hover:text-white",
               )}
             >
-              {item}
-            </span>
+              {item.label}
+            </Link>
           ))}
         </div>
 
@@ -183,16 +259,18 @@ export function MarketingHeader() {
             scrolled ? "border-gray-200 bg-white" : "border-white/10 bg-[#100730]",
           )}
         >
-          {[...NAV, ...FLAT].map((item) => (
-            <span
-              key={item}
+          {[...NAV.flatMap((n) => n.items), ...FLAT].map((item) => (
+            <Link
+              key={item.label + item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
               className={cn(
                 "block py-2 font-display text-[14px] font-medium",
                 scrolled ? "text-gray-600" : "text-[rgba(250,250,253,0.78)]",
               )}
             >
-              {item}
-            </span>
+              {item.label}
+            </Link>
           ))}
         </div>
       )}

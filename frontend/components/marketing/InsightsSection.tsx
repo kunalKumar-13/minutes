@@ -60,11 +60,11 @@ const TOPICS = [
   },
 ];
 
-export function InsightsSection() {
+export function InsightsSection({ id }: { id?: string }) {
   const [open, setOpen] = useState(0);
 
   return (
-    <Section ground="grey">
+    <Section id={id} ground="grey">
       <div className="grid items-start gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
         <div>
           <SectionHeading>

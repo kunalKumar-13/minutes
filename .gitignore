@@ -33,3 +33,8 @@ next-env.d.ts
 
 # local recon artefacts (web-clone skill)
 .recon/
+
+# Web-clone recon artefacts. The original-* dumps contain fireflies.ai's own
+# markup; keeping them out of a public repo avoids republishing their content.
+RECON/
+CLONE_AUDIT.md

@@ -18,9 +18,9 @@ const FORMATS = [
   { icon: <FileJson className="size-5" />, label: ".json", note: "Structured exports" },
 ];
 
-export function CaptureSection() {
+export function CaptureSection({ id }: { id?: string }) {
   return (
-    <Section>
+    <Section id={id}>
       <div className="mx-auto max-w-[760px] text-center">
         <SectionHeading>
           <span className="text-purple-600">Start</span> From Any{" "}

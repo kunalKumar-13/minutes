@@ -39,7 +39,10 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: { default: "Minutes — meeting notes and transcription workspace", template: "%s — Minutes" },
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  ),
+  title: { default: "Minutes — AI notes, transcripts and answers for every meeting", template: "%s — Minutes" },
   description:
     "Transcribe, summarize, search and analyze your meetings. Interactive transcripts, AI summaries, action items and workspace-wide search.",
   manifest: "/site.webmanifest",
@@ -47,7 +50,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Kunal Kumar" }],
   keywords: ["meeting notes", "transcription", "AI summaries", "action items"],
   openGraph: {
-    title: "Minutes — meeting notes and transcription workspace",
+    title: "Minutes — AI notes, transcripts and answers for every meeting",
     description:
       "Interactive transcripts, AI summaries, action items and workspace-wide search. A functional clone of the Fireflies.ai meeting assistant.",
     type: "website",

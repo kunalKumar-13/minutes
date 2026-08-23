@@ -10,9 +10,9 @@ import { PanelCard, Section, SectionHeading } from "./primitives";
  * at half that — the height comes from two full product panels side by side,
  * not from padding.
  */
-export function SearchShowcase() {
+export function SearchShowcase({ id }: { id?: string }) {
   return (
-    <Section ground="white">
+    <Section id={id} ground="white">
       <div className="mx-auto max-w-[760px] text-center">
         <SectionHeading>
           <span className="text-purple-600">Find Any Moment</span> From Every Meeting With{" "}

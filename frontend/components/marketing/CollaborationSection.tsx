@@ -36,9 +36,9 @@ const PANELS = [
   },
 ];
 
-export function CollaborationSection() {
+export function CollaborationSection({ id }: { id?: string }) {
   return (
-    <Section ground="light">
+    <Section id={id} ground="light">
       <div className="max-w-[620px]">
         <SectionHeading>
           Finish The Meeting, <span className="text-purple-600">Not The Admin</span>

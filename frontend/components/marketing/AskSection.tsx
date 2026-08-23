@@ -41,9 +41,9 @@ const EXCHANGE = [
   },
 ];
 
-export function AskSection() {
+export function AskSection({ id }: { id?: string }) {
   return (
-    <section className="relative overflow-hidden bg-black py-20 text-white lg:py-[120px]">
+    <section id={id} className="relative overflow-hidden bg-black py-20 text-white lg:py-[120px]">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0" style={{ backgroundImage: STARS, backgroundRepeat: "no-repeat" }} />
       </div>

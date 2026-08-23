@@ -79,7 +79,7 @@ const CARDS: { title: string; line: string; label: string; icon: LucideIcon }[] 
   },
 ];
 
-export function TestimonialCarousel() {
+export function TestimonialCarousel({ id }: { id?: string }) {
   const railRef = useRef<HTMLDivElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
@@ -100,7 +100,7 @@ export function TestimonialCarousel() {
   };
 
   return (
-    <section className="bg-white py-20 lg:py-[120px]">
+    <section id={id} className="bg-white py-20 lg:py-[120px]">
       <div className={RAIL}>
         <div className="text-center">
           <SectionHeading>Everything The Meeting Said, In One Place</SectionHeading>

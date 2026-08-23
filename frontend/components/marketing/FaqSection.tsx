@@ -66,11 +66,11 @@ const FAQS = [
   },
 ];
 
-export function FaqSection() {
+export function FaqSection({ id }: { id?: string }) {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="bg-white py-20 lg:py-[120px]">
+    <section id={id} className="bg-white py-20 lg:py-[120px]">
       {/* 836 minus the 20px gutters is the measured 796px column. */}
       <div className="mx-auto max-w-[836px] px-5">
         <SectionHeading className="text-center">Frequently Asked Questions</SectionHeading>
