@@ -44,7 +44,7 @@ export default function UploadsPage() {
       <div className="mx-auto w-full max-w-[900px] px-4 py-6 sm:px-6">
         <h1 className="font-display text-3xl font-medium tracking-tight text-gray-900 dark:text-gray-100">Uploads</h1>
         <p className="mt-1 text-md text-gray-500 dark:text-gray-400">
-          Speech-to-text is out of scope for this build, so meetings start from a transcript you already have.
+          Bring a transcript you already have and it is parsed on arrival, with speakers and timings kept intact.
         </p>
 
         <div className="ff-surface mt-6 rounded-xl border p-6">

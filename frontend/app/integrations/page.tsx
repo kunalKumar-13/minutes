@@ -18,7 +18,7 @@ export default function IntegrationsPage() {
       <ComingSoon
         icon={<Plug className="size-6" />}
         title="Integrations"
-        description="Connecting to calendars, meeting platforms and downstream tools is deliberately out of scope for this build — transcripts come from seeded data or an upload instead."
+        description="Calendar and meeting-platform connectors are on the way. Until then, bring a transcript across from Zoom, Meet or Teams and upload it — everything downstream works the same."
         bullets={TARGETS}
       />
     </AppShell>
