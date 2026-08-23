@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Search, Sparkles } from "lucide-react";
-import { Shot, STARS } from "./primitives";
+import { cn } from "@/lib/utils";
+import { RAIL, Shot, STARS } from "./primitives";
 
 /**
  * The opening panel.
@@ -15,13 +16,16 @@ import { Shot, STARS } from "./primitives";
  */
 export function Hero() {
   return (
-    <section className="relative bg-[#100730] pt-24 text-center">
+    // The header is fixed and transparent, so the hero owns the space under it.
+    // Their H1 sits at y=250 from the top of the document at 1440; 116px of
+    // that is the header itself, the rest is this padding.
+    <section className="relative bg-[#100730] pt-[180px] text-center lg:pt-[250px]">
       <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute inset-0" style={{ backgroundImage: STARS, backgroundRepeat: "no-repeat" }} />
         <div className="absolute inset-0 bg-[radial-gradient(80%_50%_at_50%_0%,rgba(122,90,248,0.18),transparent_70%)]" />
       </div>
 
-      <div className="relative mx-auto max-w-[1080px] px-5">
+      <div className="relative mx-auto max-w-[1080px] px-rail">
         <h1 className="font-display text-[36px] font-medium leading-[1.32] tracking-[0.02em] text-gray-50 sm:text-[46px] lg:text-[56px]">
           Turn Every Meeting Into
           <br />
@@ -61,7 +65,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto -mb-24 max-w-[1240px] px-5 sm:-mb-40">
+      <div className={cn(RAIL, "relative z-10 -mb-24 sm:-mb-40")}>
         <Shot
           src="/hero-app.png"
           alt="The meeting view: AI notes on the left, an interactive transcript on the right"

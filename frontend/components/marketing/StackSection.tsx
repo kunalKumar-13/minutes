@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Database, Download, Lock, Shield } from "lucide-react";
-import { Section, SectionHeading, STARS } from "./primitives";
+import { cn } from "@/lib/utils";
+import { RAIL, Section, SectionHeading, STARS } from "./primitives";
 
 /**
  * Two trust sections: what a transcript can arrive as and leave as, and what
@@ -45,8 +46,8 @@ const GROUPS = [
 
 export function StackSection() {
   return (
-    <section className="relative overflow-hidden bg-black py-24 text-white">
-      <div className="relative mx-auto max-w-[1140px] px-5">
+    <section className="relative overflow-hidden bg-black py-20 text-white lg:py-[120px]">
+      <div className={cn(RAIL, "relative")}>
         <div className="mx-auto max-w-[760px] text-center">
           <SectionHeading onDark>
             <span className="text-purple-400">Designed</span> To Fit Your Stack

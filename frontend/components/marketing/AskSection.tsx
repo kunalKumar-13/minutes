@@ -1,5 +1,6 @@
 import { MessageSquareQuote, Quote, ShieldCheck } from "lucide-react";
-import { CtaButton, Lede, SectionHeading, STARS } from "./primitives";
+import { cn } from "@/lib/utils";
+import { CtaButton, Lede, RAIL, SectionHeading, STARS } from "./primitives";
 
 /**
  * The assistant section.
@@ -42,12 +43,12 @@ const EXCHANGE = [
 
 export function AskSection() {
   return (
-    <section className="relative overflow-hidden bg-black py-24 text-white">
+    <section className="relative overflow-hidden bg-black py-20 text-white lg:py-[120px]">
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0" style={{ backgroundImage: STARS, backgroundRepeat: "no-repeat" }} />
       </div>
 
-      <div className="relative mx-auto grid max-w-[1140px] items-center gap-16 px-5 lg:grid-cols-2">
+      <div className={cn(RAIL, "relative grid items-center gap-16 lg:grid-cols-2")}>
         <div>
           <SectionHeading onDark>
             Ask Anything, <span className="text-purple-400">Get A Cited Answer</span>

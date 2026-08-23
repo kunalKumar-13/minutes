@@ -30,3 +30,6 @@ next-env.d.ts
 .DS_Store
 .idea/
 .vscode/
+
+# local recon artefacts (web-clone skill)
+.recon/

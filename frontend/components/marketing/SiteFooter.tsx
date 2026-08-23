@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Github } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
+import { RAIL } from "./primitives";
 
 /**
  * Six headings across five columns on pure black — the same shape as theirs.
@@ -63,7 +64,7 @@ function Column({ title, items }: { title: string; items: string[] }) {
 export function SiteFooter() {
   return (
     <footer className="bg-black py-16">
-      <div className="mx-auto max-w-[1140px] px-5">
+      <div className={RAIL}>
         <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-5">
           <Column title="Product" items={COLUMNS.product} />
           <Column title="Use Cases" items={COLUMNS.useCases} />

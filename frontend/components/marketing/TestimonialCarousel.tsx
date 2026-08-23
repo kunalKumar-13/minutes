@@ -14,7 +14,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { SectionHeading } from "./primitives";
+import { RAIL, SectionHeading } from "./primitives";
 
 /** The four measured card washes, cycled so the rail reads as colour. */
 const TINTS = ["bg-[#f4f3ff]", "bg-[#fffaeb]", "bg-[#fdf4ff]", "bg-[#f0fdf9]"];
@@ -100,8 +100,8 @@ export function TestimonialCarousel() {
   };
 
   return (
-    <section className="bg-white py-24">
-      <div className="mx-auto max-w-[1140px] px-5">
+    <section className="bg-white py-20 lg:py-[120px]">
+      <div className={RAIL}>
         <div className="text-center">
           <SectionHeading>Everything The Meeting Said, In One Place</SectionHeading>
           <p className="mx-auto mt-5 max-w-[520px] text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-500">

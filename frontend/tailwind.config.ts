@@ -114,6 +114,17 @@ const config: Config = {
       // 4px is the app's workhorse radius by a wide margin; 8px is reserved
       // for larger surfaces and 12px+ for cards and modals.
       borderRadius: { xs: "2px", sm: "4px", DEFAULT: "4px", md: "6px", lg: "8px", xl: "12px", "2xl": "16px", "3xl": "24px" },
+      spacing: {
+        /*
+         * The marketing page gutter, solved from their own ramp rather than
+         * picked: measured left edges of 24 / 64 / 104 / 120px at viewports of
+         * 768 / 1024 / 1280 / 1440 are a straight line, gutter = 0.15625vw − 96px,
+         * flattening once the 1440px max-width takes over. Stepped breakpoint
+         * padding cannot reproduce it — between 768 and 1440 it is always wrong
+         * by up to 56px, which is what put every section 50px inside theirs.
+         */
+        rail: "clamp(24px, 15.625vw - 96px, 120px)",
+      },
       boxShadow: {
         e1: "0px 2px 2px 0px rgba(16, 24, 40, 0.04)",
         e2: "0px 4px 8px -2px rgba(16, 24, 40, 0.08), 0px 2px 4px -2px rgba(16, 24, 40, 0.06)",

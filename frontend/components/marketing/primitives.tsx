@@ -22,6 +22,20 @@ export const GROUND = {
   black: "bg-black text-white",
 } as const;
 
+/**
+ * The page rail.
+ *
+ * Measured on theirs at 1440: the content column is 1200px wide and starts at
+ * x=120 — a 1440px max-width with 120px gutters, not a narrower centred box.
+ * Mine was `max-w-[1140px] px-5`, a 1100px column starting at x=170, so every
+ * section sat 50px inside theirs on both edges. That 100px shortfall is also
+ * why the paired cards came out 538px wide where theirs are 588px.
+ *
+ * `px-rail` is the fluid gutter solved from their measurements — see the
+ * `spacing.rail` note in tailwind.config.ts.
+ */
+export const RAIL = "mx-auto w-full max-w-[1440px] px-rail";
+
 export function Section({
   ground = "white",
   className,
@@ -34,8 +48,10 @@ export function Section({
   id?: string;
 }) {
   return (
-    <section id={id} className={cn(GROUND[ground], "py-24", className)}>
-      <div className="mx-auto max-w-[1140px] px-5">{children}</div>
+    // 120px of vertical padding, not 96px: theirs runs 120 on every content
+    // section and 140 on the first, which is what gives the page its measure.
+    <section id={id} className={cn(GROUND[ground], "py-20 lg:py-[120px]", className)}>
+      <div className={RAIL}>{children}</div>
     </section>
   );
 }

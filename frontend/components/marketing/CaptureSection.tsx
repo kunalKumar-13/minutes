@@ -32,7 +32,13 @@ export function CaptureSection() {
         </p>
       </div>
 
-      <div className="mt-14 grid gap-6 lg:grid-cols-2">
+      {/*
+        Not an equal pair. Theirs measures 690 + 486 across the 1200 rail on a
+        24px gutter — the wide card carries the fuller panel, the narrow one the
+        shorter. Splitting it 50/50, as this did, is what made the row read as
+        two half-empty boxes instead of one composed spread.
+      */}
+      <div className="mt-14 grid gap-6 lg:grid-cols-[690fr_486fr]">
         <PanelCard
           tint="violet"
           title="Upload a transcript"

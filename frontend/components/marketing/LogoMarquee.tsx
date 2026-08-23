@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { RAIL } from "./primitives";
 
 /**
  * The strip under the hero.
@@ -39,7 +40,7 @@ function MeetingType({ label }: { label: string }) {
 export function LogoMarquee({ className }: { className?: string }) {
   return (
     <section className={cn("bg-[#100730] pb-16 pt-40 sm:pt-56", className)}>
-      <div className="mx-auto max-w-[1140px] px-5 text-center">
+      <div className={cn(RAIL, "text-center")}>
         <p className="text-[16px] font-semibold uppercase tracking-[0.12em] text-gray-400">
           Built for teams that live in meetings
         </p>
@@ -64,7 +65,7 @@ export function LogoMarquee({ className }: { className?: string }) {
         </div>
       </div>
 
-      <div className="mx-auto mt-12 max-w-[1140px] px-5 text-center">
+      <div className={cn(RAIL, "mt-12 text-center")}>
         <p className="mx-auto max-w-[480px] text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-400">
           Whatever the call, it lands the same way: an interactive transcript, notes you can act on,
           and answers you can search for months later.

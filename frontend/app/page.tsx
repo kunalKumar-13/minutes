@@ -12,7 +12,7 @@ import { Hero } from "@/components/marketing/Hero";
 import { InsightsSection } from "@/components/marketing/InsightsSection";
 import { LogoMarquee } from "@/components/marketing/LogoMarquee";
 import { SearchShowcase } from "@/components/marketing/SearchShowcase";
-import { AnnouncementBar, MarketingNav } from "@/components/marketing/MarketingNav";
+import { MarketingHeader } from "@/components/marketing/MarketingNav";
 import { SiteFooter } from "@/components/marketing/SiteFooter";
 import { SkillsSection } from "@/components/marketing/SkillsSection";
 import { TabbedShowcase } from "@/components/marketing/TabbedShowcase";
@@ -33,8 +33,7 @@ import { TestimonialCarousel } from "@/components/marketing/TestimonialCarousel"
 export default function LandingPage() {
   return (
     <div className="min-h-dvh bg-white font-sans text-gray-900">
-      <AnnouncementBar />
-      <MarketingNav />
+      <MarketingHeader />
 
       <main>
         <Hero />

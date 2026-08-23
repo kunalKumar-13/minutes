@@ -1,6 +1,6 @@
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { CtaButton, GROUND, SectionHeading, Shot, STARS } from "./primitives";
+import { CtaButton, GROUND, RAIL, SectionHeading, Shot, STARS } from "./primitives";
 
 /**
  * The repeating feature section.
@@ -129,7 +129,7 @@ export function FeatureSection({
       className={cn(
         "relative",
         GROUND[ground],
-        clearsOverhang ? "pb-24 pt-40 sm:pt-56" : "py-24",
+        clearsOverhang ? "pb-20 pt-40 sm:pt-56 lg:pb-[120px]" : "py-20 lg:py-[120px]",
         onDark && "overflow-hidden",
       )}
     >
@@ -139,7 +139,7 @@ export function FeatureSection({
         </div>
       )}
 
-      <div className="relative mx-auto max-w-[1140px] px-5">
+      <div className={cn(RAIL, "relative")}>
         {layout === "beside" ? (
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <div className={cn(reversed && "lg:order-2")}>{copy}</div>
