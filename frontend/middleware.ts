@@ -37,6 +37,19 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Everything except Next internals, the favicon and static assets.
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)"],
+  /*
+   * Everything except Next internals and files served to anonymous clients.
+   *
+   * The image extensions were here already; the named metadata files were not,
+   * so `/site.webmanifest` and `/robots.txt` reached the guard and 307'd to
+   * /login. That made the manifest inert for precisely the signed-out visitors
+   * it exists for, and pointed crawlers at a login page instead of the site.
+   *
+   * This must stay one literal string. Next statically analyses the matcher at
+   * build time, so a concatenated expression is not read as a pattern — it
+   * silently guards everything instead, including the OG image.
+   */
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|site.webmanifest|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|webmanifest|txt|xml)$).*)",
+  ],
 };
