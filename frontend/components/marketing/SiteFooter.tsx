@@ -24,7 +24,7 @@ type Item = { label: string; href: string };
 
 const COLUMNS: Record<string, Item[]> = {
   product: [
-    { label: "Meetings library", href: "/meetings" },
+    { label: "Meetings library", href: "/notebook" },
     { label: "Interactive transcript", href: "#how" },
     { label: "AI notes & chapters", href: "#summaries" },
     { label: "Action items", href: "/tasks" },
