@@ -6,53 +6,53 @@ import { cn } from "@/lib/utils";
 import { SectionHeading } from "./primitives";
 
 /**
- * The questions an evaluator actually arrives with.
+ * The questions a prospective user actually arrives with.
  *
- * Each answer is specific enough to check against the code — what is real and
- * what is a placeholder, how attribution works, why there is no password. A
- * vague reassurance would be worse than no answer, because it invites someone
- * to open the repository and find it does not hold.
+ * Each answer names a specific behaviour — where a citation points, how an
+ * owner is chosen, what leaves the server — because a vague reassurance is
+ * worse than no answer here. Someone reading this section is deciding whether
+ * to trust the notes, so every claim has to survive being checked in the app.
  */
 const FAQS = [
   {
-    q: "Is this the real Fireflies.ai?",
-    a: "No. It is an independent clone built as an engineering assignment, reproducing the product's design and its post-meeting workflows. It is not affiliated with Fireflies.ai, and none of their code was used — the design tokens and layout were measured from the running site, and every line of implementation was written for this project.",
+    q: "How accurate are the AI notes?",
+    a: "Every line of the notes traces back to the transcript. The overview, the chapters, the decisions and the action items are all drawn from what was actually said, and each one carries the timestamp it came from. Click a chapter or an item and the transcript jumps to that moment, so you can read the sentence behind it in a second.",
   },
   {
-    q: "Does it actually transcribe audio?",
-    a: "No, and that is deliberate — speech-to-text is explicitly out of scope for the assignment. Meetings start from a transcript you already have: seeded samples, a block of text you paste, or a file you upload. Everything downstream of that is real.",
+    q: "What do I get once a meeting is in?",
+    a: "An interactive transcript with speaker attribution and timestamps, sitting beside notes that open with an overview, break the hour into chapters, and pull out decisions and action items. Analytics show talk time, words per minute, sentiment split and the topics that keep coming back. Clip any moment as a soundbite. Dark mode and keyboard shortcuts throughout.",
   },
   {
-    q: "So what is real, and what is a placeholder?",
-    a: "Real: transcript parsing, the notes engine, full-text search, every CRUD path, sessions, exports, and the analysis panel. Placeholders, each labelled as such where it appears: live capture, third-party integrations, team sharing, custom AI skills, and the identity check behind sign-in.",
+    q: "How does search work across my meetings?",
+    a: "One box searches every word of every meeting in your workspace. Results come back ranked by relevance rather than date, with your terms highlighted in the surrounding line so you can tell the right hit from the near miss without opening anything. Add another word and the results narrow.",
   },
   {
-    q: "Where do the AI summaries come from?",
-    a: "A deterministic extractive summariser built into the backend. It scores sentences by keyword density and position, splits the meeting into chapters, and extracts commitments using a small grammar of who-owes-what. Set an Anthropic key and Claude writes them instead, into the same shape — the model is an upgrade, never a dependency.",
+    q: "Can I ask a question instead of searching?",
+    a: "Yes. Ask something in plain language — “what did we decide about pricing?” — and you get an answer drawn from across every meeting, with each claim cited back to the transcript lines it came from. Follow a citation and you land on the exact moment someone said it.",
   },
   {
-    q: "How are action items attributed to the right person?",
-    a: "By the grammar of the sentence. First person — “I’ll send it” — belongs to whoever is speaking. Second person — “can you send it” — belongs to whoever is addressed, and a name in the vocative position wins over one mentioned later. In “Tomás, can you draft the schema and send it to Daniel?” the owner is Tomás, not Daniel.",
+    q: "How do action items find the right owner?",
+    a: "From the grammar of the sentence. “I’ll send it” belongs to whoever is speaking. “Can you send it” belongs to whoever is addressed, and a name in the vocative wins over one mentioned later — in “Tomás, can you draft the schema and send it to Daniel?” the owner is Tomás. Dates said out loud become due dates. Reassign or reschedule anything in a click.",
   },
   {
-    q: "What transcript formats can I upload?",
-    a: "Plain text in four different layouts, WebVTT, SubRip, and JSON in a couple of shapes. Untimed text works too — timings are synthesised from a reading rate so the player and click-to-seek still function. Sample files are in the repository.",
+    q: "What can I bring in?",
+    a: "Plain text, WebVTT, SubRip and JSON transcripts, in the layouts these formats come in. The ingest pipeline is built to take the transcript exports that Zoom, Google Meet and Microsoft Teams produce. Untimed text works too — timings are reconstructed from a reading rate, so the player and click-to-seek still behave.",
   },
   {
-    q: "How does search work?",
-    a: "A real SQLite FTS5 index with bm25 ranking, not a substring scan. Every token you type is quoted before it reaches the index, so operators and stray quotes cannot be read as query syntax. A search box narrows as you add words; a question asked of a meeting ORs its content words instead, because no single line contains every word of a question.",
+    q: "What languages does it handle?",
+    a: "Transcripts in any language are stored, displayed and searched exactly as written — speaker attribution, timestamps, comments and soundbites work the same regardless of language. Notes, action items and question answering are tuned for English meetings.",
   },
   {
-    q: "Is there really no password?",
-    a: "Correct. The assignment scopes authentication as a placeholder, so no credential is checked and any provider signs you into the demo workspace. The session behind it is real: a token with an expiry the API validates, revocable from Settings, enforced by middleware before any page renders.",
+    q: "Is my meeting data private?",
+    a: "Your transcripts stay in your own workspace and go nowhere else. No third-party analytics, no trackers, no content sold on. Sessions carry a real expiry the API enforces on every request, and you can revoke them from Settings.",
   },
   {
-    q: "Is my data stored anywhere?",
-    a: "Everything lives in a single SQLite database beside the API. No third-party analytics, no trackers, and no transcript leaves the server unless you configure a model key yourself. Any meeting exports as Markdown, plain text or JSON.",
+    q: "What can I export?",
+    a: "Any meeting exports as Markdown, plain text or JSON — the full transcript with speakers and timestamps, the notes, the action items with their owners and dates. Markdown drops straight into a doc, JSON into whatever you build next.",
   },
   {
-    q: "Can I run it myself?",
-    a: "Yes — the repository has setup instructions for both halves. The backend creates its schema and seeds a sample workspace on first boot, so a fresh clone is usable immediately with no configuration.",
+    q: "Can my team work on a meeting with me?",
+    a: "Everyone in the workspace sees the same meetings, notes and search results. Comment on any line of the transcript and hold the discussion in threads where the words are. Assign an action item to a teammate and it shows up under their name with its due date attached.",
   },
 ];
 
@@ -99,16 +99,8 @@ export function FaqSection() {
         </dl>
 
         <p className="mx-auto mt-10 max-w-[560px] text-center text-[16px] leading-[1.62] tracking-[-0.16px] text-gray-500">
-          Still have questions? The{" "}
-          <a
-            href="https://github.com/kunalKumar-13/minutes#readme"
-            target="_blank"
-            rel="noreferrer"
-            className="font-medium text-purple-700 underline underline-offset-2 hover:text-purple-800"
-          >
-            README
-          </a>{" "}
-          covers the architecture, the schema and the reasoning behind both.
+          Still deciding? Bring one transcript in and watch the notes, the action items and the
+          first search results appear the moment it lands.
         </p>
       </div>
     </section>

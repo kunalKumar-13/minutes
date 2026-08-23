@@ -4,28 +4,27 @@ import { CtaButton, Lede, SectionHeading, STARS } from "./primitives";
 /**
  * The assistant section.
  *
- * The original's equivalent promises live coaching during a call, which needs
- * real-time audio this build does not have. What it does have is genuinely
- * interesting and adjacent: questions answered across the workspace, with every
- * answer citing the transcript lines it came from. So the section makes that
- * claim instead of a claim it cannot support.
+ * The claim here is the cited answer, not a generic chat box: the copy and the
+ * rendered exchange are written together so the citations carry the argument.
+ * Keep the two in sync — if the copy stops promising a line and a timestamp,
+ * the exchange below stops making sense.
  */
 
 const POINTS = [
   {
     icon: <MessageSquareQuote className="size-4" />,
     title: "Ask across every meeting",
-    body: "One question, matched against every transcript in the workspace.",
+    body: "One question, searched against every transcript in your workspace.",
   },
   {
     icon: <Quote className="size-4" />,
     title: "Always cited",
-    body: "Each answer links the lines it came from, so you can check it.",
+    body: "Every answer links the speaker and timestamp it came from.",
   },
   {
     icon: <ShieldCheck className="size-4" />,
-    title: "Honest when it cannot answer",
-    body: "Nothing matched means it says so, rather than inventing something.",
+    title: "Grounded in what was said",
+    body: "Answers come from your transcripts. Nothing gets invented to fill a gap.",
   },
 ];
 
@@ -54,8 +53,8 @@ export function AskSection() {
             Ask Anything, <span className="text-purple-400">Get A Cited Answer</span>
           </SectionHeading>
           <Lede onDark>
-            An assistant that answers from what was actually said. Every claim points back at a line and a
-            timestamp, so a wrong answer is checkable rather than authoritative.
+            Stop scrubbing recordings for the one line that settled it. Ask a question in plain English and get
+            an answer drawn from every meeting you have, with the exact lines and timestamps behind it.
           </Lede>
 
           <dl className="mt-10 space-y-6">

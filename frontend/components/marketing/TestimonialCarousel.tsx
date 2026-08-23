@@ -1,9 +1,19 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import {
+  BarChart3,
+  ChevronLeft,
+  ChevronRight,
+  FileText,
+  Lightbulb,
+  ListChecks,
+  Scissors,
+  Search,
+  Sparkles,
+  type LucideIcon,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Avatar } from "@/components/ui/Avatar";
 import { SectionHeading } from "./primitives";
 
 /** The four measured card washes, cycled so the rail reads as colour. */
@@ -18,42 +28,54 @@ const TINTS = ["bg-[#f4f3ff]", "bg-[#fffaeb]", "bg-[#fdf4ff]", "bg-[#f0fdf9]"];
  * end by reading the element's real scroll position rather than tracking an
  * index that could drift out of sync with it.
  *
- * On the content: these are *not* testimonials. Inventing praise from invented
- * people is fabricating reviews, however fictional the names. Each card instead
- * states something the build actually does, attributed to the sample meeting it
- * comes from — checkable against the seeded workspace.
+ * On the content: these cards are capabilities, not testimonials. Inventing
+ * praise from invented people is fabricating reviews however fictional the
+ * names are, so each card sells one thing the product does and is labelled with
+ * the surface it lives on rather than a quoted person.
  */
 
-const CARDS = [
+const CARDS: { title: string; line: string; label: string; icon: LucideIcon }[] = [
   {
-    line: "Every commitment in the call is pulled out and attributed to whoever actually made it — including the ones addressed to someone else.",
-    source: "Q3 Product Roadmap Planning",
-    detail: "5 action items, 4 speakers",
-    person: "Priya Raman",
+    title: "A transcript you can navigate",
+    line: "Every line is attributed to a speaker and stamped with its moment in the call. Click a line to jump the player there; play it back and the transcript follows along.",
+    label: "Transcript",
+    icon: FileText,
   },
   {
-    line: "Clicking any line jumps the player to that moment, and playing scrolls the transcript to follow. One piece of state drives both.",
-    source: "Engineering Standup",
-    detail: "23 lines, 5m 36s",
-    person: "Daniel Okafor",
+    title: "Notes you never have to write",
+    line: "An overview, timestamped chapters, the decisions that landed and the commitments that were made — structured from the conversation itself, not a summary you have to rewrite.",
+    label: "AI notes",
+    icon: Sparkles,
   },
   {
-    line: "Search runs over a real full-text index, so a query returns the lines that matter ranked by relevance rather than the first substring match.",
-    source: "QBR — Northwind Traders",
-    detail: "renewal · 3 matches",
-    person: "Grace Adeyemi",
+    title: "Commitments that keep their owner",
+    line: "Action items come out with an assignee and a due date attached, including the ones handed to someone who wasn't speaking. Tick them off as the work lands.",
+    label: "Action items",
+    icon: ListChecks,
   },
   {
-    line: "The analysis panel counts dates, metrics, tasks and questions from the transcript itself. Selecting one lands on the real lines.",
-    source: "Northwind Traders — Discovery Call",
-    detail: "9 dates · 5 metrics · 8 questions",
-    person: "Sofia Marchetti",
+    title: "Search that reads every word",
+    line: "One query runs across the whole workspace. Results come back ranked by relevance with the matching phrases highlighted in place, so you land on the line you meant.",
+    label: "Search",
+    icon: Search,
   },
   {
-    line: "Regenerating the notes rebuilds the AI-derived items but keeps anything a person typed or ticked off. Provenance makes that rule expressible.",
-    source: "Design Review — Checkout Redesign v2",
-    detail: "5 action items, 1 completed",
-    person: "Mei Lin",
+    title: "Ask across every meeting",
+    line: "Ask what a customer said about pricing and get an answer drawn from your meetings, cited back to the exact transcript lines it came from. Open a citation and you land on the line.",
+    label: "Ask",
+    icon: Lightbulb,
+  },
+  {
+    title: "See how the room talked",
+    line: "Talk time per speaker, words per minute, the sentiment split and the topics that keep coming back — the shape of a conversation, measured from the transcript.",
+    label: "Analytics",
+    icon: BarChart3,
+  },
+  {
+    title: "Share the moment, not the hour",
+    line: "Clip a soundbite from any stretch of the call, thread comments on the lines that need a reply, and export the whole meeting to Markdown, plain text or JSON.",
+    label: "Soundbites",
+    icon: Scissors,
   },
 ];
 
@@ -81,9 +103,10 @@ export function TestimonialCarousel() {
     <section className="bg-white py-24">
       <div className="mx-auto max-w-[1140px] px-5">
         <div className="text-center">
-          <SectionHeading>What This Build Actually Does</SectionHeading>
+          <SectionHeading>Everything The Meeting Said, In One Place</SectionHeading>
           <p className="mx-auto mt-5 max-w-[520px] text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-500">
-            Not testimonials — claims you can check against the seeded workspace.
+            The words, the decisions, the follow-ups and the numbers behind them — all searchable
+            the moment the call ends.
           </p>
         </div>
 
@@ -125,31 +148,33 @@ export function TestimonialCarousel() {
           onScroll={sync}
           tabIndex={0}
           role="region"
-          aria-label="What this build does"
+          aria-label="Product capabilities"
           className="ff-scroll mt-5 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-4"
         >
-        {CARDS.map((card, i) => (
+        {CARDS.map((card, i) => {
+          const Icon = card.icon;
+          return (
           <article
-            key={card.source}
+            key={card.title}
             className={`flex w-[340px] shrink-0 snap-start flex-col rounded-xl p-8 sm:w-[380px] ${TINTS[i % TINTS.length]}`}
           >
-            <Quote className="size-5 text-purple-300" />
-            <p className="mt-4 flex-1 text-[16px] leading-[1.62] tracking-[-0.16px] text-gray-700">
+            <h3 className="font-display text-[20px] font-medium leading-[1.4] tracking-[-0.2px] text-gray-900">
+              {card.title}
+            </h3>
+            <p className="mt-3 flex-1 text-[16px] leading-[1.62] tracking-[-0.16px] text-gray-700">
               {card.line}
             </p>
-            <footer className="mt-6 flex items-center gap-3 border-t border-black/[0.06] pt-4">
-              <Avatar name={card.person} size="lg" className="rounded-full" />
-              <span className="min-w-0">
-                <span className="block truncate text-[16px] font-medium leading-[1.48] tracking-[-0.16px] text-gray-900">
-                  {card.source}
-                </span>
-                <span className="block text-[14px] leading-[1.4] tracking-[-0.16px] text-gray-500">
-                  {card.detail}
-                </span>
+            {/* The label names the surface the capability lives on — an honest
+                stand-in for the attribution line a testimonial would carry. */}
+            <footer className="mt-6 flex items-center gap-2.5 border-t border-black/[0.06] pt-4">
+              <Icon className="size-4 shrink-0 text-gray-500" />
+              <span className="truncate text-[14px] font-medium leading-[1.4] tracking-[-0.16px] text-gray-600">
+                {card.label}
               </span>
             </footer>
           </article>
-          ))}
+          );
+          })}
         </div>
       </div>
     </section>

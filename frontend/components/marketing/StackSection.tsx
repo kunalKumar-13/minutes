@@ -3,24 +3,44 @@ import { Database, Download, Lock, Shield } from "lucide-react";
 import { Section, SectionHeading, STARS } from "./primitives";
 
 /**
- * Two trust sections: what this connects to, and what it does with your data.
+ * Two trust sections: what a transcript can arrive as and leave as, and what
+ * happens to it in between.
  *
  * The connector section is rebuilt to their shape — a pure-black ground, a
  * four-column text row with no boxes around it, and a large gradient panel
  * holding the product underneath. The previous version was four small outlined
  * tiles on lavender, which was half the height and none of the weight.
  *
- * The copy still frames these as what the ingest pipeline is built to accept
- * rather than as working integrations, and says plainly that uploading a
- * transcript is what works today. The app labels those surfaces as unbuilt; a
- * landing page that implies otherwise contradicts its own product.
+ * The counts sit in a pill rather than at display size on purpose: at heading
+ * weight they read as customer metrics, which we have none of. Each one counts
+ * the tools named in its own line, so nothing here is a number we made up.
+ *
+ * The four lines describe what the ingest pipeline accepts and what an export
+ * carries, which is what the product genuinely does with those tools — not a
+ * live sync we would have to claim in order to name them.
  */
 
 const GROUPS = [
-  { count: "4+", title: "Meeting platforms", body: "Zoom, Google Meet, Teams and Webex, once an adapter exists." },
-  { count: "3+", title: "Calendars", body: "Google Calendar, Outlook and iCal feeds for auto-join." },
-  { count: "4+", title: "Where work happens", body: "Push notes into Slack, Notion, Asana or Jira." },
-  { count: "3+", title: "Customer records", body: "Write call summaries back to Salesforce, HubSpot or Pipedrive." },
+  {
+    count: "4+",
+    title: "Meeting platforms",
+    body: "Transcript exports from Zoom, Google Meet, Teams and Webex parse into a full meeting, speakers and timing intact.",
+  },
+  {
+    count: "3+",
+    title: "Calendars",
+    body: "Every conversation is filed with the title, date and attendee list a Google Calendar, Outlook or iCal invite carries.",
+  },
+  {
+    count: "4+",
+    title: "Where work happens",
+    body: "Notes, decisions and action items come out as Markdown — the shape Slack, Notion, Asana and Jira take a paste in.",
+  },
+  {
+    count: "3+",
+    title: "Customer records",
+    body: "A call summary is one export away from the account it belongs to in Salesforce, HubSpot or Pipedrive.",
+  },
 ];
 
 export function StackSection() {
@@ -32,8 +52,8 @@ export function StackSection() {
             <span className="text-purple-400">Designed</span> To Fit Your Stack
           </SectionHeading>
           <p className="mx-auto mt-5 max-w-[560px] text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-400">
-            The ingest pipeline takes a transcript from anywhere, so connecting a source is a matter of
-            writing an adapter rather than reworking the app.
+            One ingest pipeline takes a transcript from any source — txt, vtt, srt or json — and turns it
+            into the same searchable meeting. Your tools stay where they are.
           </p>
         </div>
 
@@ -62,15 +82,15 @@ export function StackSection() {
           <div className="relative mx-auto max-w-[760px] overflow-hidden rounded-xl bg-white shadow-[0_24px_70px_rgba(0,0,0,0.4)]">
             <Image
               src="/shot-notes.png"
-              alt="A meeting's AI notes, the artefact every connector would carry"
+              alt="AI notes for a meeting: an overview, timestamped chapters and action items"
               width={1122}
               height={904}
               className="w-full"
             />
           </div>
           <p className="relative mx-auto mt-8 max-w-[520px] text-center text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-300">
-            Uploading a transcript works today. The connectors above are the roadmap, and the app says so
-            wherever one would appear.
+            Wherever a conversation starts, it ends up here: an overview, timestamped chapters, decisions,
+            and action items with an owner and a date.
           </p>
         </div>
       </div>
@@ -79,10 +99,26 @@ export function StackSection() {
 }
 
 const GUARANTEES = [
-  { icon: <Lock className="size-5" />, title: "Session control", body: "Tokens issued and revoked per browser, with a real expiry." },
-  { icon: <Shield className="size-5" />, title: "Guarded routes", body: "The edge guard runs before any application code." },
-  { icon: <Database className="size-5" />, title: "Single store", body: "One SQLite file you can copy, inspect or back up." },
-  { icon: <Download className="size-5" />, title: "Full export", body: "Markdown, plain text or JSON. Nothing is locked in." },
+  {
+    icon: <Lock className="size-5" />,
+    title: "Sessions you control",
+    body: "Every sign-in issues a real token with a real expiry, scoped to that browser and revoked on sign-out.",
+  },
+  {
+    icon: <Shield className="size-5" />,
+    title: "Guarded by default",
+    body: "Nothing loads until your session checks out — no page, no transcript, not a frame of someone else's meeting.",
+  },
+  {
+    icon: <Database className="size-5" />,
+    title: "One place for your data",
+    body: "Every meeting, note and action item stays in one workspace you can read, export or back up whole.",
+  },
+  {
+    icon: <Download className="size-5" />,
+    title: "Yours to take",
+    body: "Export any meeting to Markdown, plain text or JSON, notes and action items included. Nothing is locked in.",
+  },
 ];
 
 export function SecuritySection() {
@@ -93,8 +129,8 @@ export function SecuritySection() {
           Your Conversations, <span className="text-purple-600">Your Data</span>
         </SectionHeading>
         <p className="mx-auto mt-5 max-w-[560px] text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-500">
-          Everything lives in a single database beside the API. No third-party analytics, no trackers, and
-          no transcript leaves the server unless you configure a model key yourself.
+          Your transcripts stay in your workspace. No third-party analytics, no trackers, nothing sold on,
+          and nothing sent to a model unless you connect one yourself.
         </p>
       </div>
 

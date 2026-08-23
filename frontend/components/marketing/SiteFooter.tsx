@@ -33,10 +33,12 @@ const COLUMNS = {
     "Zoom", "Google Meet", "Microsoft Teams", "Google Calendar",
     "Outlook", "Slack", "Salesforce", "HubSpot",
   ],
-  project: ["README", "Architecture", "Database schema", "API reference", "Design notes"],
-  learn: ["Layout spec", "Sample transcripts", "Seed data", "Test suite"],
-  openIt: ["Open the app", "Sign in", "API docs"],
-  help: ["GitHub repository", "Report an issue"],
+  resources: [
+    "Getting started", "Transcript formats", "Search & filters", "Exports", "Keyboard shortcuts",
+  ],
+  learn: ["How AI notes work", "Ask with citations", "Meeting analytics", "Soundbites & clips"],
+  getStarted: ["Open the app", "Sign in", "API reference"],
+  help: ["Contact us", "Help centre", "Report an issue"],
 };
 
 const HEADING = "font-display text-[18px] font-medium leading-[20.16px] tracking-[-0.36px] text-[#fafafa]";
@@ -68,25 +70,25 @@ export function SiteFooter() {
           <Column title="Integrations" items={COLUMNS.integrations} />
 
           <div className="space-y-14">
-            <Column title="Project" items={COLUMNS.project} />
+            <Column title="Resources" items={COLUMNS.resources} />
             <Column title="Learn" items={COLUMNS.learn} />
           </div>
 
           <div className="space-y-14">
             <div>
-              <h2 className={HEADING}>Open It</h2>
+              <h2 className={HEADING}>Get Started</h2>
               {/* A real code: it encodes the repository URL and scans. */}
               <div className="mt-8 w-fit rounded bg-white p-2">
                 <Image
                   src="/qr-repo.png"
-                  alt="QR code linking to the source repository on GitHub"
+                  alt="QR code that opens this project on GitHub"
                   width={492}
                   height={492}
                   className="size-[140px]"
                 />
               </div>
               <ul className="mt-6 space-y-4">
-                {COLUMNS.openIt.map((item) => (
+                {COLUMNS.getStarted.map((item) => (
                   <li key={item}>
                     <span className={LINK}>{item}</span>
                   </li>
@@ -107,7 +109,7 @@ export function SiteFooter() {
 
           <div className="flex items-center gap-6">
             <Link href="/login" className={LINK}>
-              Open the demo
+              Open the app
             </Link>
             <a
               href="https://github.com/kunalKumar-13/minutes"

@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Lock, Star } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { ArrowRight, Search, Sparkles } from "lucide-react";
 import { Shot, STARS } from "./primitives";
 
 /**
@@ -24,12 +23,13 @@ export function Hero() {
 
       <div className="relative mx-auto max-w-[1080px] px-5">
         <h1 className="font-display text-[36px] font-medium leading-[1.32] tracking-[0.02em] text-gray-50 sm:text-[46px] lg:text-[56px]">
-          The #1 AI Assistant For
+          Turn Every Meeting Into
           <br />
-          Your Meetings
+          Notes, Actions, Answers
         </h1>
         <p className="mx-auto mt-6 max-w-[560px] text-[18px] leading-[1.56] tracking-[-0.22px] text-gray-300">
-          Transcribe, summarize, search, and analyze all your team conversations.
+          AI notes, timestamped chapters, and owned action items from every conversation. Search the whole workspace,
+          ask a question, get the answer cited back to the transcript.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
@@ -48,29 +48,16 @@ export function Hero() {
           </Link>
         </div>
 
-        {/* Trust strip, seated directly on top of the product shot. */}
+        {/* Capability strip, seated directly on top of the product shot. */}
         <div className="mx-auto mt-16 inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-2 rounded-t-xl bg-[#1b1240] px-6 py-3.5 text-[16px] text-gray-100">
           <span className="inline-flex items-center gap-2">
-            <span className="flex size-5 items-center justify-center rounded-full bg-[#ff492c] text-[10px] font-bold text-white">
-              G
-            </span>
-            Rated 4.8 / 5
-            <span className="flex gap-0.5" aria-hidden>
-              {[0, 1, 2, 3, 4].map((i) => (
-                <Star
-                  key={i}
-                  className={cn(
-                    "size-4",
-                    i < 4 ? "fill-orange-400 text-orange-400" : "fill-orange-400/35 text-orange-400/35",
-                  )}
-                />
-              ))}
-            </span>
+            <Sparkles className="size-4 text-purple-300" />
+            Notes, chapters and action items
           </span>
           <span className="hidden h-5 w-px bg-white/20 sm:block" />
           <span className="inline-flex items-center gap-2">
-            <Lock className="size-4 text-green-400" />
-            GDPR, SOC2, More
+            <Search className="size-4 text-green-400" />
+            Answers from every meeting
           </span>
         </div>
       </div>

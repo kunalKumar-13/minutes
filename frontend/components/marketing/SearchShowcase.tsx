@@ -15,20 +15,20 @@ export function SearchShowcase() {
     <Section ground="white">
       <div className="mx-auto max-w-[760px] text-center">
         <SectionHeading>
-          <span className="text-purple-600">Remember</span> Every Conversation With{" "}
-          <span className="text-purple-600">AI Powered Search</span>
+          <span className="text-purple-600">Find Any Moment</span> From Every Meeting With{" "}
+          <span className="text-purple-600">AI Search</span>
         </SectionHeading>
         <p className="mx-auto mt-5 max-w-[560px] text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-500">
-          One query across every transcript, title and action item — then ask a question and get an answer
-          with the lines it came from.
+          One query reaches every transcript, title and action item. Ask a question in plain English
+          and get an answer with the lines it came from.
         </p>
       </div>
 
       <div className="mt-14 grid gap-6 lg:grid-cols-2">
         <PanelCard
           tint="fuchsia"
-          title="Search everything at once"
-          body="A real full-text index with relevance ranking, not a substring scan."
+          title="One search across the workspace"
+          body="Relevance ranking puts the right meeting first, with every match highlighted in place."
         >
           <Image
             src="/shot-search-card.png"
@@ -41,8 +41,8 @@ export function SearchShowcase() {
 
         <PanelCard
           tint="mint"
-          title="Ask, and get it cited"
-          body="Every answer carries the transcript lines it was drawn from."
+          title="Answers you can check"
+          body="Ask across all your meetings. Every answer cites the transcript lines and timestamps behind it."
         >
           <Image
             src="/shot-ask-card.png"

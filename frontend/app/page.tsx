@@ -4,6 +4,7 @@ import {
 
 import { AskSection } from "@/components/marketing/AskSection";
 import { ClosingCta } from "@/components/marketing/ClosingCta";
+import { CollaborationSection } from "@/components/marketing/CollaborationSection";
 import { FaqSection } from "@/components/marketing/FaqSection";
 import { FeatureSection } from "@/components/marketing/FeatureSection";
 import { Hero } from "@/components/marketing/Hero";
@@ -21,9 +22,11 @@ import { TestimonialCarousel } from "@/components/marketing/TestimonialCarousel"
  * copy, so changing one cannot disturb another, and the five sections that
  * share a shape share one component rather than five near-identical files.
  *
- * Ground alternates light → dark → white deliberately: it is what gives the
- * page rhythm as you scroll, and it is why the order below matters as much as
- * the sections themselves.
+ * Ground moves in bands rather than striping section by section: a dark opening,
+ * a long lavender stretch, white through the middle, and black under the two
+ * sections that need the most contrast. #100730 is the hero's own ground and is
+ * used only to open and close the page — a third band of it mid-scroll reads as
+ * though you have scrolled back to the top.
  */
 export default function LandingPage() {
   return (
@@ -42,17 +45,17 @@ export default function LandingPage() {
           ground="light"
           heading={
             <>
-              High Quality Meeting
+              Transcripts You Can
               <br />
-              <span className="text-purple-600">Transcription</span> &amp;{" "}
-              <span className="text-purple-600">Recording</span>
+              <span className="text-purple-600">Search</span>, Quote &amp;{" "}
+              <span className="text-purple-600">Act On</span>
             </>
           }
           features={[
-            { icon: <Crosshair className="size-4" />, title: "95% Accurate", body: "Speaker-attributed transcripts you can actually quote from." },
-            { icon: <Globe className="size-4" />, title: "100+ Languages", body: "English, Spanish, French, Hindi and many more." },
-            { icon: <Users className="size-4" />, title: "Speaker Recognition", body: "Every line attributed, and renameable in one click." },
-            { icon: <Zap className="size-4" />, title: "Auto-Language Detection", body: "Switch between languages meeting to meeting." },
+            { icon: <Crosshair className="size-4" />, title: "Precise Timestamps", body: "Click any line to land on the exact moment it was said." },
+            { icon: <Globe className="size-4" />, title: "Any Meeting Source", body: "Zoom, Meet, Teams or a file on your desktop." },
+            { icon: <Users className="size-4" />, title: "Speaker Attribution", body: "Every line attributed, and renameable in one click." },
+            { icon: <Zap className="size-4" />, title: "Instant Recall", body: "Search inside a transcript and every match lights up." },
           ]}
           shot={{
             src: "/shot-transcript.png",
@@ -63,9 +66,9 @@ export default function LandingPage() {
         />
 
         <FeatureSection
-          ground="dark"
+          ground="light"
           layout="below"
-          heading={<>Comprehensive <span className="text-purple-400">AI Summaries</span></>}
+          heading={<>Comprehensive <span className="text-purple-600">AI Summaries</span></>}
           lede="An overview, timestamped chapters, action items attributed to whoever committed to them, and the decisions the meeting actually reached."
           shot={{
             src: "/shot-notes.png",
@@ -79,14 +82,14 @@ export default function LandingPage() {
           layout="below"
           heading={
             <>
-              <span className="text-purple-600">Capture</span> Meetings{" "}
-              <span className="text-purple-600">Anywhere</span> &amp; Anytime
+              <span className="text-purple-600">Start</span> From Any{" "}
+              <span className="text-purple-600">Transcript</span>
             </>
           }
-          lede="Speech-to-text is out of scope here, so a meeting starts from a transcript you already have — pasted, uploaded, or seeded."
+          lede="Drop in a file, paste raw text, or bring a transcript across from the tools you already run calls on. Speakers, timestamps and a searchable timeline in seconds."
           features={[
-            { icon: <Bot className="size-4" />, title: "Notetaker Bot", body: "Invite the bot to a call, or let it auto-join from your calendar." },
-            { icon: <Upload className="size-4" />, title: "Upload A Recording", body: "Drop in a .txt, .vtt, .srt or .json transcript and it is parsed instantly." },
+            { icon: <Bot className="size-4" />, title: "Connect Your Calls", body: "Bring across the transcript Zoom, Meet, Teams or Slack hands you." },
+            { icon: <Upload className="size-4" />, title: "Upload A Transcript", body: "Drop in .txt, .vtt, .srt or .json and it is parsed instantly." },
             { icon: <Sparkles className="size-4" />, title: "Paste Anything", body: "Even an untimed wall of text gets speakers and a working timeline." },
           ]}
           shot={{
@@ -104,13 +107,13 @@ export default function LandingPage() {
         <FeatureSection
           layout="below"
           heading={<>Drive Insights With <span className="text-purple-600">Conversation Intelligence</span></>}
-          lede="Who dominated, who never got a word in, what the workspace actually spends its time on — derived from the transcripts themselves."
+          lede="See who dominated, who never got a word in, and what your workspace spends its time on. Every number is read straight from the transcripts."
           cta={null}
           features={[
             { icon: <BarChart3 className="size-4" />, title: "Talk Time", body: "Share of the conversation, plus words per minute." },
-            { icon: <Sparkles className="size-4" />, title: "Topics", body: "What this workspace actually spends its time on." },
-            { icon: <Scissors className="size-4" />, title: "Soundbites", body: "Clip the moment that mattered and keep it." },
-            { icon: <Search className="size-4" />, title: "Trends", body: "Meeting volume and follow-through over time." },
+            { icon: <Sparkles className="size-4" />, title: "Topics", body: "The themes that keep coming back, meeting after meeting." },
+            { icon: <Scissors className="size-4" />, title: "Soundbites", body: "Clip the moment that mattered and share it in a click." },
+            { icon: <Search className="size-4" />, title: "Trends", body: "Meeting volume day by day, across the whole workspace." },
           ]}
           shot={{
             src: "/shot-analytics.png",
@@ -124,6 +127,7 @@ export default function LandingPage() {
         <SkillsSection />
         <StackSection />
         <SecuritySection />
+        <CollaborationSection />
         <TestimonialCarousel />
         <FaqSection />
         <ClosingCta />

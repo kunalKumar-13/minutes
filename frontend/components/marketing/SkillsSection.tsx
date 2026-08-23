@@ -6,34 +6,38 @@ import { cn } from "@/lib/utils";
 import { CtaButton, Section, SectionHeading } from "./primitives";
 
 /**
- * The skills catalogue.
+ * What each team gets out of a meeting.
  *
  * Rebuilt to their structure: a white ground, a centred heading and CTA, a row
- * of category pills, and a narrow vertical list of skills underneath. The
- * earlier version was a dark horizontal carousel, which was the wrong shape
- * entirely — the rail made the section half the height it should be and buried
- * most of the catalogue off-screen.
+ * of category pills, and a narrow vertical list underneath. The earlier version
+ * was a dark horizontal carousel, which was the wrong shape entirely — the rail
+ * made the section half the height it should be and buried most of the list
+ * off-screen.
  *
- * Each row says plainly whether it runs today. Four of these are the built-in
- * notes engine under different names; the rest are prompts this build does not
- * ship, and a page that blurs the two is lying to the reader.
+ * On the content: this slot on their page is a catalogue of named AI apps. Ours
+ * is the same shape filled with things the product actually produces — a row
+ * here is one real output (notes, action items, search, analytics, soundbites,
+ * comments, export) framed for the team that reaches for it, so a visitor lands
+ * on the four General rows and can pivot to their own discipline in a click. A
+ * list of app names we do not run would be the one fabrication this section
+ * could contain. Each row carries a tint purely so a long list stays scannable.
  */
 
-type Skill = { name: string; body: string; tint: string; live: boolean; cats: string[] };
+type Skill = { name: string; body: string; tint: string; cats: string[] };
 
 const SKILLS: Skill[] = [
-  { name: "Meeting Overview", body: "A paragraph summarising what the call was for and where it landed.", tint: "bg-purple-400", live: true, cats: ["General"] },
-  { name: "Timestamped Chapters", body: "The meeting split into titled sections, each linking into the recording.", tint: "bg-indigo-400", live: true, cats: ["General"] },
-  { name: "Action Item Extraction", body: "Commitments pulled out and attributed to whoever made them.", tint: "bg-green-400", live: true, cats: ["General", "Engineering"] },
-  { name: "Sentiment Split", body: "How the conversation broke down across positive, neutral and negative.", tint: "bg-cyan-400", live: true, cats: ["General", "Sales"] },
-  { name: "BANT Qualification", body: "Budget, authority, need and timeline, lifted from a sales call.", tint: "bg-orange-400", live: false, cats: ["Sales"] },
-  { name: "Objection Tracker", body: "Every concern the other side raised, in the order they raised it.", tint: "bg-red-400", live: false, cats: ["Sales"] },
-  { name: "Churn Risk", body: "The signals in a customer call that suggest they are drifting away.", tint: "bg-pink-400", live: false, cats: ["Sales"] },
-  { name: "Follow-Up Draft", body: "The email that should go out after the call, in your voice.", tint: "bg-teal-400", live: false, cats: ["Sales", "General"] },
-  { name: "Candidate Scorecard", body: "How an interviewee answered against the rubric you set.", tint: "bg-violet-400", live: false, cats: ["Recruiting"] },
-  { name: "Interview Debrief", body: "What each panellist thought, and where they disagreed.", tint: "bg-blue-400", live: false, cats: ["Recruiting"] },
-  { name: "Bug Triage", body: "Defects raised in the call, with severity and who owns them.", tint: "bg-amber-400", live: false, cats: ["Engineering"] },
-  { name: "Decision Log", body: "Every decision reached, and the reasoning that got there.", tint: "bg-emerald-400", live: false, cats: ["Engineering", "General"] },
+  { name: "Meeting Overview", body: "A tight paragraph on what the call was for, what got covered, and where it landed.", tint: "bg-purple-400", cats: ["General"] },
+  { name: "Timestamped Chapters", body: "The meeting split into titled sections, each one jumping straight to that moment in the transcript.", tint: "bg-indigo-400", cats: ["General"] },
+  { name: "Action Items With Owners", body: "Commitments pulled out of the conversation with an owner and a due date. Reassign or reschedule in a click.", tint: "bg-green-400", cats: ["General"] },
+  { name: "Decisions On The Record", body: "Every decision the room reached, sitting beside the lines that reached it.", tint: "bg-emerald-400", cats: ["General"] },
+  { name: "Objection Recall", body: "Search “too expensive” or “security review” across every call and land on the line where it came up.", tint: "bg-orange-400", cats: ["Sales"] },
+  { name: "Talk-Time Check", body: "See what share of the call was you. Talk time and words per minute for everyone who spoke.", tint: "bg-red-400", cats: ["Sales", "Recruiting"] },
+  { name: "Sentiment Split", body: "How the conversation felt, broken down across positive, neutral and negative moments.", tint: "bg-cyan-400", cats: ["Sales"] },
+  { name: "Soundbites Worth Sharing", body: "Clip the moment the buyer said yes and drop it into the thread, transcript lines attached.", tint: "bg-pink-400", cats: ["Sales", "Recruiting"] },
+  { name: "Cited Answers", body: "Ask what a candidate said about ownership and get the answer back with the exact lines behind it.", tint: "bg-violet-400", cats: ["Recruiting", "Engineering"] },
+  { name: "Debrief In Threads", body: "Comment on the lines that decided it, so the panel argues in one place instead of four inboxes.", tint: "bg-blue-400", cats: ["Recruiting", "Engineering"] },
+  { name: "Recurring Topics", body: "The themes that keep coming back, meeting after meeting, counted from the transcripts themselves.", tint: "bg-teal-400", cats: ["Engineering"] },
+  { name: "Straight Into The Ticket", body: "Export any meeting to Markdown, plain text or JSON — notes, decisions and action items included.", tint: "bg-amber-400", cats: ["Engineering"] },
 ];
 
 const CATEGORIES = ["General", "Sales", "Recruiting", "Engineering"] as const;
@@ -46,11 +50,11 @@ export function SkillsSection() {
     <Section ground="white">
       <div className="mx-auto max-w-[760px] text-center">
         <SectionHeading>
-          Go <span className="text-purple-600">Beyond Notetaking</span> With AI Skills
+          Go <span className="text-purple-600">Beyond Notetaking</span>, Whatever Your Team Does
         </SectionHeading>
         <p className="mx-auto mt-5 max-w-[560px] text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-500">
-          A skill is a prompt run over a transcript to produce an extra section of notes. Four run today —
-          the rest are the shape the feature takes, not something this build ships.
+          One transcript answers a different question for every team. Pick yours and see what a meeting
+          turns into — every line of it traceable to the moment that produced it.
         </p>
         <div className="mt-9 flex justify-center">
           <CtaButton>Get Started</CtaButton>
@@ -87,19 +91,9 @@ export function SkillsSection() {
               <Sparkles className="size-5 fill-current" />
             </span>
             <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2">
-                <p className="text-[16px] font-medium leading-[1.48] tracking-[-0.16px] text-gray-900">
-                  {skill.name}
-                </p>
-                <span
-                  className={cn(
-                    "rounded px-1.5 py-0.5 text-[12px] font-medium leading-[1.4]",
-                    skill.live ? "bg-green-50 text-green-700" : "bg-gray-100 text-gray-500",
-                  )}
-                >
-                  {skill.live ? "Runs today" : "Not built"}
-                </span>
-              </div>
+              <p className="text-[16px] font-medium leading-[1.48] tracking-[-0.16px] text-gray-900">
+                {skill.name}
+              </p>
               <p className="mt-1 text-[16px] leading-[1.48] tracking-[-0.16px] text-gray-500">{skill.body}</p>
             </div>
           </li>
