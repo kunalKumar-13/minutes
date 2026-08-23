@@ -1,6 +1,6 @@
 {
-  "name": "Minutes",
-  "short_name": "Minutes",
+  "name": "Fireflies.ai",
+  "short_name": "Fireflies.ai",
   "description": "Meeting notes and transcription workspace.",
   "start_url": "/home",
   "display": "standalone",
