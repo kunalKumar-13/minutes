@@ -111,7 +111,7 @@ export function MarketingHeader() {
               scrolled ? "text-gray-900" : "text-white",
             )}
           >
-            fireflies.ai
+            Minutes
           </span>
         </Link>
 
