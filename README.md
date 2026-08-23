@@ -458,10 +458,18 @@ Two things worth knowing about the free plan:
 Once Vercel has given you a URL, set `CORS_ORIGINS` on the Render service to
 that origin.
 
-**Frontend → Vercel.** Set root directory to `frontend/` and
-`NEXT_PUBLIC_API_URL` to the backend URL. `*.vercel.app` origins are already
-allowed by the CORS regex in `app/main.py`, so preview deployments work without
-further configuration.
+**Frontend → Vercel.** Set root directory to `frontend/` and two environment
+variables:
+
+- `NEXT_PUBLIC_API_URL` — the Render backend URL.
+- `NEXT_PUBLIC_SITE_URL` — this deployment's own origin, e.g.
+  `https://minutes-demo.vercel.app`. It backs `metadataBase`, which is what
+  makes the Open Graph and Twitter cards resolve to absolute URLs. Leave it
+  unset and the card still points at `http://localhost:3000`, so every shared
+  link previews as a broken image.
+
+`*.vercel.app` origins are already allowed by the CORS regex in `app/main.py`,
+so preview deployments work without further configuration.
 
 Both live URLs are listed at the top of this repository's About section.
 
