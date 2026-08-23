@@ -10,8 +10,11 @@ const NAV = ["Product", "Solutions", "Integration", "Resources"];
 const FLAT = ["Enterprise", "Pricing"];
 
 export function AnnouncementBar() {
+  const [shown, setShown] = useState(true);
+  if (!shown) return null;
+
   return (
-    <div className="flex h-10 items-center justify-center gap-2 bg-purple-500 px-4 text-center text-white">
+    <div className="relative flex h-10 items-center justify-center gap-2 bg-purple-500 px-4 text-center text-white">
       <span className="rounded bg-green-300 px-1.5 py-0.5 text-[11px] font-bold uppercase tracking-wide text-green-900">
         New
       </span>
@@ -21,6 +24,14 @@ export function AnnouncementBar() {
       <Link href="/login" className="hidden shrink-0 underline underline-offset-2 sm:inline">
         See now
       </Link>
+      <button
+        type="button"
+        aria-label="Dismiss announcement"
+        onClick={() => setShown(false)}
+        className="absolute right-4 text-white/70 transition-colors hover:text-white"
+      >
+        <X className="size-4" />
+      </button>
     </div>
   );
 }

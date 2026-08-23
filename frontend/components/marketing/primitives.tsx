@@ -170,6 +170,7 @@ export function Shot({
   height,
   className,
   priority = false,
+  fade = false,
 }: {
   src: string;
   alt: string;
@@ -177,6 +178,9 @@ export function Shot({
   height: number;
   className?: string;
   priority?: boolean;
+  /** Fades the panel out at the bottom, as theirs does, so it reads as a
+   *  window onto the app rather than an image that has been cut off. */
+  fade?: boolean;
 }) {
   return (
     <div
@@ -184,6 +188,14 @@ export function Shot({
         "overflow-hidden rounded-xl bg-white shadow-[0_20px_60px_rgba(16,24,40,0.16)]",
         className,
       )}
+      style={
+        fade
+          ? {
+              maskImage: "linear-gradient(to bottom, #000 72%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, #000 72%, transparent 100%)",
+            }
+          : undefined
+      }
     >
       <Image src={src} alt={alt} width={width} height={height} priority={priority} className="w-full" />
     </div>

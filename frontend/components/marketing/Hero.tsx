@@ -27,9 +27,8 @@ export function Hero() {
           <br />
           Notes, Actions, Answers
         </h1>
-        <p className="mx-auto mt-6 max-w-[560px] text-[18px] leading-[1.56] tracking-[-0.22px] text-gray-300">
-          AI notes, timestamped chapters, and owned action items from every conversation. Search the whole workspace,
-          ask a question, get the answer cited back to the transcript.
+        <p className="mx-auto mt-6 max-w-[760px] text-[18px] leading-[1.56] tracking-[-0.22px] text-gray-300">
+          Transcribe, summarise, search, and analyse every team conversation.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">

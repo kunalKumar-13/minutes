@@ -22,7 +22,7 @@ export interface FeatureSectionProps {
   features?: { icon: React.ReactNode; title: string; body: string }[];
   /** A simple ticked list, used where a grid would be too heavy. */
   checklist?: string[];
-  shot: { src: string; alt: string; width: number; height: number };
+  shot: { src: string; alt: string; width: number; height: number; fade?: boolean };
   /** `beside` puts the shot in a second column; `below` runs it full width. */
   layout?: "beside" | "below";
   /** Put the shot on the left instead of the right. */

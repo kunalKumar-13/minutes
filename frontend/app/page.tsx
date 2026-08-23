@@ -1,5 +1,5 @@
 import {
-  BarChart3, Bot, Crosshair, Globe, Scissors, Search, Sparkles, Upload, Users, Zap,
+  Bot, Crosshair, Globe, Sparkles, Upload, Users, Zap,
 } from "lucide-react";
 
 import { AskSection } from "@/components/marketing/AskSection";
@@ -8,6 +8,7 @@ import { CollaborationSection } from "@/components/marketing/CollaborationSectio
 import { FaqSection } from "@/components/marketing/FaqSection";
 import { FeatureSection } from "@/components/marketing/FeatureSection";
 import { Hero } from "@/components/marketing/Hero";
+import { InsightsSection } from "@/components/marketing/InsightsSection";
 import { KnowledgeSection } from "@/components/marketing/KnowledgeSection";
 import { LogoMarquee } from "@/components/marketing/LogoMarquee";
 import { SearchShowcase } from "@/components/marketing/SearchShowcase";
@@ -60,8 +61,9 @@ export default function LandingPage() {
           shot={{
             src: "/shot-transcript.png",
             alt: "The transcript panel: speaker labels, timestamps and inline search",
-            width: 432,
-            height: 544,
+            width: 700,
+            height: 1262,
+            fade: true,
           }}
         />
 
@@ -104,24 +106,7 @@ export default function LandingPage() {
 
         <AskSection />
 
-        <FeatureSection
-          layout="below"
-          heading={<>Drive Insights With <span className="text-purple-600">Conversation Intelligence</span></>}
-          lede="See who dominated, who never got a word in, and what your workspace spends its time on. Every number is read straight from the transcripts."
-          cta={null}
-          features={[
-            { icon: <BarChart3 className="size-4" />, title: "Talk Time", body: "Share of the conversation, plus words per minute." },
-            { icon: <Sparkles className="size-4" />, title: "Topics", body: "The themes that keep coming back, meeting after meeting." },
-            { icon: <Scissors className="size-4" />, title: "Soundbites", body: "Clip the moment that mattered and share it in a click." },
-            { icon: <Search className="size-4" />, title: "Trends", body: "Meeting volume day by day, across the whole workspace." },
-          ]}
-          shot={{
-            src: "/shot-analytics.png",
-            alt: "Analytics: talk time, meeting volume and recurring topics",
-            width: 1600,
-            height: 1000,
-          }}
-        />
+        <InsightsSection />
 
         <KnowledgeSection />
         <SkillsSection />
