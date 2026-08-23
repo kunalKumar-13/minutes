@@ -99,7 +99,7 @@ export default function AnalyticsPage() {
                 {data.meetings_by_day.map((day) => {
                   const date = new Date(`${day.date}T00:00:00`);
                   return (
-                    <div key={day.date} className="group flex min-w-0 flex-1 flex-col items-center gap-2">
+                    <div key={day.date} className="group flex h-full min-w-0 flex-1 flex-col items-center gap-2">
                       <div className="flex w-full flex-1 items-end">
                         <div
                           style={{ height: `${(day.count / maxDay) * 100}%` }}
@@ -107,9 +107,8 @@ export default function AnalyticsPage() {
                           className={cn(
                             "w-full rounded-t transition-colors",
                             day.count > 0
-                              ? "bg-purple-500 group-hover:bg-purple-600"
-                              : "bg-gray-100 dark:bg-white/5",
-                            day.count === 0 && "min-h-[3px]",
+                              ? "min-h-[4px] bg-purple-500 group-hover:bg-purple-600"
+                              : "min-h-[3px] bg-gray-100 dark:bg-white/5",
                           )}
                         />
                       </div>
